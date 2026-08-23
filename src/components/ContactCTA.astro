@@ -1,0 +1,45 @@
+---
+import { Icon } from 'astro-icon/components';
+import { Image } from "astro:assets";
+import avatarImage from "../assets/gueh.jpg";
+---
+
+<section id="contact" class="relative py-16 md:py-24 px-3 md:px-5 desktop:px-16 max-w-[1280px] mx-auto overflow-visible">
+  <div class="relative min-h-[430px] overflow-visible rounded-[2rem] border border-sky-200/70 bg-[linear-gradient(rgba(94,165,217,0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(94,165,217,0.18)_1px,transparent_1px),linear-gradient(90deg,#cfeeff_0%,#eaf7ff_56%,#f8fcff_100%)] bg-[size:64px_64px,64px_64px,auto] shadow-xl shadow-primary/5">
+    <!-- Blueprint square accents -->
+    <span class="pointer-events-none absolute left-[6%] top-10 h-16 w-16 bg-sky-400/15"></span>
+    <span class="pointer-events-none absolute left-[34%] top-0 h-16 w-16 bg-white/35"></span>
+    <span class="pointer-events-none absolute bottom-0 left-[12%] h-16 w-16 bg-slate-400/10"></span>
+    <span class="pointer-events-none absolute bottom-14 right-0 h-28 w-16 bg-slate-300/20"></span>
+
+    <!-- Left Column: CTA Info -->
+    <div class="relative z-10 max-w-[600px] px-7 py-12 sm:px-10 md:px-20 md:py-20 lg:px-24">
+      <h3 class="text-[32px] md:text-[38px] lg:text-[42px] font-extrabold tracking-[-0.04em] text-[#05070a] leading-[1.22]">
+        Let's Build Something Truly <br class="hidden sm:block" />
+        <span class="italic">Meaningful Together</span>
+      </h3>
+
+      <p class="mt-6 max-w-[540px] text-[17px] md:text-[19px] text-slate-600 leading-relaxed">
+        I'm open to new opportunities, collaborations, or simply exchanging ideas. Let's connect and create something impactful.
+      </p>
+
+      <a href="#contact" class="mt-8 inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-primary to-primary-container px-7 py-3.5 text-sm font-semibold text-white shadow-[0_12px_24px_rgba(0,55,176,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_30px_rgba(0,55,176,0.32)] group">
+        Get In Touch
+        <Icon name="mdi:arrow-right" class="w-5 h-5 transition-transform group-hover:translate-x-1" />
+      </a>
+    </div>
+
+    <!-- Right Column: Portrait Visual -->
+    <div class="relative z-20 mx-auto -mt-4 flex w-full justify-center px-8 md:absolute md:bottom-0 md:right-10 md:mt-0 md:w-[360px] md:px-0 lg:right-20 lg:w-[420px]">
+      <div class="relative w-[260px] sm:w-[300px] md:w-[360px] lg:w-[400px]">
+        <div class="absolute -inset-4 rounded-[2rem] bg-white/35 blur-2xl"></div>
+        <Image
+          src={avatarImage}
+          alt="Namry Ayu Safitri"
+          class="relative aspect-[3/4] w-full rounded-t-[2rem] object-cover object-center shadow-2xl ring-1 ring-white/50"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </div>
+</section>

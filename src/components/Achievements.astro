@@ -1,0 +1,352 @@
+---
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+import iitcCertificate from "../assets/SERTIF_IITC.jpeg";
+import historyCertificate from "../assets/SERTIF_HISTORY.jpeg";
+import mathCertificate from "../assets/SERTIF_MATH.jpeg";
+import infCertificate from "../assets/SERTIF_INF.jpeg";
+import jihsCertificate from "../assets/SERTIF_JIHS.jpeg";
+import fullstackCertificate from "../assets/SERTIF_FULLSTACK.jpg";
+import p4Certificate from "../assets/SERTIF_P4.jpeg";
+import markodingCertificate from "../assets/SERTIF_MARKODING.jpeg";
+import designCertificate from "../assets/SERTIF_DESIGN.jpeg";
+
+const featuredAchievement = {
+  number: "03",
+  title: "Favorite Winner — IITC Web Development Competition",
+  category: "Web Development · National Level",
+  year: "2025",
+  type: "Favorite Winner",
+  description:
+    "Achieved Favorite Winner in the Intermedia Information Technology Competition (IITC) 2025 in the Web Development category at the national level, organized by UKM Intermedia Universitas Amikom Purwokerto.",
+  label: "Achievement",
+  result: "Favorite Winner · Web Development",
+  icon: "mdi:code-tags-check",
+  image: iitcCertificate,
+  imageAlt: "Certificate for Favorite Winner — IITC Web Development Competition",
+};
+
+const highlightedAchievements = [
+  {
+    number: "01",
+    title: "Gold Medal — Padjadjaran Smart Minds Competition",
+    category: "History Competition",
+    year: "2025",
+    type: "Gold Medal",
+    description:
+      "Awarded a Gold Medal in the Padjadjaran Smart Minds Competition 2025 in the History category, organized by Asosiasi Olimpiade Nusantara & Olimpiade Sains Pelajar.",
+    label: "Achievement",
+    result: "Gold Medal",
+    icon: "mdi:medal-outline",
+    image: historyCertificate,
+    imageAlt: "Certificate for Gold Medal — Padjadjaran Smart Minds Competition",
+  },
+  {
+    number: "02",
+    title: "Finalist / Silver — International Science Qualification Olympiad",
+    category: "Mathematics Competition",
+    year: "2025",
+    type: "Finalist",
+    description:
+      "Finalist in the International Science Qualification Olympiad (ISQO) 2025 in Mathematics, achieving a B+ level with Silver Award recognition.",
+    label: "Achievement",
+    result: "Finalist · Silver Award",
+    icon: "mdi:trophy-outline",
+    image: mathCertificate,
+    imageAlt: "Certificate for Finalist / Silver — International Science Qualification Olympiad",
+  },
+  {
+    number: "04",
+    title: "Finalist — Olympiad National Event Mahasiswa (ONEXMA)",
+    category: "Informatics Competition",
+    year: "2026",
+    type: "Finalist",
+    description:
+      "Finalist in the Olympiad National Event Mahasiswa (ONEXMA) 2026 in Informatics, demonstrating problem-solving and informatics skills.",
+    label: "Achievement",
+    result: "Finalist · Informatics",
+    icon: "mdi:brain",
+    image: infCertificate,
+    imageAlt: "Certificate for Finalist — Olympiad National Event Mahasiswa ONEXMA Informatics Competition",
+  },
+];
+
+const certificateHighlights = [
+  {
+    number: "05",
+    title: "JIHS Developer Bootcamp 2025",
+    category: "Industry Class · Software Development",
+    year: "2025",
+    type: "Certificate",
+    description:
+      "Completed the JIHS Developer Bootcamp 2025, an industry class organized by Politeknik Jakarta Internasional, focusing on software development and programming technologies.",
+    label: "Skills",
+    result: "Go · Flutter · Software Development",
+    icon: "mdi:certificate-outline",
+    image: jihsCertificate,
+    imageAlt: "Certificate for JIHS Developer Bootcamp 2025",
+  },
+  {
+    number: "06",
+    title: "Basic Course Preliminary Round — Full Stack Web Development",
+    category: "Perempuan Inovasi 2025",
+    year: "2025",
+    type: "Certificate",
+    description:
+      "Completed the Basic Course Preliminary Round in Full Stack Web Development as part of Perempuan Inovasi 2025 by Markoding.",
+    label: "Focus",
+    result: "Full Stack Web Development",
+    icon: "mdi:layers-triple-outline",
+    image: fullstackCertificate,
+    imageAlt: "Certificate for Basic Course Preliminary Round — Full Stack Web Development",
+  },
+  {
+    number: "08",
+    title: "Software Engineering Competency Development Training",
+    category: "Software Engineering",
+    year: "2025",
+    type: "Certificate",
+    description:
+      "Completed competency development training in Software Engineering organized by the Center for Education Training and Development of East Jakarta Administration.",
+    label: "Skills",
+    result: "PHP · MySQL · Software Engineering",
+    icon: "mdi:code-braces",
+    image: p4Certificate,
+    imageAlt: "Certificate for Software Engineering Competency Development Training",
+  },
+];
+
+const additionalCertificates = [
+  {
+    number: "07",
+    title: "Top 10 Team — Demo Day Innovation Challenge",
+    category: "Generasi Terampil 2023",
+    year: "2024",
+    type: "Top 10 Team",
+    description:
+      "Selected as one of the Top 10 teams participating in the Demo Day Innovation Challenge 2023: Generasi Terampil, demonstrating innovation, teamwork, problem solving, and presentation skills.",
+    label: "Achievement",
+    result: "Top 10 Team",
+    icon: "mdi:lightbulb-on-outline",
+    image: markodingCertificate,
+    imageAlt: "Certificate for Top 10 Team — Demo Day Innovation Challenge Generasi Terampil 2023",
+  },
+  {
+    number: "09",
+    title: "Designing Using Adobe Illustrator for Beginner",
+    category: "UI & Graphic Design",
+    year: "2024",
+    type: "Certificate",
+    description:
+      "Completed a beginner-level training in Adobe Illustrator, focusing on fundamental design techniques and user interface design.",
+    label: "Skills",
+    result: "Adobe Illustrator · User Interface Design",
+    icon: "mdi:palette-outline",
+    image: designCertificate,
+    imageAlt: "Certificate for Designing Using Adobe Illustrator for Beginner",
+  },
+];
+
+const achievements = [featuredAchievement, ...highlightedAchievements, ...certificateHighlights, ...additionalCertificates];
+const itemsPerPage = 3;
+const totalPages = Math.ceil(achievements.length / itemsPerPage);
+---
+
+<section id="achievements" class="py-16 md:py-24 px-5 desktop:px-16 max-w-[1280px] mx-auto overflow-hidden">
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 mb-10 md:mb-14 items-end">
+    <div class="col-span-1 md:col-span-7 flex flex-col gap-3">
+      <span class="text-sm font-bold tracking-widest text-primary uppercase">Achievements</span>
+      <h3 class="text-3xl md:text-5xl font-extrabold tracking-tight text-on-background leading-tight">
+        Certificates & <br /> Milestones
+      </h3>
+    </div>
+    <div class="col-span-1 md:col-span-5 pb-1">
+      <p class="text-body-lg text-on-surface-variant leading-relaxed">
+        Selected awards, certificates, competitions, and learning milestones that reflect my growth, consistency, and experience in technology and problem solving.
+      </p>
+    </div>
+  </div>
+
+  <div class="space-y-16" data-achievements-section data-items-per-page={itemsPerPage} data-total-items={achievements.length}>
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+      {achievements.map((achievement, index) => (
+        <article
+          class:list={[
+            "group overflow-hidden rounded-3xl border border-outline-variant/30 bg-white p-6 shadow-lg shadow-on-surface/[0.02] transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5",
+            index >= itemsPerPage && "hidden",
+          ]}
+          data-achievement-card
+          data-page={Math.floor(index / itemsPerPage) + 1}
+          data-title={achievement.title.toLowerCase()}
+          data-category={achievement.category}
+          data-type={achievement.type}
+        >
+          <div class="flex h-full flex-col gap-5">
+            <div class="relative h-[190px] overflow-hidden rounded-3xl border border-outline-variant/30 bg-gradient-to-br from-secondary-container/70 to-white p-3 shadow-lg">
+              {achievement.image ? (
+                <Image
+                  src={achievement.image}
+                  alt={achievement.imageAlt}
+                  class="h-full w-full rounded-2xl object-contain object-center transition-transform duration-500 group-hover:scale-[1.025]"
+                  loading={index === 0 ? "eager" : "lazy"}
+                />
+              ) : (
+                <div class="relative h-full p-4">
+                  <div class="absolute inset-0 blueprint-grid opacity-20"></div>
+                  <div class="relative z-10 flex h-full flex-col justify-between rounded-xl bg-white/75 p-4 shadow-inner">
+                    <Icon name={achievement.icon} class="h-7 w-7 text-primary" />
+                    <div>
+                      <p class="text-[10px] font-black uppercase tracking-widest text-on-surface-variant/55">
+                        Certificate Photo
+                      </p>
+                      <p class="mt-1 text-xs font-semibold text-on-surface-variant/70">Coming soon</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <div class="flex min-h-[178px] flex-1 flex-col">
+              <div class="flex items-center gap-2">
+                <span class="rounded-lg bg-primary/10 px-2 py-1 text-xs font-black text-primary">{achievement.number}</span>
+                <span class="rounded-full bg-surface-container px-3 py-1 text-xs font-bold text-on-surface-variant">
+                  {achievement.year} · {achievement.type}
+                </span>
+                <button type="button" class="ml-auto flex h-8 w-8 items-center justify-center rounded-xl border border-outline-variant/30 bg-white text-on-surface-variant transition-colors group-hover:border-primary/30 group-hover:text-primary" aria-label={`Save ${achievement.title}`}>
+                  <Icon name="mdi:bookmark-outline" class="h-4 w-4" />
+                </button>
+              </div>
+
+              <h4 class="mt-3 line-clamp-2 text-[17px] font-extrabold tracking-tight text-on-background leading-snug">
+                {achievement.title}
+              </h4>
+              <p class="mt-2 text-xs font-black uppercase tracking-wide text-primary">
+                {achievement.category}
+              </p>
+
+              <div class="mt-auto flex flex-wrap items-center gap-x-4 gap-y-2 pt-5 text-xs font-semibold text-on-surface-variant">
+                <span class="inline-flex items-center gap-1.5">
+                  <Icon name="mdi:calendar-month-outline" class="h-4 w-4 text-primary/70" />
+                  {achievement.year}
+                </span>
+                <span class="inline-flex items-center gap-1.5">
+                  <Icon name="mdi:tag-outline" class="h-4 w-4 text-primary/70" />
+                  {achievement.result}
+                </span>
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <p class="text-sm font-semibold text-on-surface-variant" data-achievement-count>
+        Showing {Math.min(itemsPerPage, achievements.length)} of {achievements.length} achievements
+      </p>
+
+      <div class="flex items-center gap-2" aria-label="Achievement pagination">
+        <button
+          type="button"
+          class="achievement-nav-btn flex h-10 w-10 items-center justify-center rounded-full border border-outline-variant/40 bg-white text-on-surface-variant transition-colors hover:border-primary/40 hover:text-primary disabled:cursor-not-allowed disabled:opacity-40"
+          data-achievement-prev
+          disabled
+          aria-label="Previous achievements page"
+        >
+          <Icon name="mdi:chevron-left" class="h-5 w-5" />
+        </button>
+
+        {Array.from({ length: totalPages }).map((_, index) => (
+          <button
+            type="button"
+            class:list={[
+              "achievement-page-btn h-10 min-w-10 rounded-full border px-4 text-sm font-bold transition-all duration-200",
+              index === 0
+                ? "border-primary bg-primary text-white shadow-lg shadow-primary/20"
+                : "border-outline-variant/40 bg-white text-on-surface-variant hover:border-primary/40 hover:text-primary",
+            ]}
+            data-achievement-page-button
+            data-page={index + 1}
+            aria-pressed={index === 0 ? "true" : "false"}
+          >
+            {index + 1}
+          </button>
+        ))}
+
+        <button
+          type="button"
+          class="achievement-nav-btn flex h-10 w-10 items-center justify-center rounded-full border border-outline-variant/40 bg-white text-on-surface-variant transition-colors hover:border-primary/40 hover:text-primary disabled:cursor-not-allowed disabled:opacity-40"
+          data-achievement-next
+          aria-label="Next achievements page"
+        >
+          <Icon name="mdi:chevron-right" class="h-5 w-5" />
+        </button>
+
+        <span class="hidden rounded-full border border-outline-variant/40 bg-white px-4 py-2 text-sm font-bold text-on-surface-variant sm:inline-flex">
+          {itemsPerPage} per page
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const section = document.querySelector("[data-achievements-section]");
+
+  if (section) {
+    const cards = Array.from(section.querySelectorAll("[data-achievement-card]"));
+    const buttons = Array.from(section.querySelectorAll("[data-achievement-page-button]"));
+    const prevButton = section.querySelector("[data-achievement-prev]");
+    const nextButton = section.querySelector("[data-achievement-next]");
+    const count = section.querySelector("[data-achievement-count]");
+    const itemsPerPage = Number(section.dataset.itemsPerPage || "3");
+    let filteredCards = cards;
+    let currentPage = 1;
+
+    const setPage = (page) => {
+      currentPage = Number(page);
+      const totalPages = Math.max(1, Math.ceil(filteredCards.length / itemsPerPage));
+      currentPage = Math.min(Math.max(currentPage, 1), totalPages);
+
+      cards.forEach((card) => {
+        card.classList.add("hidden");
+      });
+
+      filteredCards.forEach((card, index) => {
+        const visible = Math.floor(index / itemsPerPage) + 1 === currentPage;
+        card.classList.toggle("hidden", !visible);
+      });
+
+      buttons.forEach((button) => {
+        const buttonPage = Number(button.dataset.page || "1");
+        const isActive = buttonPage === currentPage;
+        const isAvailable = buttonPage <= totalPages;
+        button.classList.toggle("hidden", !isAvailable);
+        button.setAttribute("aria-pressed", String(isActive));
+        button.classList.toggle("border-primary", isActive);
+        button.classList.toggle("bg-primary", isActive);
+        button.classList.toggle("text-white", isActive);
+        button.classList.toggle("shadow-lg", isActive);
+        button.classList.toggle("shadow-primary/20", isActive);
+        button.classList.toggle("border-outline-variant/40", !isActive);
+        button.classList.toggle("bg-white", !isActive);
+        button.classList.toggle("text-on-surface-variant", !isActive);
+      });
+
+      prevButton?.toggleAttribute("disabled", currentPage === 1);
+      nextButton?.toggleAttribute("disabled", currentPage === totalPages);
+
+      if (count) {
+        const shown = filteredCards.length === 0 ? 0 : Math.min(currentPage * itemsPerPage, filteredCards.length);
+        count.textContent = `Showing ${shown} of ${filteredCards.length} achievements`;
+      }
+    };
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => setPage(button.dataset.page || "1"));
+    });
+
+    prevButton?.addEventListener("click", () => setPage(String(currentPage - 1)));
+    nextButton?.addEventListener("click", () => setPage(String(currentPage + 1)));
+  }
+</script>

@@ -1,0 +1,184 @@
+---
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+import avatarImage from "../assets/gueh.jpg";
+---
+
+<section
+    class="relative pt-28 pb-16 overflow-hidden min-h-screen flex flex-col justify-between px-5 desktop:px-16 max-w-[1280px] mx-auto"
+>
+    <!-- Soft blue color band: starts mid-hero, flows down past the fold -->
+    <div
+        class="absolute bottom-0 left-1/2 -translate-x-1/2 w-screen h-[55%] bg-gradient-to-t from-secondary-container/70 via-secondary-container/40 to-transparent -z-10 pointer-events-none"
+    >
+    </div>
+
+    <!-- Oversized background typography -->
+    <div
+        class="absolute inset-0 select-none pointer-events-none -z-10 flex items-center justify-center overflow-hidden"
+    >
+        <h1
+            class="text-[clamp(80px,14vw,240px)] font-black text-on-surface/[0.035] tracking-tighter leading-none whitespace-nowrap uppercase"
+        >
+            NAMRY DEVELOPER
+        </h1>
+    </div>
+
+    <!-- 3-Column Layout -->
+    <div
+        class="grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch my-auto w-full pt-4"
+    >
+        <!-- Left Column -->
+        <div
+            class="col-span-1 md:col-span-4 flex flex-col justify-between gap-8 z-10 py-2"
+        >
+            <!-- Top Left: I'M NAMRY AYU SAFITRI + Button -->
+            <div class="flex flex-col gap-4 items-start">
+                <div class="flex flex-col leading-none">
+                    <span
+                        class="text-4xl lg:text-6xl font-black italic tracking-tight text-on-background"
+                        >I'M</span
+                    >
+                    <span
+                        class="text-4xl lg:text-5xl font-black tracking-tight text-on-background mt-1"
+                        >NAMRY AYU</span
+                    >
+                    <span
+                        class="text-4xl lg:text-5xl font-black tracking-tight text-primary mt-1"
+                        >SAFITRI</span
+                    >
+                </div>
+
+                <a
+                    href="#contact"
+                    class="inline-flex items-center gap-2 bg-primary hover:bg-primary-container text-white text-sm font-medium px-6 py-3 rounded-full transition-all duration-300 hover:scale-105 shadow-md shadow-primary/20 mt-2 group"
+                >
+                    Get in Touch
+                    <Icon
+                        name="mdi:arrow-right"
+                        class="w-4 h-4 transition-transform group-hover:translate-x-1"
+                    />
+                </a>
+            </div>
+
+            <!-- Bottom Left: Intro sentence -->
+            <div class="max-w-[340px] mt-auto">
+                <p
+                    class="text-base lg:text-lg font-medium text-on-background leading-relaxed"
+                >
+                    Hello, I'm Namry Ayu Safitri, a Full-Stack Developer
+                    Enthusiast passionate about building modern web
+                    applications, exploring new technologies, and turning ideas
+                    into meaningful digital experiences.
+                </p>
+            </div>
+        </div>
+
+        <!-- Center Column: Avatar Image Asset -->
+        <div
+            class="col-span-1 md:col-span-4 relative flex justify-center items-end z-10 min-h-[420px] lg:min-h-[500px]"
+        >
+            <div
+                class="relative w-full max-w-[340px] h-full flex items-end justify-center"
+            >
+                <!-- Soft background glow behind avatar -->
+                <div
+                    class="absolute inset-0 bg-primary/10 rounded-full blur-3xl -z-10 transform scale-90"
+                >
+                </div>
+
+                <!-- Portrait Cropped Avatar Image -->
+                <Image
+                    src={avatarImage}
+                    alt="Namry Ayu Safitri Avatar"
+                    class="aspect-[3/4] w-full max-h-[520px] object-cover object-center rounded-3xl shadow-2xl border border-white/40 drop-shadow-xl hover:scale-[1.02] transition-transform duration-500"
+                    loading="eager"
+                />
+            </div>
+        </div>
+
+        <!-- Right Column -->
+        <div
+            class="col-span-1 md:col-span-4 flex flex-col justify-between gap-8 z-10 py-2 md:text-right md:items-end"
+        >
+            <!-- Top Right: Follow Me & Socials -->
+            <div class="flex flex-col gap-3 md:items-end max-w-[280px]">
+                <h4 class="text-base font-bold text-on-background">
+                    Follow Me
+                </h4>
+
+                <!-- Social Circle Buttons -->
+                <div class="flex gap-2.5">
+                    <a
+                        href="https://github.com/ayusafitri721"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="w-9 h-9 rounded-full bg-secondary-container/60 hover:bg-primary hover:text-white border border-outline-variant/30 flex items-center justify-center text-primary transition-all duration-300 shadow-sm"
+                        aria-label="GitHub"
+                    >
+                        <Icon name="mdi:github" class="w-4 h-4" />
+                    </a>
+                    <a
+                        href="https://www.linkedin.com/in/ayusafitri21/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="w-9 h-9 rounded-full bg-secondary-container/60 hover:bg-primary hover:text-white border border-outline-variant/30 flex items-center justify-center text-primary transition-all duration-300 shadow-sm"
+                        aria-label="LinkedIn"
+                    >
+                        <Icon name="mdi:linkedin" class="w-4 h-4" />
+                    </a>
+                    <a
+                        href="https://www.instagram.com/fasbary/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="w-9 h-9 rounded-full bg-secondary-container/60 hover:bg-primary hover:text-white border border-outline-variant/30 flex items-center justify-center text-primary transition-all duration-300 shadow-sm"
+                        aria-label="Instagram"
+                    >
+                        <Icon name="mdi:instagram" class="w-4 h-4" />
+                    </a>
+                    <a
+                        href="https://www.tiktok.com/@codebuddy.id"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="w-9 h-9 rounded-full bg-secondary-container/60 hover:bg-primary hover:text-white border border-outline-variant/30 flex items-center justify-center text-primary transition-all duration-300 shadow-sm"
+                        aria-label="TikTok"
+                    >
+                        <Icon name="mdi:music-note" class="w-4 h-4" />
+                    </a>
+                </div>
+
+                <p
+                    class="text-sm text-on-surface-variant font-medium leading-tight mt-1"
+                >
+                    I BUILD DIGITAL EXPERIENCES
+                </p>
+
+                <div class="flex flex-wrap gap-2 mt-1 justify-end">
+                    <span
+                        class="text-[9px] font-bold bg-white border border-outline-variant/30 text-on-surface px-2 py-0.5 rounded"
+                        >FULL-STACK</span
+                    >
+                    <span
+                        class="text-[9px] font-bold bg-white border border-outline-variant/30 text-on-surface px-2 py-0.5 rounded"
+                        >TEAM WORK</span
+                    >
+                    <span
+                        class="text-[9px] font-bold bg-white border border-outline-variant/30 text-on-surface px-2 py-0.5 rounded"
+                        >MOBILE DEV</span
+                    >
+                </div>
+            </div>
+
+            <!-- Bottom Right: FULL-STACK DEVELOPER ENTHUSIAST -->
+            <div class="mt-auto">
+                <h2
+                    class="text-3xl lg:text-5xl font-extrabold uppercase tracking-tight text-on-background leading-none"
+                >
+                    FULL-STACK <br />
+                    DEVELOPER <br />
+                    ENTHUSIAST
+                </h2>
+            </div>
+        </div>
+    </div>
+</section>
