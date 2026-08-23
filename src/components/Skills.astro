@@ -1,0 +1,133 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<section id="skills" class="py-20 md:py-32 px-5 desktop:px-16 max-w-[1280px] mx-auto">
+  <!-- Section Header -->
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12 mb-16 items-end">
+    <div class="col-span-1 md:col-span-7 flex flex-col gap-2">
+      <span class="text-sm font-bold tracking-widest text-primary uppercase">Skills</span>
+      <h3 class="text-3xl md:text-5xl font-extrabold tracking-tight text-on-background leading-tight">
+        Technologies I Work With
+      </h3>
+    </div>
+    <div class="col-span-1 md:col-span-5 pb-1">
+      <p class="text-body-lg text-on-surface-variant leading-relaxed">
+        Exploring different technologies to build reliable, responsive, and user-focused digital products.
+      </p>
+    </div>
+  </div>
+
+  <!-- Skills Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+
+    <!-- Skill Category 01: Frontend Development -->
+    <div class="col-span-1 md:col-span-6">
+      <div class="h-full bg-white border border-outline-variant/30 rounded-2xl p-8 hover:border-primary/30 hover:shadow-xl hover:shadow-on-surface/[0.02] transition-all duration-300 flex flex-col justify-between">
+        <div>
+          <div class="flex justify-between items-center mb-6">
+            <span class="text-6xl font-black text-outline-variant/30 select-none">01</span>
+            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+              <Icon name="mdi:application-brackets-outline" class="w-6 h-6" />
+            </div>
+          </div>
+          <h4 class="text-2xl font-bold text-on-background mb-4">Frontend Development</h4>
+          <p class="text-body-md text-on-surface-variant leading-relaxed mb-6">
+            Building responsive, dynamic, and clean web interfaces using modern frameworks and styling tools.
+          </p>
+
+          <!-- Skill Tags -->
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs font-semibold bg-surface-container text-on-surface px-3 py-1.5 rounded-full">React.js</span>
+            <span class="text-xs font-semibold bg-surface-container text-on-surface px-3 py-1.5 rounded-full">Next.js</span>
+            <span class="text-xs font-semibold bg-surface-container text-on-surface px-3 py-1.5 rounded-full">JavaScript</span>
+            <span class="text-xs font-semibold bg-surface-container text-on-surface px-3 py-1.5 rounded-full">HTML</span>
+            <span class="text-xs font-semibold bg-surface-container text-on-surface px-3 py-1.5 rounded-full">CSS</span>
+            <span class="text-xs font-semibold bg-surface-container text-on-surface px-3 py-1.5 rounded-full">Bootstrap</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skill Category 02: Backend Development -->
+    <div class="col-span-1 md:col-span-6">
+      <div class="h-full bg-white border border-outline-variant/30 rounded-2xl p-8 hover:border-primary/30 hover:shadow-xl hover:shadow-on-surface/[0.02] transition-all duration-300 flex flex-col justify-between">
+        <div>
+          <div class="flex justify-between items-center mb-6">
+            <span class="text-6xl font-black text-outline-variant/30 select-none">02</span>
+            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+              <Icon name="mdi:server" class="w-6 h-6" />
+            </div>
+          </div>
+          <h4 class="text-2xl font-bold text-on-background mb-4">Backend Development</h4>
+          <p class="text-body-md text-on-surface-variant leading-relaxed mb-6">
+            Developing robust server-side logic, structured REST APIs, and efficient application workflows.
+          </p>
+
+          <!-- Skill Tags -->
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs font-semibold bg-surface-container text-on-surface px-3 py-1.5 rounded-full">Laravel</span>
+            <span class="text-xs font-semibold bg-surface-container text-on-surface px-3 py-1.5 rounded-full">Node.js</span>
+            <span class="text-xs font-semibold bg-surface-container text-on-surface px-3 py-1.5 rounded-full">PHP</span>
+            <span class="text-xs font-semibold bg-surface-container text-on-surface px-3 py-1.5 rounded-full">Python</span>
+            <span class="text-xs font-semibold bg-surface-container text-on-surface px-3 py-1.5 rounded-full">REST API</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skill Category 03: Database & Tools -->
+    <div class="col-span-1 md:col-span-6">
+      <div class="h-full bg-white border border-outline-variant/30 rounded-2xl p-8 hover:border-primary/30 hover:shadow-xl hover:shadow-on-surface/[0.02] transition-all duration-300 flex flex-col justify-between">
+        <div>
+          <div class="flex justify-between items-center mb-6">
+            <span class="text-6xl font-black text-outline-variant/30 select-none">03</span>
+            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+              <Icon name="mdi:database" class="w-6 h-6" />
+            </div>
+          </div>
+          <h4 class="text-2xl font-bold text-on-background mb-4">Database & Tools</h4>
+          <p class="text-body-md text-on-surface-variant leading-relaxed mb-6">
+            Managing relational databases, containerizing environments, API testing, and version control.
+          </p>
+
+          <!-- Skill Tags -->
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs font-semibold bg-surface-container text-on-surface px-3 py-1.5 rounded-full">MySQL</span>
+            <span class="text-xs font-semibold bg-surface-container text-on-surface px-3 py-1.5 rounded-full">Docker</span>
+            <span class="text-xs font-semibold bg-surface-container text-on-surface px-3 py-1.5 rounded-full">Postman</span>
+            <span class="text-xs font-semibold bg-surface-container text-on-surface px-3 py-1.5 rounded-full">Git</span>
+            <span class="text-xs font-semibold bg-surface-container text-on-surface px-3 py-1.5 rounded-full">XAMPP</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skill Category 04: Mobile Development -->
+    <div class="col-span-1 md:col-span-6">
+      <div class="h-full bg-white border border-outline-variant/30 rounded-2xl p-8 hover:border-primary/30 hover:shadow-xl hover:shadow-on-surface/[0.02] transition-all duration-300 flex flex-col justify-between">
+        <div>
+          <div class="flex justify-between items-center mb-6">
+            <span class="text-6xl font-black text-outline-variant/30 select-none">04</span>
+            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+              <Icon name="mdi:cellphone" class="w-6 h-6" />
+            </div>
+          </div>
+          <h4 class="text-2xl font-bold text-on-background mb-4">Mobile Development</h4>
+          <p class="text-body-md text-on-surface-variant leading-relaxed mb-6">
+            Creating cross-platform and native mobile applications with intuitive UI and smooth user flow.
+          </p>
+
+          <!-- Skill Tags -->
+          <div class="flex flex-wrap gap-2">
+            <span class="text-xs font-semibold bg-surface-container text-on-surface px-3 py-1.5 rounded-full">Flutter</span>
+            <span class="text-xs font-semibold bg-surface-container text-on-surface px-3 py-1.5 rounded-full">Dart</span>
+            <span class="text-xs font-semibold bg-surface-container text-on-surface px-3 py-1.5 rounded-full">Kotlin</span>
+            <span class="text-xs font-semibold bg-surface-container text-on-surface px-3 py-1.5 rounded-full">Java</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

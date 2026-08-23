@@ -1,0 +1,52 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import AboutMe from "../components/AboutMe.astro";
+import Stats from "../components/Stats.astro";
+import Skills from "../components/Skills.astro";
+import Experience from "../components/Experience.astro";
+import Portfolio from "../components/Portfolio.astro";
+import Achievements from "../components/Achievements.astro";
+import Process from "../components/Process.astro";
+import ContactCTA from "../components/ContactCTA.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<BaseLayout title="Namry Ayu Safitri - Full-Stack Developer Enthusiast">
+    <!-- Navigation Header -->
+    <Header />
+
+    <!-- Main sections wrapper with top-offset for fixed header -->
+    <main class="relative">
+        <!-- 1. Hero Section -->
+        <Hero />
+
+        <!-- 2. About Me Section -->
+        <AboutMe />
+
+        <!-- 3. Statistics Section -->
+        <Stats />
+
+        <!-- 4. Skills Section -->
+        <Skills />
+
+        <!-- 5. Experience Section -->
+        <Experience />
+
+        <!-- 6. Selected Projects Section -->
+        <Portfolio />
+
+        <!-- 7. Achievements Section -->
+        <Achievements />
+
+        <!-- 8. Development Process Section -->
+        <Process />
+
+        <!-- 9. Contact / Call to Action Section -->
+        <ContactCTA />
+    </main>
+
+    <!-- Footer Section -->
+    <Footer />
+</BaseLayout>

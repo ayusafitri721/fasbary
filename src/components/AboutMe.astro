@@ -1,0 +1,73 @@
+---
+import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+import aboutImage from "../assets/gueh_2.jpeg";
+---
+
+<section
+    id="about"
+    class="relative py-20 md:py-32 px-5 desktop:px-16 max-w-[1280px] mx-auto"
+>
+    <!-- Continuation of the hero color band, fading out halfway through this section -->
+    <div
+        class="absolute top-0 left-1/2 -translate-x-1/2 w-screen h-1/2 bg-gradient-to-b from-secondary-container/60 via-secondary-container/30 to-transparent -z-10 pointer-events-none"
+    >
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-center">
+        <!-- Left Column: Technical Blueprint & Code Architecture Card -->
+        <div class="col-span-1 md:col-span-6 relative">
+            <!-- Single Photo Card -->
+            <div
+                class="relative rounded-3xl overflow-hidden shadow-xl shadow-on-surface/[0.05] border border-white/40"
+            >
+                <Image
+                    src={aboutImage}
+                    alt="Namry Ayu Safitri"
+                    class="w-full aspect-[4/3] object-cover object-center"
+                    loading="lazy"
+                />
+            </div>
+        </div>
+
+        <!-- Right Column: Text Information -->
+        <div class="col-span-1 md:col-span-6 flex flex-col gap-6">
+            <div class="flex flex-col gap-2">
+                <span
+                    class="text-sm font-bold tracking-widest text-primary uppercase"
+                    >About Me</span
+                >
+                <h3
+                    class="text-3xl md:text-5xl font-extrabold tracking-tight text-on-background leading-tight"
+                >
+                    Building with Purpose, <br /> Creating with Passion
+                </h3>
+            </div>
+
+            <p class="text-body-lg text-on-surface-variant leading-relaxed">
+                I'm a Full-Stack Developer Enthusiast who enjoys turning ideas
+                into functional and meaningful digital experiences. I work
+                across frontend, backend, databases, and application development
+                while continuously exploring new technologies.
+            </p>
+
+            <p class="text-body-md text-on-surface-variant/80 leading-relaxed">
+                From designing interfaces to developing complete web
+                applications, I focus on writing clean code, creating responsive
+                experiences, and solving real-world problems through technology.
+            </p>
+
+            <div class="pt-4">
+                <a
+                    href="#projects"
+                    class="inline-flex items-center gap-3 bg-primary hover:bg-primary-container text-white px-8 py-3.5 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-md shadow-primary/20 group"
+                >
+                    View Projects
+                    <Icon
+                        name="mdi:arrow-right"
+                        class="w-5 h-5 transition-transform group-hover:translate-x-1"
+                    />
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
