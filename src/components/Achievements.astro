@@ -167,7 +167,7 @@ const totalPages = Math.ceil(achievements.length / itemsPerPage);
     </div>
   </div>
 
-  <div class="space-y-16" data-achievements-section data-items-per-page={itemsPerPage} data-total-items={achievements.length}>
+  <div class="space-y-6 md:space-y-8" data-achievements-section data-items-per-page={itemsPerPage} data-total-items={achievements.length}>
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
       {achievements.map((achievement, index) => (
         <article
@@ -182,7 +182,14 @@ const totalPages = Math.ceil(achievements.length / itemsPerPage);
           data-type={achievement.type}
         >
           <div class="flex h-full flex-col gap-5">
-            <div class="relative h-[190px] overflow-hidden rounded-3xl border border-outline-variant/30 bg-gradient-to-br from-secondary-container/70 to-white p-3 shadow-lg">
+            <div
+              class="relative h-[190px] overflow-hidden rounded-3xl border border-outline-variant/30 bg-gradient-to-br from-secondary-container/70 to-white p-3 shadow-lg cursor-zoom-in group/img"
+              data-achievement-trigger
+              data-index={index}
+              role="button"
+              tabindex="0"
+              aria-label={`Preview ${achievement.title}`}
+            >
               {achievement.image ? (
                 <Image
                   src={achievement.image}
@@ -240,12 +247,12 @@ const totalPages = Math.ceil(achievements.length / itemsPerPage);
       ))}
     </div>
 
-    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-      <p class="text-sm font-semibold text-on-surface-variant" data-achievement-count>
+    <div class="flex flex-col items-center gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <p class="text-sm font-semibold text-on-surface-variant text-center sm:text-left" data-achievement-count>
         Showing {Math.min(itemsPerPage, achievements.length)} of {achievements.length} achievements
       </p>
 
-      <div class="flex items-center gap-2" aria-label="Achievement pagination">
+      <div class="flex items-center justify-center gap-2 flex-wrap" aria-label="Achievement pagination">
         <button
           type="button"
           class="achievement-nav-btn flex h-10 w-10 items-center justify-center rounded-full border border-outline-variant/40 bg-white text-on-surface-variant transition-colors hover:border-primary/40 hover:text-primary disabled:cursor-not-allowed disabled:opacity-40"
@@ -288,7 +295,146 @@ const totalPages = Math.ceil(achievements.length / itemsPerPage);
       </div>
     </div>
   </div>
+
+  <!-- Lightbox preview -->
+  <div
+    id="achievement-lightbox"
+    class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4 md:p-10"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Certificate preview"
+  >
+    <button
+      type="button"
+      id="lightbox-close"
+      class="absolute top-4 right-4 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white/90 text-gray-800 shadow-lg transition-transform hover:scale-110"
+      aria-label="Close preview"
+    >
+      <Icon name="mdi:close" class="h-6 w-6" />
+    </button>
+
+    <button
+      type="button"
+      id="lightbox-prev"
+      class="absolute left-3 md:left-8 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white/90 text-gray-800 shadow-lg transition-transform hover:scale-110"
+      aria-label="Previous certificate"
+    >
+      <Icon name="mdi:chevron-left" class="h-6 w-6" />
+    </button>
+
+    <button
+      type="button"
+      id="lightbox-next"
+      class="absolute right-3 md:right-8 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white/90 text-gray-800 shadow-lg transition-transform hover:scale-110"
+      aria-label="Next certificate"
+    >
+      <Icon name="mdi:chevron-right" class="h-6 w-6" />
+    </button>
+
+    <figure class="flex max-h-full max-w-5xl flex-col items-center gap-4">
+      <img
+        id="lightbox-image"
+        src=""
+        alt=""
+        class="max-h-[78vh] w-auto max-w-full rounded-2xl object-contain shadow-2xl bg-white p-2"
+      />
+      <figcaption
+        id="lightbox-caption"
+        class="text-center text-sm font-semibold text-white drop-shadow"
+      ></figcaption>
+    </figure>
+  </div>
 </section>
+
+<script>
+  const lb = document.getElementById("achievement-lightbox") as HTMLElement | null;
+  const lbImg = document.getElementById("lightbox-image") as HTMLImageElement | null;
+  const lbCaption = document.getElementById("lightbox-caption") as HTMLElement | null;
+  const closeBtn = document.getElementById("lightbox-close");
+  const prevBtn = document.getElementById("lightbox-prev");
+  const nextBtn = document.getElementById("lightbox-next");
+
+  const triggers = Array.from(
+    document.querySelectorAll<HTMLElement>("[data-achievement-trigger]")
+  );
+
+  // Build the list of previewable certificates from rendered card images
+  const previews = triggers
+    .map((trigger) => {
+      const img = trigger.querySelector("img");
+      return img ? { src: img.src, alt: img.alt } : null;
+    })
+    .filter((p): p is { src: string; alt: string } => p !== null);
+
+  let current = 0;
+  let lastFocused: HTMLElement | null = null;
+
+  const render = () => {
+    if (!lbImg || !lbCaption) return;
+    const item = previews[current];
+    if (!item) return;
+    lbImg.src = item.src;
+    lbImg.alt = item.alt;
+    lbCaption.textContent = item.alt;
+  };
+
+  const openLightbox = (index: number) => {
+    const trigger = triggers[index];
+    // Skip cards without a photo
+    if (!trigger || !trigger.querySelector("img")) return;
+
+    current = previews.findIndex(
+      (p) => p.src === (trigger.querySelector("img") as HTMLImageElement).src
+    );
+    if (current < 0) current = 0;
+
+    lastFocused = document.activeElement as HTMLElement;
+    render();
+    lb?.classList.remove("hidden");
+    lb?.classList.add("flex");
+    document.body.style.overflow = "hidden";
+    closeBtn?.focus();
+  };
+
+  const closeLightbox = () => {
+    lb?.classList.add("hidden");
+    lb?.classList.remove("flex");
+    document.body.style.overflow = "";
+    lastFocused?.focus();
+  };
+
+  const step = (dir: number) => {
+    if (previews.length === 0) return;
+    current = (current + dir + previews.length) % previews.length;
+    render();
+  };
+
+  triggers.forEach((trigger, index) => {
+    trigger.addEventListener("click", () => openLightbox(index));
+    trigger.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openLightbox(index);
+      }
+    });
+  });
+
+  closeBtn?.addEventListener("click", closeLightbox);
+  prevBtn?.addEventListener("click", () => step(-1));
+  nextBtn?.addEventListener("click", () => step(1));
+
+  lb?.addEventListener("click", (e) => {
+    if (e.target === lb) closeLightbox();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (lb && !lb.classList.contains("hidden")) {
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") step(-1);
+      if (e.key === "ArrowRight") step(1);
+    }
+  });
+</script>
 
 <script>
   const section = document.querySelector("[data-achievements-section]");

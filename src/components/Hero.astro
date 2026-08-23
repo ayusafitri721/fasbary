@@ -7,9 +7,9 @@ import avatarImage from "../assets/gueh.jpg";
 <section
     class="relative pt-28 pb-16 overflow-hidden min-h-screen flex flex-col justify-between px-5 desktop:px-16 max-w-[1280px] mx-auto"
 >
-    <!-- Soft blue color band: starts mid-hero, flows down past the fold -->
+    <!-- Soft blue color band: full-width, follows content height -->
     <div
-        class="absolute bottom-0 left-1/2 -translate-x-1/2 w-screen h-[55%] bg-gradient-to-t from-secondary-container/70 via-secondary-container/40 to-transparent -z-10 pointer-events-none"
+        class="absolute bottom-0 left-0 w-full h-[60%] bg-gradient-to-t from-secondary-container/70 via-secondary-container/40 to-transparent -z-10 pointer-events-none"
     >
     </div>
 
@@ -30,10 +30,10 @@ import avatarImage from "../assets/gueh.jpg";
     >
         <!-- Left Column -->
         <div
-            class="col-span-1 md:col-span-4 flex flex-col justify-between gap-8 z-10 py-2"
+            class="col-span-1 md:col-span-4 flex flex-col justify-between gap-8 z-10 py-2 items-center text-center md:items-start md:text-left"
         >
             <!-- Top Left: I'M NAMRY AYU SAFITRI + Button -->
-            <div class="flex flex-col gap-4 items-start">
+            <div class="flex flex-col gap-4 items-center md:items-start">
                 <div class="flex flex-col leading-none">
                     <span
                         class="text-4xl lg:text-6xl font-black italic tracking-tight text-on-background"
@@ -50,7 +50,9 @@ import avatarImage from "../assets/gueh.jpg";
                 </div>
 
                 <a
-                    href="#contact"
+                    href="https://wa.me/6281220178122?text=Hi%20Namry!%20Saya%20tertarik%20untuk%20mengajak%20kolaborasi%20dengan%20kamu.%20Boleh%20kita%20diskusi%20lebih%20lanjut%3F"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     class="inline-flex items-center gap-2 bg-primary hover:bg-primary-container text-white text-sm font-medium px-6 py-3 rounded-full transition-all duration-300 hover:scale-105 shadow-md shadow-primary/20 mt-2 group"
                 >
                     Get in Touch
@@ -62,7 +64,7 @@ import avatarImage from "../assets/gueh.jpg";
             </div>
 
             <!-- Bottom Left: Intro sentence -->
-            <div class="max-w-[340px] mt-auto">
+            <div class="max-w-[340px] mt-auto md:text-left">
                 <p
                     class="text-base lg:text-lg font-medium text-on-background leading-relaxed"
                 >
@@ -99,16 +101,16 @@ import avatarImage from "../assets/gueh.jpg";
 
         <!-- Right Column -->
         <div
-            class="col-span-1 md:col-span-4 flex flex-col justify-between gap-8 z-10 py-2 md:text-right md:items-end"
+            class="col-span-1 md:col-span-4 flex flex-col justify-between gap-8 z-10 py-2 items-center text-center md:text-right md:items-end"
         >
             <!-- Top Right: Follow Me & Socials -->
-            <div class="flex flex-col gap-3 md:items-end max-w-[280px]">
+            <div class="flex flex-col gap-3 items-center max-w-[280px] md:max-w-none md:items-end">
                 <h4 class="text-base font-bold text-on-background">
                     Follow Me
                 </h4>
 
                 <!-- Social Circle Buttons -->
-                <div class="flex gap-2.5">
+                <div class="flex gap-2.5 justify-center md:justify-end">
                     <a
                         href="https://github.com/ayusafitri721"
                         target="_blank"
@@ -153,7 +155,7 @@ import avatarImage from "../assets/gueh.jpg";
                     I BUILD DIGITAL EXPERIENCES
                 </p>
 
-                <div class="flex flex-wrap gap-2 mt-1 justify-end">
+                <div class="flex flex-wrap gap-2 mt-1 justify-center md:justify-end">
                     <span
                         class="text-[9px] font-bold bg-white border border-outline-variant/30 text-on-surface px-2 py-0.5 rounded"
                         >FULL-STACK</span
@@ -182,3 +184,96 @@ import avatarImage from "../assets/gueh.jpg";
         </div>
     </div>
 </section>
+
+<style>
+    /* ===== Hero entrance animations ===== */
+    @keyframes heroFadeUp {
+        from {
+            opacity: 0;
+            transform: translateY(24px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes heroFadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes avatarFloat {
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-12px);
+        }
+    }
+
+    @keyframes glowPulse {
+        0%,
+        100% {
+            opacity: 0.6;
+            transform: scale(0.9);
+        }
+        50% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    /* Background giant text: slow fade + slide from right */
+    section > div:nth-of-type(2) h1 {
+        animation: heroFadeIn 1.6s ease-out both, heroSlideIn 1.6s ease-out both;
+    }
+
+    @keyframes heroSlideIn {
+        from {
+            transform: translateX(40px);
+        }
+        to {
+            transform: translateX(0);
+        }
+    }
+
+    /* Staggered entrance for grid columns */
+    section .grid > div {
+        animation: heroFadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    section .grid > div:nth-child(1) {
+        animation-delay: 0.15s;
+    }
+    section .grid > div:nth-child(2) {
+        animation-delay: 0.3s;
+    }
+    section .grid > div:nth-child(3) {
+        animation-delay: 0.45s;
+    }
+
+    /* Avatar: gentle floating loop */
+    section img[alt*="Avatar"] {
+        animation: avatarFloat 5s ease-in-out 1s infinite;
+    }
+
+    /* Glow behind avatar: soft pulse */
+    section .grid > div:nth-child(2) > div > div:first-child {
+        animation: glowPulse 4s ease-in-out infinite;
+    }
+
+    /* Respect reduced-motion preference */
+    @media (prefers-reduced-motion: reduce) {
+        section > div:nth-of-type(2) h1,
+        section .grid > div,
+        section img[alt*="Avatar"],
+        section .grid > div:nth-child(2) > div > div:first-child {
+            animation: none;
+        }
+    }
+</style>
