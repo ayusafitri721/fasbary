@@ -1,5 +1,13 @@
 ---
 import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
+import project1Image from "../assets/project_1.jpg";
+import project2Image from "../assets/project_kedua.jpg";
+import project3Image from "../assets/project_3.jpg";
+import project4Image from "../assets/project_4.jpg";
+import project5Image from "../assets/project_5.jpg";
+import project6Image from "../assets/project_6.jpg";
+import project7Image from "../assets/project_7.jpg";
 
 const featuredProjects = [
   {
@@ -12,6 +20,10 @@ const featuredProjects = [
     focus: ["Dashboard", "CRUD Workflow", "Operational Tools"],
     technologies: ["JavaScript", "Node.js", "Express.js"],
     icon: "mdi:airplane",
+    image: project1Image,
+    filterCategories: ["full-stack", "web"],
+    githubUrl: "https://github.com",
+    demoUrl: "https://sales.rahmahtravel.id/",
   },
   {
     title: "Nusantara Explorer",
@@ -23,6 +35,10 @@ const featuredProjects = [
     focus: ["Cultural Discovery", "Responsive UI", "Content Experience"],
     technologies: ["Next.js", "TypeScript", "Tailwind CSS"],
     icon: "mdi:map-marker-radius-outline",
+    image: project2Image,
+    filterCategories: ["web", "full-stack"],
+    githubUrl: "https://github.com",
+    demoUrl: "https://nusphere-kappa.vercel.app/",
   },
 ];
 
@@ -33,8 +49,12 @@ const supportingProjects = [
     year: "2025",
     role: "Mobile Developer",
     description: "Habit tracking app for maintaining daily prayer consistency and visualizing streak progress.",
+    focus: ["Habit Tracker", "Local Storage", "Streaks Counter"],
     technologies: ["Flutter", "Mobile UI", "Habit Tracking"],
     icon: "mdi:calendar-check",
+    image: project3Image,
+    filterCategories: ["full-stack", "web"],
+    githubUrl: "https://github.com/ayusafitri721/prayer-streak",
   },
   {
     title: "Finance Tracker App",
@@ -42,8 +62,12 @@ const supportingProjects = [
     year: "2024",
     role: "Android Developer",
     description: "Personal budget app with local data persistence and structured finance tracking flows.",
+    focus: ["Local Database", "Architecture", "Budgeting Flow"],
     technologies: ["Kotlin", "Room", "ViewModel"],
     icon: "mdi:wallet-outline",
+    image: project4Image,
+    filterCategories: ["full-stack", "mobile"],
+    githubUrl: "https://github.com",
   },
   {
     title: "Sistem Absensi Ekstrakurikuler",
@@ -51,8 +75,12 @@ const supportingProjects = [
     year: "2024",
     role: "Full-Stack Developer",
     description: "Attendance management system for student extracurricular activities and administrative reporting.",
+    focus: ["Role Management", "Reporting Tools", "Attendance Tracking"],
     technologies: ["PHP", "MySQL", "Bootstrap"],
     icon: "mdi:account-check-outline",
+    image: project5Image,
+    filterCategories: ["full-stack", "web"],
+    githubUrl: "https://github.com",
   },
   {
     title: "Lovingly",
@@ -60,17 +88,13 @@ const supportingProjects = [
     year: "2025",
     role: "Web Developer",
     description: "Interactive digital surprise experience with dynamic pages and a playful interface.",
+    focus: ["Interactive Surprise", "Dynamic Pages", "Backend EJS"],
     technologies: ["Node.js", "Express.js", "EJS"],
     icon: "mdi:heart-outline",
-  },
-  {
-    title: "Jurnal Sales",
-    category: "Web Application",
-    year: "2025",
-    role: "Web Developer",
-    description: "Sales journal interface for recording, reviewing, and organizing transaction data.",
-    technologies: ["Web App", "Data Entry", "Reporting"],
-    icon: "mdi:chart-line",
+    image: project6Image,
+    filterCategories: ["web", "full-stack"],
+    githubUrl: "https://github.com",
+    demoUrl: "https://lovingly.mastahdigitalteknologi.co.id/",
   },
   {
     title: "Personal Portfolio Website",
@@ -78,8 +102,13 @@ const supportingProjects = [
     year: "2025",
     role: "Frontend Developer",
     description: "A personal portfolio website built to present skills, experience, and selected project work.",
+    focus: ["Static Site", "Design Tokens", "Tailwind Theme"],
     technologies: ["Astro", "TypeScript", "Tailwind CSS"],
     icon: "mdi:web",
+    image: project7Image,
+    filterCategories: ["web"],
+    githubUrl: "https://github.com",
+    demoUrl: "https://ayusafitridev.vercel.app/",
   },
 ];
 ---
@@ -99,9 +128,45 @@ const supportingProjects = [
     </div>
   </div>
 
-  <div class="mt-14 md:mt-20 grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+  <!-- Project Filter Buttons -->
+  <div class="mt-8 flex flex-wrap gap-2.5 items-center justify-start md:justify-center">
+    <button
+      type="button"
+      class="project-filter-btn px-6 py-2.5 rounded-full text-xs md:text-sm font-bold border transition-all duration-300 border-primary bg-primary text-white shadow-lg shadow-primary/20 focus:outline-none"
+      data-filter="all"
+    >
+      All Projects
+    </button>
+    <button
+      type="button"
+      class="project-filter-btn px-6 py-2.5 rounded-full text-xs md:text-sm font-bold border border-outline-variant/40 bg-white text-on-surface-variant hover:border-primary/40 hover:text-primary transition-all duration-300 focus:outline-none"
+      data-filter="full-stack"
+    >
+      Full-Stack
+    </button>
+    <button
+      type="button"
+      class="project-filter-btn px-6 py-2.5 rounded-full text-xs md:text-sm font-bold border border-outline-variant/40 bg-white text-on-surface-variant hover:border-primary/40 hover:text-primary transition-all duration-300 focus:outline-none"
+      data-filter="web"
+    >
+      Web App
+    </button>
+    <button
+      type="button"
+      class="project-filter-btn px-6 py-2.5 rounded-full text-xs md:text-sm font-bold border border-outline-variant/40 bg-white text-on-surface-variant hover:border-primary/40 hover:text-primary transition-all duration-300 focus:outline-none"
+      data-filter="mobile"
+    >
+      Mobile App
+    </button>
+  </div>
+
+  <div id="featured-projects-grid" class="mt-14 md:mt-20 grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
     {featuredProjects.map((project, index) => (
-      <article class="group relative overflow-hidden rounded-[2rem] border border-outline-variant/30 bg-white p-6 md:p-8 shadow-xl shadow-on-surface/[0.03] transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/10">
+      <article 
+        class="group relative overflow-hidden rounded-[2rem] border border-outline-variant/30 bg-white p-6 md:p-8 shadow-xl shadow-on-surface/[0.03] transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/10"
+        data-project-card
+        data-project-category={project.filterCategories.join(" ")}
+      >
         <div class="absolute inset-0 blueprint-grid opacity-[0.18]"></div>
         <div class="absolute -right-24 -top-24 h-56 w-56 rounded-full bg-primary/10 blur-3xl transition-opacity duration-300 group-hover:opacity-80"></div>
 
@@ -120,7 +185,7 @@ const supportingProjects = [
             </span>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-[1fr_180px] gap-8 items-end">
+          <div class="grid grid-cols-1 md:grid-cols-[1fr_220px] gap-8 items-center">
             <div>
               <h4 class="text-3xl md:text-4xl font-extrabold tracking-tight text-on-background leading-tight">
                 {project.title}
@@ -139,18 +204,46 @@ const supportingProjects = [
               </div>
             </div>
 
-            <div class="relative overflow-hidden rounded-3xl border border-outline-variant/30 bg-gradient-to-br from-secondary-container/70 to-white p-4 shadow-lg">
-              <div class="mb-10 flex items-center justify-between">
-                <span class="h-3 w-3 rounded-full bg-primary"></span>
-                <Icon name={project.icon} class="h-8 w-8 text-primary" />
-              </div>
-              <div class="space-y-3">
-                <div class="h-16 rounded-2xl bg-primary/15"></div>
-                <div class="grid grid-cols-2 gap-3">
-                  <div class="h-12 rounded-xl bg-white"></div>
-                  <div class="h-12 rounded-xl bg-white"></div>
+            <div 
+              class={`relative overflow-hidden rounded-3xl border border-outline-variant/30 bg-gradient-to-br from-secondary-container/70 to-white shadow-lg group/img w-full md:w-[220px] aspect-[4/3] md:aspect-[3/4] flex flex-col shrink-0 ${project.image ? "cursor-pointer project-card-preview" : ""}`}
+              data-img-src={project.image ? project.image.src : ""}
+              data-project-title={project.title}
+            >
+              <!-- Mock Browser Header -->
+              <div class="flex items-center justify-between px-4 py-2.5 bg-white/80 backdrop-blur-sm border-b border-outline-variant/20 z-10">
+                <div class="flex gap-1.5">
+                  <span class="h-2 w-2 rounded-full bg-red-400/80"></span>
+                  <span class="h-2 w-2 rounded-full bg-yellow-400/80"></span>
+                  <span class="h-2 w-2 rounded-full bg-green-400/80"></span>
                 </div>
-                <div class="h-3 w-2/3 rounded-full bg-outline-variant/40"></div>
+                <Icon name={project.icon} class="h-4 w-4 text-primary" />
+              </div>
+              
+              <!-- Image / Wireframe Area -->
+              <div class="relative flex-1 overflow-hidden bg-secondary-container/10">
+                {project.image ? (
+                  <div class="relative w-full h-full">
+                    <Image 
+                      src={project.image} 
+                      alt={`${project.title} screenshot`}
+                      class="absolute inset-x-0 bottom-0 top-3 w-full h-[calc(100%-12px)] object-cover object-[center_9%] transition-transform duration-500 group-hover/img:scale-105"
+                    />
+                    <div class="absolute inset-x-0 bottom-0 top-3 bg-black/40 opacity-0 group-hover/img:opacity-100 flex items-center justify-center transition-opacity duration-300">
+                      <div class="bg-white/95 text-primary p-2.5 rounded-full shadow-lg transform translate-y-3 group-hover/img:translate-y-0 transition-all duration-300">
+                        <Icon name="mdi:magnify" class="h-5 w-5" />
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div class="p-4 space-y-3">
+                    <div class="h-14 rounded-xl bg-primary/10"></div>
+                    <div class="grid grid-cols-2 gap-2">
+                      <div class="h-10 rounded-lg bg-white/70"></div>
+                      <div class="h-10 rounded-lg bg-white/70"></div>
+                    </div>
+                    <div class="h-3 w-2/3 rounded-full bg-outline-variant/20 mt-2"></div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -161,7 +254,7 @@ const supportingProjects = [
                 <span class="text-xs font-bold uppercase tracking-wide text-on-surface-variant/70">{item}</span>
               ))}
             </div>
-            <a href="#contact" class="inline-flex items-center gap-2 text-sm font-bold text-primary transition-colors hover:text-primary-container">
+            <a href={project.demoUrl || project.githubUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-bold text-primary transition-colors hover:text-primary-container">
               Discuss Project
               <Icon name="mdi:arrow-top-right" class="h-4 w-4" />
             </a>
@@ -171,40 +264,302 @@ const supportingProjects = [
     ))}
   </div>
 
-  <div class="mt-8 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-6">
-    {supportingProjects.map((project) => (
-      <article class="group rounded-3xl border border-outline-variant/30 bg-white p-6 shadow-lg shadow-on-surface/[0.02] transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5">
-        <div class="flex items-start justify-between gap-4">
-          <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-white">
-            <Icon name={project.icon} class="h-6 w-6" />
-          </div>
-          <span class="text-sm font-bold text-outline">{project.year}</span>
-        </div>
+  <div id="supporting-projects-grid" class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+    {supportingProjects.map((project, index) => (
+      <article 
+        class="group relative overflow-hidden rounded-[2rem] border border-outline-variant/30 bg-white p-6 md:p-8 shadow-xl shadow-on-surface/[0.03] transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/10"
+        data-project-card
+        data-project-category={project.filterCategories.join(" ")}
+      >
+        <div class="absolute inset-0 blueprint-grid opacity-[0.18]"></div>
+        <div class="absolute -right-24 -top-24 h-56 w-56 rounded-full bg-primary/10 blur-3xl transition-opacity duration-300 group-hover:opacity-80"></div>
 
-        <div class="mt-7">
-          <span class="text-xs font-bold uppercase tracking-[0.18em] text-primary">{project.category}</span>
-          <h4 class="mt-3 text-2xl font-extrabold tracking-tight text-on-background leading-tight">
-            {project.title}
-          </h4>
-          <p class="mt-2 text-sm font-semibold text-on-surface-variant">{project.role}</p>
-          <p class="mt-4 text-sm leading-relaxed text-on-surface-variant/85">
-            {project.description}
-          </p>
-        </div>
-
-        <div class="mt-6 flex flex-wrap gap-2">
-          {project.technologies.map((technology) => (
-            <span class="rounded-full bg-surface-container px-3 py-1.5 text-[11px] font-bold text-on-surface-variant">
-              {technology}
+        <div class="relative z-10 flex min-h-[420px] flex-col justify-between gap-10">
+          <div class="flex items-start justify-between gap-6">
+            <div>
+              <span class="inline-flex rounded-full bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-primary">
+                Supporting Project
+              </span>
+              <p class="mt-4 text-sm font-semibold uppercase tracking-[0.2em] text-on-surface-variant/70">
+                0{index + 3} / {project.category}
+              </p>
+            </div>
+            <span class="rounded-full border border-outline-variant/30 bg-surface px-4 py-2 text-sm font-bold text-on-background">
+              {project.year}
             </span>
-          ))}
-        </div>
+          </div>
 
-        <a href="#contact" class="mt-7 inline-flex items-center gap-2 text-sm font-bold text-primary transition-colors hover:text-primary-container">
-          View Details
-          <Icon name="mdi:arrow-top-right" class="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-        </a>
+          <div class="grid grid-cols-1 md:grid-cols-[1fr_220px] gap-8 items-center">
+            <div>
+              <h4 class="text-3xl md:text-4xl font-extrabold tracking-tight text-on-background leading-tight">
+                {project.title}
+              </h4>
+              <p class="mt-3 text-sm font-bold text-primary">{project.role}</p>
+              <p class="mt-5 text-base md:text-lg leading-relaxed text-on-surface-variant">
+                {project.description}
+              </p>
+
+              <div class="mt-6 flex flex-wrap gap-2">
+                {project.technologies.map((technology) => (
+                  <span class="rounded-full border border-outline-variant/30 bg-surface-container-lowest px-3 py-1.5 text-xs font-semibold text-on-surface-variant">
+                    {technology}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div 
+              class={`relative overflow-hidden rounded-3xl border border-outline-variant/30 bg-gradient-to-br from-secondary-container/70 to-white shadow-lg group/img w-full md:w-[220px] aspect-[4/3] md:aspect-[3/4] flex flex-col shrink-0 ${project.image ? "cursor-pointer project-card-preview" : ""}`}
+              data-img-src={project.image ? project.image.src : ""}
+              data-project-title={project.title}
+            >
+              <!-- Mock Browser Header -->
+              <div class="flex items-center justify-between px-4 py-2.5 bg-white/80 backdrop-blur-sm border-b border-outline-variant/20 z-10">
+                <div class="flex gap-1.5">
+                  <span class="h-2 w-2 rounded-full bg-red-400/80"></span>
+                  <span class="h-2 w-2 rounded-full bg-yellow-400/80"></span>
+                  <span class="h-2 w-2 rounded-full bg-green-400/80"></span>
+                </div>
+                <Icon name={project.icon} class="h-4 w-4 text-primary" />
+              </div>
+              
+              <!-- Image / Wireframe Area -->
+              <div class="relative flex-1 overflow-hidden bg-secondary-container/10">
+                {project.image ? (
+                  <div class="relative w-full h-full">
+                    <Image 
+                      src={project.image} 
+                      alt={`${project.title} screenshot`}
+                      class="absolute inset-x-0 bottom-0 top-3 w-full h-[calc(100%-12px)] object-cover object-[center_9%] transition-transform duration-500 group-hover/img:scale-105"
+                    />
+                    <div class="absolute inset-x-0 bottom-0 top-3 bg-black/40 opacity-0 group-hover/img:opacity-100 flex items-center justify-center transition-opacity duration-300">
+                      <div class="bg-white/95 text-primary p-2.5 rounded-full shadow-lg transform translate-y-3 group-hover/img:translate-y-0 transition-all duration-300">
+                        <Icon name="mdi:magnify" class="h-5 w-5" />
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div class="p-4 space-y-3">
+                    <div class="h-14 rounded-xl bg-primary/10"></div>
+                    <div class="grid grid-cols-2 gap-2">
+                      <div class="h-10 rounded-lg bg-white/70"></div>
+                      <div class="h-10 rounded-lg bg-white/70"></div>
+                    </div>
+                    <div class="h-3 w-2/3 rounded-full bg-outline-variant/20 mt-2"></div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-6 border-t border-outline-variant/20 pt-6 sm:flex-row sm:items-center sm:justify-between">
+            <div class="flex flex-wrap gap-2">
+              {project.focus.map((item) => (
+                <span class="text-xs font-bold uppercase tracking-wide text-on-surface-variant/70">{item}</span>
+              ))}
+            </div>
+            <a href={project.demoUrl || project.githubUrl} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm font-bold text-primary transition-colors hover:text-primary-container">
+              View Details
+              <Icon name="mdi:arrow-top-right" class="h-4 w-4" />
+            </a>
+          </div>
+        </div>
       </article>
     ))}
   </div>
 </section>
+
+<!-- Lightbox Modal for Image Preview (Achievements Style) -->
+<div
+  id="project-lightbox"
+  class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4 md:p-10"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Project screenshot preview"
+>
+  <button
+    type="button"
+    id="project-lightbox-close"
+    class="absolute top-4 right-4 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white/90 text-gray-800 shadow-lg transition-transform hover:scale-110 focus:outline-none"
+    aria-label="Close preview"
+  >
+    <Icon name="mdi:close" class="h-6 w-6" />
+  </button>
+
+  <button
+    type="button"
+    id="project-lightbox-prev"
+    class="absolute left-3 md:left-8 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white/90 text-gray-800 shadow-lg transition-transform hover:scale-110 focus:outline-none"
+    aria-label="Previous image"
+  >
+    <Icon name="mdi:chevron-left" class="h-6 w-6" />
+  </button>
+
+  <button
+    type="button"
+    id="project-lightbox-next"
+    class="absolute right-3 md:right-8 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white/90 text-gray-800 shadow-lg transition-transform hover:scale-110 focus:outline-none"
+    aria-label="Next image"
+  >
+    <Icon name="mdi:chevron-right" class="h-6 w-6" />
+  </button>
+
+  <figure class="flex max-h-full max-w-5xl flex-col items-center gap-4">
+    <img
+      id="project-lightbox-image"
+      src=""
+      alt=""
+      class="max-h-[78vh] w-auto max-w-full rounded-2xl object-contain shadow-2xl bg-white p-2"
+    />
+    <figcaption
+      id="project-lightbox-caption"
+      class="text-center text-sm font-semibold text-white drop-shadow"
+    ></figcaption>
+  </figure>
+</div>
+
+<script>
+  // Project Image Lightbox Navigation Logic (Achievements Style)
+  const lb = document.getElementById("project-lightbox");
+  const lbImg = document.getElementById("project-lightbox-image");
+  const lbCaption = document.getElementById("project-lightbox-caption");
+  const closeBtn = document.getElementById("project-lightbox-close");
+  const prevBtn = document.getElementById("project-lightbox-prev");
+  const nextBtn = document.getElementById("project-lightbox-next");
+
+  const triggers = Array.from(
+    document.querySelectorAll<HTMLElement>(".project-card-preview")
+  );
+
+  let activePreviews: { src: string; alt: string }[] = [];
+  let current = 0;
+  let lastFocused: HTMLElement | null = null;
+
+  const render = () => {
+    if (!lbImg || !lbCaption) return;
+    const item = activePreviews[current];
+    if (!item) return;
+    lbImg.setAttribute("src", item.src);
+    lbImg.setAttribute("alt", item.alt);
+    lbCaption.textContent = item.alt;
+  };
+
+  const openLightbox = (trigger: HTMLElement) => {
+    const img = trigger.querySelector("img");
+    if (!img) return;
+
+    // Filter project-card-previews whose grandparent/parent card is not hidden
+    const activeTriggers = triggers.filter((t) => {
+      const card = t.closest("[data-project-card]");
+      return card && !card.classList.contains("hidden");
+    });
+
+    activePreviews = activeTriggers
+      .map((trig) => {
+        const i = trig.querySelector("img");
+        const title = trig.getAttribute("data-project-title");
+        return i ? { src: i.src, alt: title || i.alt || "Project Preview" } : null;
+      })
+      .filter((p): p is { src: string; alt: string } => p !== null);
+
+    current = activePreviews.findIndex((p) => p.src === img.src);
+    if (current < 0) current = 0;
+
+    lastFocused = document.activeElement as HTMLElement;
+    render();
+    lb?.classList.remove("hidden");
+    lb?.classList.add("flex");
+    document.body.style.overflow = "hidden";
+    closeBtn?.focus();
+  };
+
+  const closeLightbox = () => {
+    lb?.classList.add("hidden");
+    lb?.classList.remove("flex");
+    document.body.style.overflow = "";
+    lastFocused?.focus();
+  };
+
+  const step = (dir: number) => {
+    if (activePreviews.length === 0) return;
+    current = (current + dir + activePreviews.length) % activePreviews.length;
+    render();
+  };
+
+  triggers.forEach((trigger) => {
+    trigger.addEventListener("click", () => openLightbox(trigger));
+    trigger.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        openLightbox(trigger);
+      }
+    });
+  });
+
+  closeBtn?.addEventListener("click", closeLightbox);
+  prevBtn?.addEventListener("click", () => step(-1));
+  nextBtn?.addEventListener("click", () => step(1));
+
+  lb?.addEventListener("click", (e) => {
+    if (e.target === lb) closeLightbox();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (lb && !lb.classList.contains("hidden")) {
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowLeft") step(-1);
+      if (e.key === "ArrowRight") step(1);
+    }
+  });
+
+  // Client-side Category Filtering Logic
+  const filterBtns = document.querySelectorAll(".project-filter-btn");
+  const projectCards = document.querySelectorAll("[data-project-card]");
+  const featuredGrid = document.getElementById("featured-projects-grid");
+  const supportingGrid = document.getElementById("supporting-projects-grid");
+
+  if (filterBtns.length && projectCards.length) {
+    filterBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        // Toggle active button style
+        filterBtns.forEach((b) => {
+          b.classList.remove("border-primary", "bg-primary", "text-white", "shadow-lg", "shadow-primary/20");
+          b.classList.add("border-outline-variant/40", "bg-white", "text-on-surface-variant");
+        });
+        btn.classList.add("border-primary", "bg-primary", "text-white", "shadow-lg", "shadow-primary/20");
+        btn.classList.remove("border-outline-variant/40", "bg-white", "text-on-surface-variant");
+
+        const filterValue = btn.getAttribute("data-filter");
+
+        // Filter project cards visibility
+        projectCards.forEach((card) => {
+          const cat = card.getAttribute("data-project-category");
+          if (filterValue === "all" || cat.split(/\s+/).includes(filterValue)) {
+            card.classList.remove("hidden");
+          } else {
+            card.classList.add("hidden");
+          }
+        });
+
+        // Hide/Show empty grid sections to optimize spacing
+        if (featuredGrid) {
+          const visibleFeatured = featuredGrid.querySelectorAll("[data-project-card]:not(.hidden)");
+          if (visibleFeatured.length === 0) {
+            featuredGrid.classList.add("hidden");
+          } else {
+            featuredGrid.classList.remove("hidden");
+          }
+        }
+
+        if (supportingGrid) {
+          const visibleSupporting = supportingGrid.querySelectorAll("[data-project-card]:not(.hidden)");
+          if (visibleSupporting.length === 0) {
+            supportingGrid.classList.add("hidden");
+          } else {
+            supportingGrid.classList.remove("hidden");
+          }
+        }
+      });
+    });
+  }
+</script>

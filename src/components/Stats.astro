@@ -3,57 +3,231 @@
 ---
 
 <section
+    id="stats"
     class="py-12 md:py-16 px-5 desktop:px-16 max-w-[1280px] mx-auto border-y border-outline-variant/30 bg-surface-container-lowest/50 backdrop-blur-sm rounded-2xl my-8"
 >
     <div
-        class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 divide-y md:divide-y-0 md:divide-x divide-outline-variant/30 text-center"
+        class="stats-grid grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 divide-y md:divide-y-0 divide-outline-variant/30 text-center"
     >
         <!-- Stat Item 1 -->
-        <div class="flex flex-col items-center justify-center p-4">
+        <div class="stat-item flex flex-col items-center justify-center p-4">
             <span
-                class="text-5xl md:text-6xl font-black text-primary tracking-tight"
+                class="stat-number text-5xl md:text-6xl font-black text-primary tracking-tight"
+                data-target="10"
+                data-suffix="+"
                 >10+</span
             >
             <span
-                class="text-xs md:text-sm font-bold tracking-widest text-on-surface-variant uppercase mt-3"
+                class="stat-label text-xs md:text-sm font-bold tracking-widest text-on-surface-variant uppercase mt-3"
                 >Projects Built</span
             >
         </div>
 
         <!-- Stat Item 2 -->
-        <div class="flex flex-col items-center justify-center p-4 pt-8 md:pt-4">
+        <div class="stat-item flex flex-col items-center justify-center p-4 pt-8 md:pt-4">
             <span
-                class="text-5xl md:text-6xl font-black text-primary tracking-tight"
+                class="stat-number text-5xl md:text-6xl font-black text-primary tracking-tight"
+                data-target="5"
+                data-suffix="+"
                 >5+</span
             >
             <span
-                class="text-xs md:text-sm font-bold tracking-widest text-on-surface-variant uppercase mt-3"
+                class="stat-label text-xs md:text-sm font-bold tracking-widest text-on-surface-variant uppercase mt-3"
                 >Tech Stacks</span
             >
         </div>
 
         <!-- Stat Item 3 -->
-        <div class="flex flex-col items-center justify-center p-4 pt-8 md:pt-4">
+        <div class="stat-item flex flex-col items-center justify-center p-4 pt-8 md:pt-4">
             <span
-                class="text-5xl md:text-6xl font-black text-primary tracking-tight"
+                class="stat-number text-5xl md:text-6xl font-black text-primary tracking-tight"
+                data-target="3"
+                data-suffix="+"
                 >3+</span
             >
             <span
-                class="text-xs md:text-sm font-bold tracking-widest text-on-surface-variant uppercase mt-3"
+                class="stat-label text-xs md:text-sm font-bold tracking-widest text-on-surface-variant uppercase mt-3"
                 >Years Learning & Building</span
             >
         </div>
 
         <!-- Stat Item 4 -->
-        <div class="flex flex-col items-center justify-center p-4 pt-8 md:pt-4">
+        <div class="stat-item flex flex-col items-center justify-center p-4 pt-8 md:pt-4">
             <span
-                class="text-5xl md:text-6xl font-black text-primary tracking-tight"
+                class="stat-number stat-infinity text-5xl md:text-6xl font-black text-primary tracking-tight"
                 >∞</span
             >
             <span
-                class="text-xs md:text-sm font-bold tracking-widest text-on-surface-variant uppercase mt-3"
+                class="stat-label text-xs md:text-sm font-bold tracking-widest text-on-surface-variant uppercase mt-3"
                 >Curiosity to Learn</span
             >
         </div>
     </div>
 </section>
+
+<style>
+    /* ===== Stats animations =====
+       Note: the white card itself has NO entrance animation — it is
+       visible at full opacity from the start, exactly as designed. */
+
+    .stat-item {
+        position: relative;
+    }
+
+    /* Initial hidden states: only when JS marked the section */
+    section.about-init .stat-number {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    section.about-init .stat-label {
+        opacity: 0;
+    }
+
+    /* Numbers: pop-in from small scale, staggered */
+    section.in-view .stat-number {
+        animation: statPop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+    section.in-view .stat-item:nth-child(1) .stat-number {
+        animation-delay: 0.1s;
+    }
+    section.in-view .stat-item:nth-child(2) .stat-number {
+        animation-delay: 0.25s;
+    }
+    section.in-view .stat-item:nth-child(3) .stat-number {
+        animation-delay: 0.4s;
+    }
+    section.in-view .stat-item:nth-child(4) .stat-number {
+        animation-delay: 0.55s;
+    }
+
+    /* Infinity symbol: pop-in once, then pulse gently forever */
+    section.in-view .stat-infinity {
+        animation:
+            statPop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 0.55s both,
+            statPulse 2.6s ease-in-out 1.3s infinite;
+    }
+
+    @keyframes statPulse {
+        0%,
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+        50% {
+            transform: scale(1.08);
+            opacity: 0.85;
+        }
+    }
+
+    /* Labels: thin fade-up after their number appears */
+    section.in-view .stat-label {
+        animation: statFadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    section.in-view .stat-item:nth-child(1) .stat-label {
+        animation-delay: 0.5s;
+    }
+    section.in-view .stat-item:nth-child(2) .stat-label {
+        animation-delay: 0.65s;
+    }
+    section.in-view .stat-item:nth-child(3) .stat-label {
+        animation-delay: 0.8s;
+    }
+    section.in-view .stat-item:nth-child(4) .stat-label {
+        animation-delay: 0.95s;
+    }
+
+    @keyframes statPop {
+        0% {
+            opacity: 0;
+            transform: scale(0.5);
+        }
+        70% {
+            opacity: 1;
+            transform: scale(1.08);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    @keyframes statFadeUp {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Dividers between columns: grow from center (vertical) on md+ */
+    @media (min-width: 768px) {
+        section .stat-item + .stat-item::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 1px;
+            background: color-mix(in srgb, var(--color-outline-variant, #cac4d0) 30%, transparent);
+            transform: scaleY(0);
+        }
+
+        section.in-view .stat-item + .stat-item::before {
+            animation: dividerGrow 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.7s both;
+        }
+    }
+
+    @keyframes dividerGrow {
+        from {
+            transform: scaleY(0);
+        }
+        to {
+            transform: scaleY(1);
+        }
+    }
+</style>
+
+<script>
+    const stats = document.getElementById("stats");
+
+    if (stats) {
+        stats.classList.add("about-init");
+
+        const numbers = stats.querySelectorAll<HTMLElement>(".stat-number");
+
+        const countUp = (el: HTMLElement) => {
+            if (!el.dataset.target) return;
+            const target = Number(el.dataset.target);
+            const suffix = el.dataset.suffix || "";
+            const duration = 1400;
+            const start = performance.now();
+
+            const tick = (now: number) => {
+                const progress = Math.min((now - start) / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                el.textContent = `${Math.round(eased * target)}${suffix}`;
+                if (progress < 1) requestAnimationFrame(tick);
+            };
+
+            requestAnimationFrame(tick);
+        };
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        stats.classList.add("in-view");
+                        numbers.forEach(countUp);
+                        observer.disconnect();
+                    }
+                });
+            },
+            { threshold: 0.3 }
+        );
+
+        observer.observe(stats);
+    }
+</script>

@@ -18,12 +18,12 @@ import aboutImage from "../assets/gueh_2.jpeg";
         <div class="col-span-1 md:col-span-6 relative">
             <!-- Single Photo Card -->
             <div
-                class="relative rounded-3xl overflow-hidden shadow-xl shadow-on-surface/[0.05] border border-white/40"
+                class="about-photo relative rounded-3xl overflow-hidden shadow-xl shadow-on-surface/[0.05] border border-white/40"
             >
                 <Image
                     src={aboutImage}
                     alt="Namry Ayu Safitri"
-                    class="w-full aspect-[4/3] object-cover object-center"
+                    class="about-photo-img w-full aspect-[4/3] object-cover object-center"
                     loading="lazy"
                 />
             </div>
@@ -33,24 +33,29 @@ import aboutImage from "../assets/gueh_2.jpeg";
         <div class="col-span-1 md:col-span-6 flex flex-col gap-6">
             <div class="flex flex-col gap-2">
                 <span
-                    class="text-sm font-bold tracking-widest text-primary uppercase"
+                    class="about-label text-sm font-bold tracking-widest text-primary uppercase"
                     >About Me</span
                 >
                 <h3
                     class="text-3xl md:text-5xl font-extrabold tracking-tight text-on-background leading-tight"
                 >
-                    Building with Purpose, <br /> Creating with Passion
+                    <span class="about-mask"
+                        ><span class="about-line about-line-1">Building with Purpose,</span></span
+                    >
+                    <span class="about-mask"
+                        ><span class="about-line about-line-2">Creating with Passion</span></span
+                    >
                 </h3>
             </div>
 
-            <p class="text-body-lg text-on-surface-variant leading-relaxed">
+            <p class="about-p1 text-body-lg text-on-surface-variant leading-relaxed">
                 I'm a Full-Stack Developer Enthusiast who enjoys turning ideas
                 into functional and meaningful digital experiences. I work
                 across frontend, backend, databases, and application development
                 while continuously exploring new technologies.
             </p>
 
-            <p class="text-body-md text-on-surface-variant/80 leading-relaxed">
+            <p class="about-p2 text-body-md text-on-surface-variant/80 leading-relaxed">
                 From designing interfaces to developing complete web
                 applications, I focus on writing clean code, creating responsive
                 experiences, and solving real-world problems through technology.
@@ -59,7 +64,7 @@ import aboutImage from "../assets/gueh_2.jpeg";
             <div class="pt-4">
                 <a
                     href="#projects"
-                    class="inline-flex items-center gap-3 bg-primary hover:bg-primary-container text-white px-8 py-3.5 rounded-full font-medium transition-all duration-300 hover:scale-105 shadow-md shadow-primary/20 group"
+                    class="about-btn inline-flex items-center gap-3 bg-primary hover:bg-primary-container text-white px-8 py-3.5 rounded-full font-medium transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.03] shadow-md shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 group"
                 >
                     View Projects
                     <Icon
@@ -71,3 +76,138 @@ import aboutImage from "../assets/gueh_2.jpeg";
         </div>
     </div>
 </section>
+
+<style>
+    /* ===== About Me entrance animations ===== */
+    /* Initial hidden states: only when JS marked the section */
+    section.about-init .about-photo {
+        opacity: 0;
+    }
+    section.about-init .about-photo-img {
+        transform: scale(1.15);
+    }
+    section.about-init .about-label,
+    section.about-init .about-p1,
+    section.about-init .about-p2,
+    section.about-init .about-btn {
+        opacity: 0;
+    }
+    section.about-init .about-line {
+        transform: translateY(110%);
+    }
+
+    .about-mask {
+        display: block;
+        overflow: hidden;
+    }
+
+    .about-line {
+        display: block;
+    }
+
+    /* Trigger all animations once the section scrolls into view */
+    section.in-view .about-photo {
+        animation: aboutSlideInLeft 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+    }
+
+    section.in-view .about-photo-img {
+        animation: aboutZoomOut 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+    }
+
+    section.in-view .about-label {
+        animation: aboutFadeDown 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+    }
+
+    section.in-view .about-line-1 {
+        animation: aboutMaskReveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.45s both;
+    }
+
+    section.in-view .about-line-2 {
+        animation: aboutMaskReveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.62s both;
+    }
+
+    section.in-view .about-p1 {
+        animation: aboutFadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.95s both;
+    }
+
+    section.in-view .about-p2 {
+        animation: aboutFadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 1.15s both;
+    }
+
+    section.in-view .about-btn {
+        animation: aboutFadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 1.4s both;
+    }
+
+    @keyframes aboutSlideInLeft {
+        from {
+            opacity: 0;
+            transform: translateX(-48px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes aboutZoomOut {
+        from {
+            transform: scale(1.15);
+        }
+        to {
+            transform: scale(1);
+        }
+    }
+
+    @keyframes aboutFadeDown {
+        from {
+            opacity: 0;
+            transform: translateY(-14px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes aboutMaskReveal {
+        from {
+            transform: translateY(110%);
+        }
+        to {
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes aboutFadeUp {
+        from {
+            opacity: 0;
+            transform: translateY(24px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+<script>
+    const about = document.getElementById("about");
+
+    if (about) {
+        about.classList.add("about-init");
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        about.classList.add("in-view");
+                        observer.disconnect();
+                    }
+                });
+            },
+            { threshold: 0.2 }
+        );
+
+        observer.observe(about);
+    }
+</script>
