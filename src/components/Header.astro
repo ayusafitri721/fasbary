@@ -11,7 +11,7 @@ import { Icon } from "astro-icon/components";
     >
         <!-- Logo -->
         <a
-            href="#"
+            href="#home"
             class="text-xl font-bold tracking-tight text-on-background flex items-center gap-1 hover:text-primary transition-colors"
         >
             <span class="italic font-extrabold text-2xl tracking-tighter"
@@ -22,33 +22,39 @@ import { Icon } from "astro-icon/components";
         <!-- Navigation Menu (Desktop) -->
         <nav class="hidden md:flex items-center gap-8 py-2 px-6">
             <a
-                href="#"
-                class="text-sm font-semibold text-on-background hover:text-primary transition-colors"
+                href="#home"
+                class="nav-link text-sm font-semibold text-on-background hover:text-primary transition-colors"
+                data-nav="home"
                 >Home</a
             >
             <a
                 href="#about"
-                class="text-sm font-semibold text-on-background hover:text-primary transition-colors"
+                class="nav-link text-sm font-semibold text-on-background hover:text-primary transition-colors"
+                data-nav="about"
                 >About Me</a
             >
             <a
                 href="#skills"
-                class="text-sm font-semibold text-on-background hover:text-primary transition-colors"
+                class="nav-link text-sm font-semibold text-on-background hover:text-primary transition-colors"
+                data-nav="skills"
                 >Skills</a
             >
             <a
                 href="#experience"
-                class="text-sm font-semibold text-on-background hover:text-primary transition-colors"
+                class="nav-link text-sm font-semibold text-on-background hover:text-primary transition-colors"
+                data-nav="experience"
                 >Experience</a
             >
             <a
                 href="#projects"
-                class="text-sm font-semibold text-on-background hover:text-primary transition-colors"
+                class="nav-link text-sm font-semibold text-on-background hover:text-primary transition-colors"
+                data-nav="projects"
                 >Projects</a
             >
             <a
                 href="#contact"
-                class="text-sm font-semibold text-on-background hover:text-primary transition-colors"
+                class="nav-link text-sm font-semibold text-on-background hover:text-primary transition-colors"
+                data-nav="contact"
                 >Contact</a
             >
         </nav>
@@ -85,33 +91,39 @@ import { Icon } from "astro-icon/components";
     >
         <nav class="flex flex-col gap-4">
             <a
-                href="#"
-                class="mobile-link text-base font-medium text-on-surface-variant hover:text-primary transition-colors py-2"
+                href="#home"
+                class="mobile-link nav-link text-base font-medium text-on-surface-variant hover:text-primary transition-colors py-2"
+                data-nav="home"
                 >Home</a
             >
             <a
                 href="#about"
-                class="mobile-link text-base font-medium text-on-surface-variant hover:text-primary transition-colors py-2"
+                class="mobile-link nav-link text-base font-medium text-on-surface-variant hover:text-primary transition-colors py-2"
+                data-nav="about"
                 >About Me</a
             >
             <a
                 href="#skills"
-                class="mobile-link text-base font-medium text-on-surface-variant hover:text-primary transition-colors py-2"
+                class="mobile-link nav-link text-base font-medium text-on-surface-variant hover:text-primary transition-colors py-2"
+                data-nav="skills"
                 >Skills</a
             >
             <a
                 href="#experience"
-                class="mobile-link text-base font-medium text-on-surface-variant hover:text-primary transition-colors py-2"
+                class="mobile-link nav-link text-base font-medium text-on-surface-variant hover:text-primary transition-colors py-2"
+                data-nav="experience"
                 >Experience</a
             >
             <a
                 href="#projects"
-                class="mobile-link text-base font-medium text-on-surface-variant hover:text-primary transition-colors py-2"
+                class="mobile-link nav-link text-base font-medium text-on-surface-variant hover:text-primary transition-colors py-2"
+                data-nav="projects"
                 >Projects</a
             >
             <a
                 href="#contact"
-                class="mobile-link text-base font-medium text-on-surface-variant hover:text-primary transition-colors py-2"
+                class="mobile-link nav-link text-base font-medium text-on-surface-variant hover:text-primary transition-colors py-2"
+                data-nav="contact"
                 >Contact</a
             >
             <a
@@ -123,6 +135,33 @@ import { Icon } from "astro-icon/components";
         </nav>
     </div>
 </header>
+
+<style>
+    .nav-link {
+        position: relative;
+    }
+    .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        width: 0;
+        height: 2px;
+        background: var(--color-primary);
+        transition: width 0.3s ease;
+    }
+    .nav-link.active {
+        color: var(--color-primary);
+    }
+    .nav-link.active::after {
+        width: 100%;
+    }
+    /* Mobile active state: left border accent */
+    #mobile-menu .nav-link.active {
+        color: var(--color-primary);
+        font-weight: 700;
+    }
+</style>
 
 <script>
     const header = document.getElementById("main-header");
@@ -162,4 +201,66 @@ import { Icon } from "astro-icon/components";
             closeIcon?.classList.add("hidden");
         });
     });
+
+    // Scrollspy: highlight nav link of section currently in viewport
+    const navLinks = document.querySelectorAll<HTMLAnchorElement>(".nav-link");
+    const sectionIds = ["home", "about", "skills", "experience", "projects", "contact"];
+    const sections = sectionIds
+        .map((id) => document.getElementById(id))
+        .filter((el): el is HTMLElement => el !== null);
+
+    const setActive = (id: string) => {
+        navLinks.forEach((link) => {
+            const isActive = link.dataset.nav === id;
+            link.classList.toggle("active", isActive);
+            if (isActive) {
+                link.classList.add("text-primary");
+                link.classList.remove("text-on-background", "text-on-surface-variant");
+            } else {
+                link.classList.remove("text-primary");
+                if (link.classList.contains("mobile-link")) {
+                    link.classList.add("text-on-surface-variant");
+                } else if (!link.classList.contains("text-white")) {
+                    link.classList.add("text-on-background");
+                }
+            }
+        });
+    };
+
+    // Smooth scroll with header offset on nav click
+    navLinks.forEach((link) => {
+        link.addEventListener("click", (e) => {
+            const href = link.getAttribute("href");
+            if (href?.startsWith("#")) {
+                const id = href.slice(1) || "home";
+                const target = document.getElementById(id);
+                if (target) {
+                    e.preventDefault();
+                    const headerOffset = header ? header.offsetHeight + 12 : 72;
+                    const top = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+                    window.scrollTo({ top, behavior: "smooth" });
+                    history.pushState(null, "", href);
+                }
+            }
+        });
+    });
+
+    const spyObserver = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    setActive(entry.target.id);
+                }
+            });
+        },
+        { rootMargin: "-35% 0px -55% 0px", threshold: 0 }
+    );
+
+    sections.forEach((s) => spyObserver.observe(s));
+
+    const onScrollSpyFallback = () => {
+        if (window.scrollY < 100) setActive("home");
+    };
+    window.addEventListener("scroll", onScrollSpyFallback, { passive: true });
+    onScrollSpyFallback();
 </script>

@@ -1,0 +1,32 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<button
+    id="back-to-top"
+    class="fixed bottom-6 right-6 z-50 w-11 h-11 rounded-full bg-primary text-white shadow-lg shadow-primary/30 flex items-center justify-center opacity-0 pointer-events-none translate-y-3 transition-all duration-300 hover:bg-primary-container hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/40 focus:outline-none"
+    aria-label="Back to top"
+>
+    <Icon name="mdi:arrow-up" class="w-5 h-5" />
+</button>
+
+<script>
+    const btn = document.getElementById("back-to-top");
+
+    if (btn) {
+        const toggle = () => {
+            if (window.scrollY > 400) {
+                btn.classList.remove("opacity-0", "pointer-events-none", "translate-y-3");
+            } else {
+                btn.classList.add("opacity-0", "pointer-events-none", "translate-y-3");
+            }
+        };
+
+        window.addEventListener("scroll", toggle, { passive: true });
+        toggle();
+
+        btn.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    }
+</script>
