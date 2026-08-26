@@ -8,6 +8,9 @@ import project4Image from "../assets/project_4.jpg";
 import project5Image from "../assets/project_5.jpg";
 import project6Image from "../assets/project_6.jpg";
 import project7Image from "../assets/project_7.jpg";
+import storeImage from "../assets/store.jpg";
+import gameProjectImage from "../assets/game_project.jpg";
+import printifyImage from "../assets/printify.jpg";
 
 const featuredProjects = [
   {
@@ -43,6 +46,48 @@ const featuredProjects = [
 ];
 
 const supportingProjects = [
+  {
+    title: "Store E-Commerce Platform",
+    category: "Full-Stack Web App",
+    year: "2025",
+    role: "Full-Stack Developer",
+    description:
+      "Full-stack store web app built with PHP Native, MySQL, and Tailwind CSS — fitur katalog produk, keranjang, checkout, auth, dan manajemen toko yang responsif.",
+    focus: ["Product Catalog", "Cart & Checkout", "Store Management"],
+    technologies: ["PHP Native", "MySQL", "Tailwind CSS"],
+    icon: "mdi:store-outline",
+    image: storeImage,
+    filterCategories: ["full-stack", "web"],
+    githubUrl: "https://github.com",
+  },
+  {
+    title: "Web Dev Academy",
+    category: "Game",
+    year: "2025",
+    role: "Game Developer",
+    description:
+      "Game edukasi desktop berbasis JavaFX — Web Dev Academy mengajarkan web development lewat gameplay interaktif: kumpulkan code packets, jawab quiz programming, debug enemy bugs, dan master 6 teknologi (HTML, CSS, JavaScript, API, SQL, Security).",
+    focus: ["Quiz Programming", "Gamified Learning", "Level & Scoring System"],
+    technologies: ["Java", "JavaFX"],
+    icon: "mdi:gamepad-variant-outline",
+    image: gameProjectImage,
+    filterCategories: ["game"],
+    githubUrl: "https://github.com",
+  },
+  {
+    title: "PrintyGo",
+    category: "Full-Stack Platform",
+    year: "2025",
+    role: "Full-Stack Developer",
+    description:
+      "Full-stack print-on-demand platform (Web + App) — aplikasi pembelian alat & layanan print ala abang fotocopy: katalog print, cart & checkout, pembayaran, tracking status antar, dan manajemen pesanan real-time.",
+    focus: ["Print Catalog & Cart", "Delivery Tracking", "Cross-Platform Order"],
+    technologies: ["React Native", "React.js"],
+    icon: "mdi:printer-outline",
+    image: printifyImage,
+    filterCategories: ["full-stack", "web", "mobile"],
+    githubUrl: "https://github.com",
+  },
   {
     title: "Prayer Streak",
     category: "Mobile App",
@@ -157,6 +202,13 @@ const supportingProjects = [
       data-filter="mobile"
     >
       Mobile App
+    </button>
+    <button
+      type="button"
+      class="project-filter-btn px-6 py-2.5 rounded-full text-xs md:text-sm font-bold border border-outline-variant/40 bg-white text-on-surface-variant hover:border-primary/40 hover:text-primary transition-all duration-300 focus:outline-none"
+      data-filter="game"
+    >
+      Game
     </button>
   </div>
 
