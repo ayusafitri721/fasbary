@@ -1,0 +1,181 @@
+---
+// PWA Install Prompt - shows banner when app is installable
+---
+
+<div
+  id="pwa-install-banner"
+  class="fixed bottom-4 left-1/2 z-[90] hidden w-[92%] max-w-[420px] -translate-x-1/2 items-center gap-3 rounded-[1.5rem] border border-outline-variant/20 bg-white px-4 py-4 shadow-2xl shadow-primary/15 sm:bottom-6 sm:px-5"
+  role="dialog"
+  aria-live="polite"
+  aria-label="Install app"
+>
+  <div class="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-primary/10">
+    <img src="/pwa-192x192.png" alt="Fasbary" class="h-10 w-10 rounded-xl object-cover" width="40" height="40" loading="eager" />
+  </div>
+  <div class="min-w-0 flex-1">
+    <p class="text-sm font-extrabold leading-none text-on-background">Install Fasbary App</p>
+    <p id="pwa-install-desc" class="mt-1 line-clamp-2 text-xs leading-relaxed text-on-surface-variant">
+      Install agar akses lebih cepat & bisa offline.
+    </p>
+  </div>
+  <div class="flex shrink-0 items-center gap-2">
+    <button
+      id="pwa-install-dismiss"
+      type="button"
+      class="rounded-full px-3.5 py-2 text-xs font-bold text-on-surface-variant hover:bg-surface-container transition-colors"
+      aria-label="Dismiss install"
+    >
+      Nanti
+    </button>
+    <button
+      id="pwa-install-action"
+      type="button"
+      class="rounded-full bg-primary px-5 py-2.5 text-xs font-extrabold text-white shadow-lg shadow-primary/20 transition-transform hover:scale-[1.02] active:scale-[0.98]"
+    >
+      Install
+    </button>
+  </div>
+  <button
+    id="pwa-install-close"
+    type="button"
+    class="absolute -right-2 -top-2 flex h-7 w-7 items-center justify-center rounded-full bg-white text-on-surface-variant shadow-md border border-outline-variant/20 hover:text-primary"
+    aria-label="Close"
+  >
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 18L18 6M6 6l12 12"/></svg>
+  </button>
+</div>
+
+<script is:inline>
+(() => {
+  const banner = document.getElementById('pwa-install-banner');
+  const installBtn = document.getElementById('pwa-install-action');
+  const dismissBtn = document.getElementById('pwa-install-dismiss');
+  const closeBtn = document.getElementById('pwa-install-close');
+  const desc = document.getElementById('pwa-install-desc');
+  if (!banner || !installBtn || !dismissBtn || !closeBtn) return;
+
+  let deferredPrompt = null;
+  let isIos = false;
+
+  const isStandalone = () => {
+    return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  };
+
+  const isIosDevice = () => {
+    return /iphone|ipad|ipod/i.test(navigator.userAgent);
+  };
+
+  const getDismissKey = () => 'pwa-install-dismissed-at';
+  const wasRecentlyDismissed = () => {
+    try {
+      const raw = localStorage.getItem(getDismissKey());
+      if (!raw) return false;
+      const ts = Number(raw);
+      const sevenDays = 7 * 24 * 60 * 60 * 1000;
+      return Date.now() - ts < sevenDays;
+    } catch { return false; }
+  };
+  const markDismissed = () => {
+    try { localStorage.setItem(getDismissKey(), String(Date.now())); } catch {}
+  };
+
+  const showBanner = () => {
+    if (wasRecentlyDismissed()) return;
+    if (isStandalone()) return;
+    banner.classList.remove('hidden');
+    banner.classList.add('flex');
+    // small entrance animation
+    banner.animate(
+      [{ transform: 'translate(-50%, 16px)', opacity: 0 }, { transform: 'translate(-50%, 0)', opacity: 1 }],
+      { duration: 320, easing: 'cubic-bezier(0.16,1,0.3,1)' }
+    );
+  };
+
+  const hideBanner = (persist) => {
+    if (persist) markDismissed();
+    banner.classList.add('hidden');
+    banner.classList.remove('flex');
+  };
+
+  // Helpers to update desc/button based on platform
+  const updateForPlatform = () => {
+    isIos = isIosDevice();
+    if (isIos && !isStandalone()) {
+      if (desc) desc.textContent = 'Tap Share → Add to Home Screen untuk install.';
+      if (installBtn) installBtn.textContent = 'Cara Install';
+    } else {
+      if (desc) desc.textContent = 'Install agar akses lebih cepat & bisa offline.';
+      if (installBtn) installBtn.textContent = 'Install';
+    }
+  };
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    // keep Install label when prompt available
+    if (desc) desc.textContent = 'Install agar akses lebih cepat & bisa offline.';
+    if (installBtn) installBtn.textContent = 'Install';
+  });
+
+  window.addEventListener('appinstalled', () => {
+    hideBanner(false);
+    deferredPrompt = null;
+    console.log('PWA installed');
+  });
+
+  // Already installed -> don't show at all
+  if (isStandalone()) return;
+
+  // Always show banner after entering site (unless recently dismissed) — not only when beforeinstallprompt fires
+  updateForPlatform();
+  // Show after short delay on every entry
+  setTimeout(() => {
+    if (!wasRecentlyDismissed() && !isStandalone()) showBanner();
+  }, 1500);
+
+  // Fallback instruction for browsers without deferredPrompt
+  const showFallbackInstruction = () => {
+    isIos = isIosDevice();
+    if (isIos) {
+      alert('Cara install di iPhone/iPad:\n1. Tap tombol Share (kotak + panah)\n2. Pilih "Add to Home Screen"\n3. Tap Add');
+    } else {
+      alert('Cara install:\n• Chrome/Edge Desktop: klik ikon Install di address bar atau menu ⋮ → Install app\n• Android Chrome: menu ⋮ → Install app / Add to Home Screen');
+    }
+  };
+
+  installBtn.addEventListener('click', async () => {
+    if (deferredPrompt) {
+      try {
+        deferredPrompt.prompt();
+        const choice = await deferredPrompt.userChoice;
+        if (choice.outcome === 'accepted') {
+          hideBanner(false);
+        } else {
+          hideBanner(true);
+        }
+      } catch {
+        hideBanner(true);
+      }
+      deferredPrompt = null;
+    } else {
+      showFallbackInstruction();
+      hideBanner(true);
+    }
+  });
+
+  dismissBtn.addEventListener('click', () => hideBanner(true));
+  closeBtn.addEventListener('click', () => hideBanner(true));
+
+  // For testing: allow manual trigger via query ?pwaPrompt=1 and force clear dismiss
+  try {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('pwaPrompt') === '1') {
+      try { localStorage.removeItem(getDismissKey()); } catch {}
+      setTimeout(showBanner, 500);
+    }
+    if (params.get('pwaReset') === '1') {
+      try { localStorage.removeItem(getDismissKey()); } catch {}
+    }
+  } catch {}
+})();
+</script>
