@@ -120,35 +120,35 @@
     #experience.exp-init .exp-title,
     #experience.exp-init .exp-desc,
     #experience.exp-init .exp-row { opacity: 0; }
-    #experience.exp-init .exp-row { transform: translateY(14px); }
+    #experience.exp-init .exp-row { transform: translateY(20px); }
 
-    /* animate when section enters viewport */
+    /* animate when section enters viewport — smooth & visible */
     #experience.in-view .exp-label {
-        animation: expLabelIn 0.5s var(--exp-ease) 0.05s both;
+        animation: expLabelIn 0.6s var(--exp-ease) 0.05s both;
     }
     #experience.in-view .exp-title {
-        animation: expUp 0.6s var(--exp-ease) 0.12s both;
+        animation: expUp 0.7s var(--exp-ease) 0.12s both;
     }
     #experience.in-view .exp-desc {
-        animation: expUp 0.6s var(--exp-ease) 0.18s both;
+        animation: expUp 0.7s var(--exp-ease) 0.18s both;
     }
     #experience.in-view .exp-row {
-        animation: expRowIn 0.6s var(--exp-ease) both;
+        animation: expRowIn 0.7s var(--exp-ease) both;
     }
     #experience.in-view .exp-row:nth-of-type(1) { animation-delay: 0.26s; }
-    #experience.in-view .exp-row:nth-of-type(2) { animation-delay: 0.34s; }
-    #experience.in-view .exp-row:nth-of-type(3) { animation-delay: 0.42s; }
+    #experience.in-view .exp-row:nth-of-type(2) { animation-delay: 0.36s; }
+    #experience.in-view .exp-row:nth-of-type(3) { animation-delay: 0.46s; }
 
     @keyframes expUp {
-        from { opacity: 0; transform: translateY(16px); }
+        from { opacity: 0; transform: translateY(20px); }
         to   { opacity: 1; transform: translateY(0); }
     }
     @keyframes expLabelIn {
-        from { opacity: 0; transform: translateY(-8px); }
+        from { opacity: 0; transform: translateY(-10px); }
         to   { opacity: 1; transform: translateY(0); }
     }
     @keyframes expRowIn {
-        from { opacity: 0; transform: translateY(14px); }
+        from { opacity: 0; transform: translateY(20px); }
         to   { opacity: 1; transform: translateY(0); }
     }
 
@@ -178,7 +178,7 @@
                         }
                     });
                 },
-                { threshold: 0.15 },
+                { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
             );
             observer.observe(expSection);
         } else {

@@ -505,35 +505,35 @@ const totalPages = Math.ceil(achievements.length / itemsPerPage);
     #achievements.ach-init .ach-label,
     #achievements.ach-init .ach-title,
     #achievements.ach-init .ach-desc { opacity: 0; }
-    #achievements.ach-init .ach-card:not(.hidden) { opacity: 0; }
+    #achievements.ach-init .ach-card:not(.hidden) { opacity: 0; transform: translateY(20px); }
 
     #achievements.in-view .ach-label {
-        animation: achLabelIn 0.5s var(--ach-ease) 0.05s both;
+        animation: achLabelIn 0.6s var(--ach-ease) 0.05s both;
     }
     #achievements.in-view .ach-title {
-        animation: achUp 0.6s var(--ach-ease) 0.1s both;
+        animation: achUp 0.7s var(--ach-ease) 0.1s both;
     }
     #achievements.in-view .ach-desc {
-        animation: achUp 0.6s var(--ach-ease) 0.16s both;
+        animation: achUp 0.7s var(--ach-ease) 0.16s both;
     }
     #achievements.in-view .ach-card:not(.hidden) {
-        animation: achCardIn 0.6s var(--ach-ease) both;
+        animation: achCardIn 0.7s var(--ach-ease) both;
     }
     #achievements.in-view .ach-card:not(.hidden):nth-of-type(1) { animation-delay: 0.24s; }
-    #achievements.in-view .ach-card:not(.hidden):nth-of-type(2) { animation-delay: 0.32s; }
-    #achievements.in-view .ach-card:not(.hidden):nth-of-type(3) { animation-delay: 0.4s; }
-    #achievements.in-view .ach-card:not(.hidden):nth-of-type(n + 4) { animation-delay: 0.48s; }
+    #achievements.in-view .ach-card:not(.hidden):nth-of-type(2) { animation-delay: 0.34s; }
+    #achievements.in-view .ach-card:not(.hidden):nth-of-type(3) { animation-delay: 0.44s; }
+    #achievements.in-view .ach-card:not(.hidden):nth-of-type(n + 4) { animation-delay: 0.54s; }
 
     @keyframes achUp {
-        from { opacity: 0; transform: translateY(16px); }
+        from { opacity: 0; transform: translateY(20px); }
         to   { opacity: 1; transform: translateY(0); }
     }
     @keyframes achLabelIn {
-        from { opacity: 0; transform: translateY(-8px); }
+        from { opacity: 0; transform: translateY(-10px); }
         to   { opacity: 1; transform: translateY(0); }
     }
     @keyframes achCardIn {
-        from { opacity: 0; transform: translateY(16px); }
+        from { opacity: 0; transform: translateY(20px); }
         to   { opacity: 1; transform: translateY(0); }
     }
 
@@ -563,7 +563,7 @@ const totalPages = Math.ceil(achievements.length / itemsPerPage);
                         }
                     });
                 },
-                { threshold: 0.1 },
+                { threshold: 0.08, rootMargin: "0px 0px -8% 0px" },
             );
             observer.observe(achSection);
         } else {
