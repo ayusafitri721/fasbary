@@ -155,26 +155,71 @@ const supportingProjects = [
     githubUrl: "https://github.com",
     demoUrl: "https://ayusafitridev.vercel.app/",
   },
+  {
+    title: "NUSPHERE",
+    category: "UI/UX Design",
+    year: "2025",
+    role: "UI/UX Designer",
+    description:
+      "Figma-based UI/UX design project focused on creating a clean, modern interface with structured design tokens and a consistent component library.",
+    focus: ["Design System", "Figma Prototyping", "Mobile-First"],
+    technologies: ["Figma", "UI Design", "Prototyping"],
+    icon: "simple-icons:figma",
+    image: null,
+    filterCategories: ["ui-ux"],
+    githubUrl: "https://github.com",
+    demoUrl: "https://www.figma.com/design/9GrqrIEVspCpgNTTfFtiE9/NUSPHERE?node-id=0-1&t=TAft1uMFdV8PxfoT-0",
+  },
+  {
+    title: "Bangkit Cell Design",
+    category: "UI/UX Design",
+    year: "2025",
+    role: "UI/UX Designer",
+    description:
+      "Figma UI design concept for a cellular biology-themed learning app — combining clean visuals and intuitive navigation to present complex biological content.",
+    focus: ["Educational UI", "Figma Prototyping", "Scientific Visualization"],
+    technologies: ["Figma", "Wireframing", "User Flows"],
+    icon: "simple-icons:figma",
+    image: null,
+    filterCategories: ["ui-ux"],
+    githubUrl: "https://github.com",
+    demoUrl: "https://www.figma.com/design/9PpBMxQr8qoppi5vzeUlha/Bangkit-Cell-Design?node-id=0-1&p=f&t=1dc3qAXPj4Q4IjGU-0",
+  },
+  {
+    title: "LetMeTry",
+    category: "UI/UX Design",
+    year: "2025",
+    role: "UI/UX Designer",
+    description:
+      "Figma design exploration for an experimentation-focused mobile app — emphasizing playful interactions, micro-animations, and bite-sized trial experiences.",
+    focus: ["Micro-interactions", "Figma Prototyping", "Mobile UI"],
+    technologies: ["Figma", "Prototyping", "Design Systems"],
+    icon: "simple-icons:figma",
+    image: null,
+    filterCategories: ["ui-ux"],
+    githubUrl: "https://github.com",
+    demoUrl: "https://www.figma.com/design/LJ6A2rs5e7UezSJV8yeE9V/LetMeTry?node-id=0-1&p=f&t=MMh6iWJU8eYndY7D-0",
+  },
 ];
 ---
 
 <section id="projects" class="py-20 md:py-32 px-5 desktop:px-16 max-w-[1440px] mx-auto overflow-hidden">
   <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-end">
     <div class="col-span-1 md:col-span-7 flex flex-col gap-3">
-      <span class="text-sm font-bold tracking-widest text-primary uppercase">Projects</span>
-      <h3 class="text-4xl md:text-6xl font-extrabold tracking-tight text-on-background leading-tight">
+      <span class="proj-label text-sm font-bold tracking-widest text-primary uppercase">Projects</span>
+      <h3 class="proj-title text-4xl md:text-6xl font-extrabold tracking-tight text-on-background leading-tight">
         Selected Work & <br /> Case Studies
       </h3>
     </div>
     <div class="col-span-1 md:col-span-5 pb-1">
-      <p class="text-body-lg text-on-surface-variant leading-relaxed max-w-md md:ml-auto">
+      <p class="proj-desc text-body-lg text-on-surface-variant leading-relaxed max-w-md md:ml-auto">
         A curated selection of web, mobile, and full-stack projects focused on practical solutions, clean interfaces, and real-world problem solving.
       </p>
     </div>
   </div>
 
   <!-- Project Filter Buttons -->
-  <div class="mt-8 flex flex-wrap gap-2.5 items-center justify-start md:justify-center">
+  <div class="proj-filters mt-8 flex flex-wrap gap-2.5 items-center justify-start md:justify-center">
     <button
       type="button"
       class="project-filter-btn px-6 py-2.5 rounded-full text-xs md:text-sm font-bold border transition-all duration-300 border-primary bg-primary text-white shadow-lg shadow-primary/20 focus:outline-none"
@@ -210,12 +255,19 @@ const supportingProjects = [
     >
       Game
     </button>
+    <button
+      type="button"
+      class="project-filter-btn px-6 py-2.5 rounded-full text-xs md:text-sm font-bold border border-outline-variant/40 bg-white text-on-surface-variant hover:border-primary/40 hover:text-primary transition-all duration-300 focus:outline-none"
+      data-filter="ui-ux"
+    >
+      UI/UX Design
+    </button>
   </div>
 
   <div id="featured-projects-grid" class="mt-14 md:mt-20 grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
     {featuredProjects.map((project, index) => (
       <article 
-        class="group relative overflow-hidden rounded-[2rem] border border-outline-variant/30 bg-white p-6 md:p-8 shadow-xl shadow-on-surface/[0.03] transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/10"
+        class="proj-card group relative overflow-hidden rounded-[2rem] border border-outline-variant/30 bg-white p-6 md:p-8 shadow-xl shadow-on-surface/[0.03] transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/10"
         data-project-card
         data-project-category={project.filterCategories.join(" ")}
       >
@@ -319,7 +371,7 @@ const supportingProjects = [
   <div id="supporting-projects-grid" class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
     {supportingProjects.map((project, index) => (
       <article 
-        class="group relative overflow-hidden rounded-[2rem] border border-outline-variant/30 bg-white p-6 md:p-8 shadow-xl shadow-on-surface/[0.03] transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/10"
+        class="proj-card group relative overflow-hidden rounded-[2rem] border border-outline-variant/30 bg-white p-6 md:p-8 shadow-xl shadow-on-surface/[0.03] transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-2xl hover:shadow-primary/10"
         data-project-card
         data-project-category={project.filterCategories.join(" ")}
       >
@@ -614,4 +666,113 @@ const supportingProjects = [
       });
     });
   }
+</script>
+
+<style>
+    /* ===== Projects entrance animations =====
+       Same pattern as Hero & AboutMe: hidden only after JS marks
+       the section with .proj-init, so content stays visible
+       without JS. */
+
+    .proj-init .proj-label {
+        opacity: 0;
+        animation: projLabelIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.05s both;
+    }
+    .proj-init .proj-title {
+        opacity: 0;
+        animation: projUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+    }
+    .proj-init .proj-desc {
+        opacity: 0;
+        animation: projUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+    }
+    .proj-init .proj-filters {
+        opacity: 0;
+        animation: projUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
+    }
+
+    /* Cards rise + scale in softly, staggered */
+    .proj-init .proj-card {
+        opacity: 0;
+        animation: projCardIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    .proj-init .proj-card:nth-of-type(1) {
+        animation-delay: 0.45s;
+    }
+    .proj-init .proj-card:nth-of-type(2) {
+        animation-delay: 0.57s;
+    }
+    .proj-init .proj-card:nth-of-type(3) {
+        animation-delay: 0.69s;
+    }
+    .proj-init .proj-card:nth-of-type(4) {
+        animation-delay: 0.81s;
+    }
+    .proj-init .proj-card:nth-of-type(n + 5) {
+        animation-delay: 0.93s;
+    }
+
+    @keyframes projUp {
+        from {
+            opacity: 0;
+            transform: translateY(18px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    @keyframes projLabelIn {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    @keyframes projCardIn {
+        from {
+            opacity: 0;
+            transform: translateY(22px) scale(0.98);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+    }
+
+    /* Respect users who ask for less motion */
+    @media (prefers-reduced-motion: reduce) {
+        .proj-init .proj-label,
+        .proj-init .proj-title,
+        .proj-init .proj-desc,
+        .proj-init .proj-filters,
+        .proj-init .proj-card {
+            animation: none;
+            opacity: 1;
+            transform: none;
+        }
+    }
+</style>
+
+<script>
+    const projSection = document.querySelector("#projects");
+
+    if (projSection && "IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        projSection.classList.add("proj-init");
+                        observer.disconnect();
+                    }
+                });
+            },
+            { threshold: 0.1 },
+        );
+
+        observer.observe(projSection);
+    }
 </script>

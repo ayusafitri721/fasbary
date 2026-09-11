@@ -12,17 +12,17 @@
     >
         <div class="col-span-1 md:col-span-7 flex flex-col gap-2">
             <span
-                class="text-sm font-bold tracking-widest text-primary uppercase"
+                class="exp-label text-sm font-bold tracking-widest text-primary uppercase"
                 >Experience</span
             >
             <h3
-                class="text-3xl md:text-5xl font-extrabold tracking-tight text-on-background leading-tight"
+                class="exp-title text-3xl md:text-5xl font-extrabold tracking-tight text-on-background leading-tight"
             >
                 My Journey in Technology
             </h3>
         </div>
         <div class="col-span-1 md:col-span-5 pb-1">
-            <p class="text-body-lg text-on-surface-variant leading-relaxed">
+            <p class="exp-desc text-body-lg text-on-surface-variant leading-relaxed">
                 Every project and experience has helped me grow as a developer
                 and strengthen my passion for technology.
             </p>
@@ -33,7 +33,7 @@
     <div class="flex flex-col border-t border-outline-variant/30 mt-8">
         <!-- Current Education -->
         <div
-            class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-8 border-b border-outline-variant/30 items-center hover:bg-surface-container-lowest/50 px-2 transition-all duration-300"
+            class="exp-row grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-8 border-b border-outline-variant/30 items-center hover:bg-surface-container-lowest/50 px-2 transition-all duration-300"
         >
             <div
                 class="col-span-1 md:col-span-2 text-label-md text-on-surface-variant font-medium"
@@ -58,7 +58,7 @@
 
         <!-- Experience Row 1 -->
         <div
-            class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-8 border-b border-outline-variant/30 items-center hover:bg-surface-container-lowest/50 px-2 transition-all duration-300"
+            class="exp-row grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-8 border-b border-outline-variant/30 items-center hover:bg-surface-container-lowest/50 px-2 transition-all duration-300"
         >
             <div
                 class="col-span-1 md:col-span-2 text-label-md text-on-surface-variant font-medium"
@@ -84,7 +84,7 @@
 
         <!-- Experience Row 2 -->
         <div
-            class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-8 border-b border-outline-variant/30 items-center hover:bg-surface-container-lowest/50 px-2 transition-all duration-300"
+            class="exp-row grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 py-8 border-b border-outline-variant/30 items-center hover:bg-surface-container-lowest/50 px-2 transition-all duration-300"
         >
             <div
                 class="col-span-1 md:col-span-2 text-label-md text-on-surface-variant font-medium"
@@ -107,6 +107,103 @@
                 SMKN 24 Jakarta
             </div>
         </div>
-
     </div>
 </section>
+
+<style>
+    /* ===== Experience entrance animations =====
+       Same pattern as Hero & AboutMe: hidden state only applies
+       once JS marks the section with .exp-init, so content stays
+       visible if JS is unavailable. */
+
+    .exp-init .exp-label {
+        opacity: 0;
+        animation: expLabelIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.05s both;
+    }
+    .exp-init .exp-title {
+        opacity: 0;
+        animation: expUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+    }
+    .exp-init .exp-desc {
+        opacity: 0;
+        animation: expUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+    }
+
+    /* Rows slide in gently from the left, one after another */
+    .exp-init .exp-row {
+        opacity: 0;
+        animation: expRowIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+    }
+    .exp-init .exp-row:nth-of-type(1) {
+        animation-delay: 0.4s;
+    }
+    .exp-init .exp-row:nth-of-type(2) {
+        animation-delay: 0.52s;
+    }
+    .exp-init .exp-row:nth-of-type(3) {
+        animation-delay: 0.64s;
+    }
+
+    @keyframes expUp {
+        from {
+            opacity: 0;
+            transform: translateY(18px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    @keyframes expLabelIn {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    @keyframes expRowIn {
+        from {
+            opacity: 0;
+            transform: translateX(-18px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    /* Respect users who ask for less motion */
+    @media (prefers-reduced-motion: reduce) {
+        .exp-init .exp-label,
+        .exp-init .exp-title,
+        .exp-init .exp-desc,
+        .exp-init .exp-row {
+            animation: none;
+            opacity: 1;
+            transform: none;
+        }
+    }
+</style>
+
+<script>
+    const expSection = document.querySelector("#experience");
+
+    if (expSection && "IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        expSection.classList.add("exp-init");
+                        observer.disconnect();
+                    }
+                });
+            },
+            { threshold: 0.15 },
+        );
+
+        observer.observe(expSection);
+    }
+</script>

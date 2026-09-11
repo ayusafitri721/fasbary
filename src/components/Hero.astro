@@ -227,7 +227,7 @@ import avatarImage from "../assets/gueh.jpg";
 
     /* Watermark: fade in + slide from left, first layer (0.2s) */
     section > div:nth-of-type(2) h1 {
-        animation: watermarkIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+        animation: watermarkIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
     }
 
     @keyframes watermarkIn {
@@ -280,21 +280,21 @@ import avatarImage from "../assets/gueh.jpg";
 
     .hero-name {
         display: block;
-        animation: nameMaskReveal 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+        animation: nameMaskReveal 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
     .name-mask:nth-child(1) .hero-name {
-        animation-delay: 0.1s;
+        animation-delay: 0.06s;
     }
     .name-mask:nth-child(2) .hero-name {
-        animation-delay: 0.28s;
+        animation-delay: 0.17s;
     }
     .name-mask:nth-child(3) .hero-name {
-        animation-delay: 0.46s;
+        animation-delay: 0.28s;
     }
 
     /* Follow Me: fade down from top (0.2s) */
     .hero-follow {
-        animation: fadeDown 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+        animation: fadeDown 0.42s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
     }
 
     /* Social icons: drop + pop with overshoot, one by one (0.35s -> 0.65s) */
@@ -314,29 +314,29 @@ import avatarImage from "../assets/gueh.jpg";
     }
 
     .hero-social {
-        animation: socialPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        animation: socialPop 0.36s cubic-bezier(0.34, 1.56, 0.64, 1) both;
     }
     .hero-social:nth-of-type(1) {
-        animation-delay: 0.35s;
+        animation-delay: 0.21s;
     }
     .hero-social:nth-of-type(2) {
-        animation-delay: 0.45s;
+        animation-delay: 0.27s;
     }
     .hero-social:nth-of-type(3) {
-        animation-delay: 0.55s;
+        animation-delay: 0.33s;
     }
     .hero-social:nth-of-type(4) {
-        animation-delay: 0.65s;
+        animation-delay: 0.39s;
     }
 
     /* Get in Touch button: fade + rise (0.65s) */
     .hero-btn {
-        animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.65s both;
+        animation: fadeUp 0.42s cubic-bezier(0.22, 1, 0.36, 1) 0.39s both;
     }
 
-    /* Tagline: fade up (0.75s) */
+    /* Tagline: fade up (0.45s) */
     .hero-tagline {
-        animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.75s both;
+        animation: fadeUp 0.42s cubic-bezier(0.22, 1, 0.36, 1) 0.45s both;
     }
 
     /* Skill badges: pop-in from small scale (0.85s / 0.95s / 1.05s) */
@@ -356,16 +356,16 @@ import avatarImage from "../assets/gueh.jpg";
 
     .hero-badge {
         display: inline-block;
-        animation: badgePop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+        animation: badgePop 0.32s cubic-bezier(0.34, 1.56, 0.64, 1) both;
     }
     .hero-badge:nth-child(1) {
-        animation-delay: 0.85s;
+        animation-delay: 0.51s;
     }
     .hero-badge:nth-child(2) {
-        animation-delay: 0.95s;
+        animation-delay: 0.57s;
     }
     .hero-badge:nth-child(3) {
-        animation-delay: 1.05s;
+        animation-delay: 0.63s;
     }
 
     /* Big right-bottom headline: each line slides in from the right */
@@ -382,23 +382,23 @@ import avatarImage from "../assets/gueh.jpg";
 
     .hero-line {
         display: block;
-        animation: slideInRight 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+        animation: slideInRight 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
     }
     .hero-line:nth-child(1) {
-        animation-delay: 1.1s;
+        animation-delay: 0.66s;
     }
     .hero-line:nth-child(2) {
-        animation-delay: 1.22s;
+        animation-delay: 0.73s;
     }
     .hero-line:nth-child(3) {
-        animation-delay: 1.34s;
+        animation-delay: 0.8s;
     }
 
     /* Avatar: enter with scale+fade, then float forever (only idle animation) */
     section img[alt*="Avatar"] {
         animation:
-            avatarEnter 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both,
-            avatarFloat 5s ease-in-out 1.35s infinite;
+            avatarEnter 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.21s both,
+            avatarFloat 5s ease-in-out 0.85s infinite;
     }
 
     @keyframes avatarEnter {
@@ -412,9 +412,9 @@ import avatarImage from "../assets/gueh.jpg";
         }
     }
 
-    /* Description paragraph: last of all (1.5s) */
+    /* Description paragraph: (0.85s) */
     .hero-desc {
-        animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 1.5s both;
+        animation: fadeUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.85s both;
     }
 </style>
 
