@@ -111,99 +111,78 @@
 </section>
 
 <style>
-    /* ===== Experience entrance animations =====
-       Same pattern as Hero & AboutMe: hidden state only applies
-       once JS marks the section with .exp-init, so content stays
-       visible if JS is unavailable. */
+    /* ===== Experience — smooth vertical reveal =====
+       Two-phase: hidden only after JS adds .exp-init, animates when .in-view */
+    :root { --exp-ease: cubic-bezier(0.22, 1, 0.36, 1); }
 
-    .exp-init .exp-label {
-        opacity: 0;
-        animation: expLabelIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.05s both;
-    }
-    .exp-init .exp-title {
-        opacity: 0;
-        animation: expUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
-    }
-    .exp-init .exp-desc {
-        opacity: 0;
-        animation: expUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
-    }
+    /* hidden state — applied immediately on load */
+    #experience.exp-init .exp-label,
+    #experience.exp-init .exp-title,
+    #experience.exp-init .exp-desc,
+    #experience.exp-init .exp-row { opacity: 0; }
+    #experience.exp-init .exp-row { transform: translateY(14px); }
 
-    /* Rows slide in gently from the left, one after another */
-    .exp-init .exp-row {
-        opacity: 0;
-        animation: expRowIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+    /* animate when section enters viewport */
+    #experience.in-view .exp-label {
+        animation: expLabelIn 0.5s var(--exp-ease) 0.05s both;
     }
-    .exp-init .exp-row:nth-of-type(1) {
-        animation-delay: 0.4s;
+    #experience.in-view .exp-title {
+        animation: expUp 0.6s var(--exp-ease) 0.12s both;
     }
-    .exp-init .exp-row:nth-of-type(2) {
-        animation-delay: 0.52s;
+    #experience.in-view .exp-desc {
+        animation: expUp 0.6s var(--exp-ease) 0.18s both;
     }
-    .exp-init .exp-row:nth-of-type(3) {
-        animation-delay: 0.64s;
+    #experience.in-view .exp-row {
+        animation: expRowIn 0.6s var(--exp-ease) both;
     }
+    #experience.in-view .exp-row:nth-of-type(1) { animation-delay: 0.26s; }
+    #experience.in-view .exp-row:nth-of-type(2) { animation-delay: 0.34s; }
+    #experience.in-view .exp-row:nth-of-type(3) { animation-delay: 0.42s; }
 
     @keyframes expUp {
-        from {
-            opacity: 0;
-            transform: translateY(18px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        from { opacity: 0; transform: translateY(16px); }
+        to   { opacity: 1; transform: translateY(0); }
     }
     @keyframes expLabelIn {
-        from {
-            opacity: 0;
-            transform: translateY(-10px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        from { opacity: 0; transform: translateY(-8px); }
+        to   { opacity: 1; transform: translateY(0); }
     }
     @keyframes expRowIn {
-        from {
-            opacity: 0;
-            transform: translateX(-18px);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
+        from { opacity: 0; transform: translateY(14px); }
+        to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* Respect users who ask for less motion */
     @media (prefers-reduced-motion: reduce) {
-        .exp-init .exp-label,
-        .exp-init .exp-title,
-        .exp-init .exp-desc,
-        .exp-init .exp-row {
-            animation: none;
-            opacity: 1;
-            transform: none;
-        }
+        #experience.exp-init .exp-label,
+        #experience.exp-init .exp-title,
+        #experience.exp-init .exp-desc,
+        #experience.exp-init .exp-row { opacity: 1; transform: none; }
+        #experience.in-view .exp-label,
+        #experience.in-view .exp-title,
+        #experience.in-view .exp-desc,
+        #experience.in-view .exp-row { animation: none; }
     }
 </style>
 
 <script>
-    const expSection = document.querySelector("#experience");
-
-    if (expSection && "IntersectionObserver" in window) {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        expSection.classList.add("exp-init");
-                        observer.disconnect();
-                    }
-                });
-            },
-            { threshold: 0.15 },
-        );
-
-        observer.observe(expSection);
+    const expSection = document.getElementById("experience");
+    if (expSection) {
+        expSection.classList.add("exp-init");
+        if ("IntersectionObserver" in window) {
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            expSection.classList.add("in-view");
+                            observer.disconnect();
+                        }
+                    });
+                },
+                { threshold: 0.15 },
+            );
+            observer.observe(expSection);
+        } else {
+            expSection.classList.add("in-view");
+        }
     }
 </script>

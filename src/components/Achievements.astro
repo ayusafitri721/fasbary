@@ -498,103 +498,76 @@ const totalPages = Math.ceil(achievements.length / itemsPerPage);
 </script>
 
 <style>
-    /* ===== Achievements entrance animations =====
-       Same pattern as Hero & AboutMe: hidden only after JS marks the
-       section with .ach-init, so content stays visible without JS. */
+    /* ===== Achievements — smooth reveal =====
+       Two-phase: hidden after JS adds .ach-init, animates when .in-view */
+    :root { --ach-ease: cubic-bezier(0.22, 1, 0.36, 1); }
 
-    .ach-init .ach-label {
-        opacity: 0;
-        animation: achLabelIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.05s both;
-    }
-    .ach-init .ach-title {
-        opacity: 0;
-        animation: achUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
-    }
-    .ach-init .ach-desc {
-        opacity: 0;
-        animation: achUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
-    }
+    #achievements.ach-init .ach-label,
+    #achievements.ach-init .ach-title,
+    #achievements.ach-init .ach-desc { opacity: 0; }
+    #achievements.ach-init .ach-card:not(.hidden) { opacity: 0; }
 
-    /* Cards scale in softly, staggered.
-       Cards hidden by pagination keep no animation — they appear
-       instantly when their page opens (no awkward fade). */
-    .ach-init .ach-card:not(.hidden) {
-        opacity: 0;
-        animation: achCardIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+    #achievements.in-view .ach-label {
+        animation: achLabelIn 0.5s var(--ach-ease) 0.05s both;
     }
-    .ach-init .ach-card:not(.hidden):nth-of-type(1) {
-        animation-delay: 0.4s;
+    #achievements.in-view .ach-title {
+        animation: achUp 0.6s var(--ach-ease) 0.1s both;
     }
-    .ach-init .ach-card:not(.hidden):nth-of-type(2) {
-        animation-delay: 0.5s;
+    #achievements.in-view .ach-desc {
+        animation: achUp 0.6s var(--ach-ease) 0.16s both;
     }
-    .ach-init .ach-card:not(.hidden):nth-of-type(3) {
-        animation-delay: 0.6s;
+    #achievements.in-view .ach-card:not(.hidden) {
+        animation: achCardIn 0.6s var(--ach-ease) both;
     }
-    .ach-init .ach-card:not(.hidden):nth-of-type(n + 4) {
-        animation-delay: 0.7s;
-    }
+    #achievements.in-view .ach-card:not(.hidden):nth-of-type(1) { animation-delay: 0.24s; }
+    #achievements.in-view .ach-card:not(.hidden):nth-of-type(2) { animation-delay: 0.32s; }
+    #achievements.in-view .ach-card:not(.hidden):nth-of-type(3) { animation-delay: 0.4s; }
+    #achievements.in-view .ach-card:not(.hidden):nth-of-type(n + 4) { animation-delay: 0.48s; }
 
     @keyframes achUp {
-        from {
-            opacity: 0;
-            transform: translateY(18px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        from { opacity: 0; transform: translateY(16px); }
+        to   { opacity: 1; transform: translateY(0); }
     }
     @keyframes achLabelIn {
-        from {
-            opacity: 0;
-            transform: translateY(-10px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        from { opacity: 0; transform: translateY(-8px); }
+        to   { opacity: 1; transform: translateY(0); }
     }
     @keyframes achCardIn {
-        from {
-            opacity: 0;
-            transform: scale(0.97);
-        }
-        to {
-            opacity: 1;
-            transform: scale(1);
-        }
+        from { opacity: 0; transform: translateY(16px); }
+        to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* Respect users who ask for less motion */
     @media (prefers-reduced-motion: reduce) {
-        .ach-init .ach-label,
-        .ach-init .ach-title,
-        .ach-init .ach-desc,
-        .ach-init .ach-card:not(.hidden) {
-            animation: none;
-            opacity: 1;
-            transform: none;
-        }
+        #achievements.ach-init .ach-label,
+        #achievements.ach-init .ach-title,
+        #achievements.ach-init .ach-desc,
+        #achievements.ach-init .ach-card:not(.hidden) { opacity: 1; transform: none; }
+        #achievements.in-view .ach-label,
+        #achievements.in-view .ach-title,
+        #achievements.in-view .ach-desc,
+        #achievements.in-view .ach-card:not(.hidden) { animation: none; }
     }
 </style>
 
 <script>
-    const achSection = document.querySelector("#achievements");
-
-    if (achSection && "IntersectionObserver" in window) {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        achSection.classList.add("ach-init");
-                        observer.disconnect();
-                    }
-                });
-            },
-            { threshold: 0.1 },
-        );
-
-        observer.observe(achSection);
+    const achSection = document.getElementById("achievements");
+    if (achSection) {
+        achSection.classList.add("ach-init");
+        if ("IntersectionObserver" in window) {
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            achSection.classList.add("in-view");
+                            observer.disconnect();
+                        }
+                    });
+                },
+                { threshold: 0.1 },
+            );
+            observer.observe(achSection);
+        } else {
+            achSection.classList.add("in-view");
+        }
     }
 </script>

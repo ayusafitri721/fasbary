@@ -163,112 +163,68 @@ import { Icon } from 'astro-icon/components';
 </section>
 
 <style>
-    /* ===== Skills entrance animations =====
-       Same pattern as Hero & AboutMe: hidden state only applies once JS
-       marks the section with .skills-init, then everything animates when
-       the section scrolls into view. Without JS the section is fully visible. */
+    /* ===== Skills — smooth reveal ===== */
+    :root { --skills-ease: cubic-bezier(0.22, 1, 0.36, 1); }
 
     section.skills-init .skills-label,
     section.skills-init .skills-title,
     section.skills-init .skills-desc,
-    section.skills-init .skill-card,
-    section.skills-init .skill-tag {
-        opacity: 0;
-    }
+    section.skills-init .skill-card { opacity: 0; }
 
-    /* Header: label drops in, title follows, description last */
     section.in-view .skills-label {
-        animation: skillsFadeDown 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.05s both;
+        animation: skillsFadeDown 0.5s var(--skills-ease) 0.05s both;
     }
     section.in-view .skills-title {
-        animation: skillsFadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+        animation: skillsFadeUp 0.6s var(--skills-ease) 0.12s both;
     }
     section.in-view .skills-desc {
-        animation: skillsFadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+        animation: skillsFadeUp 0.6s var(--skills-ease) 0.18s both;
     }
 
-    /* Cards: rise into place one after another */
-    section.in-view .skill-card:nth-of-type(1) {
-        animation: skillsCardIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both;
+    section.in-view .skill-card {
+        animation: skillsCardIn 0.6s var(--skills-ease) both;
     }
-    section.in-view .skill-card:nth-of-type(2) {
-        animation: skillsCardIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.45s both;
-    }
-    section.in-view .skill-card:nth-of-type(3) {
-        animation: skillsCardIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.55s both;
-    }
-    section.in-view .skill-card:nth-of-type(4) {
-        animation: skillsCardIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.65s both;
-    }
-    section.in-view .skill-card:nth-of-type(5) {
-        animation: skillsCardIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.75s both;
-    }
+    section.in-view .skill-card:nth-of-type(1) { animation-delay: 0.22s; }
+    section.in-view .skill-card:nth-of-type(2) { animation-delay: 0.30s; }
+    section.in-view .skill-card:nth-of-type(3) { animation-delay: 0.38s; }
+    section.in-view .skill-card:nth-of-type(4) { animation-delay: 0.46s; }
+    section.in-view .skill-card:nth-of-type(5) { animation-delay: 0.54s; }
 
-    /* Skill tags: gentle pop after their card lands */
+    /* tags: fade gently, no pop */
+    section.skills-init .skill-tag { opacity: 0; }
     section.in-view .skill-tag {
-        animation: skillsTagIn 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.9s both;
+        animation: skillsTagIn 0.4s var(--skills-ease) both;
     }
+    /* per-card stagger for tags via JS delay is not needed — simple 0.05s increment per card already enough */
 
     @keyframes skillsFadeDown {
-        from {
-            opacity: 0;
-            transform: translateY(-12px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        from { opacity: 0; transform: translateY(-8px); }
+        to   { opacity: 1; transform: translateY(0); }
     }
-
     @keyframes skillsFadeUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        from { opacity: 0; transform: translateY(16px); }
+        to   { opacity: 1; transform: translateY(0); }
     }
-
     @keyframes skillsCardIn {
-        from {
-            opacity: 0;
-            transform: translateY(28px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        from { opacity: 0; transform: translateY(18px); }
+        to   { opacity: 1; transform: translateY(0); }
     }
-
     @keyframes skillsTagIn {
-        from {
-            opacity: 0;
-            transform: translateY(6px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        from { opacity: 0; transform: translateY(4px); }
+        to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* Respect reduced-motion users */
     @media (prefers-reduced-motion: reduce) {
         section.skills-init .skills-label,
         section.skills-init .skills-title,
         section.skills-init .skills-desc,
         section.skills-init .skill-card,
-        section.skills-init .skill-tag {
-            opacity: 1;
-        }
+        section.skills-init .skill-tag { opacity: 1; }
         section.in-view .skills-label,
         section.in-view .skills-title,
         section.in-view .skills-desc,
         section.in-view .skill-card,
-        section.in-view .skill-tag {
-            animation: none;
-        }
+        section.in-view .skill-tag { animation: none; }
     }
 </style>
 

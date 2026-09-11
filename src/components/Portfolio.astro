@@ -669,110 +669,83 @@ const supportingProjects = [
 </script>
 
 <style>
-    /* ===== Projects entrance animations =====
-       Same pattern as Hero & AboutMe: hidden only after JS marks
-       the section with .proj-init, so content stays visible
-       without JS. */
+    /* ===== Projects — smooth reveal =====
+       Two-phase: hidden after JS adds .proj-init, animates when .in-view */
+    :root { --proj-ease: cubic-bezier(0.22, 1, 0.36, 1); }
 
-    .proj-init .proj-label {
-        opacity: 0;
-        animation: projLabelIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.05s both;
-    }
-    .proj-init .proj-title {
-        opacity: 0;
-        animation: projUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
-    }
-    .proj-init .proj-desc {
-        opacity: 0;
-        animation: projUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
-    }
-    .proj-init .proj-filters {
-        opacity: 0;
-        animation: projUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
-    }
+    #projects.proj-init .proj-label,
+    #projects.proj-init .proj-title,
+    #projects.proj-init .proj-desc,
+    #projects.proj-init .proj-filters,
+    #projects.proj-init .proj-card { opacity: 0; }
 
-    /* Cards rise + scale in softly, staggered */
-    .proj-init .proj-card {
-        opacity: 0;
-        animation: projCardIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+    #projects.in-view .proj-label {
+        animation: projLabelIn 0.5s var(--proj-ease) 0.05s both;
     }
-    .proj-init .proj-card:nth-of-type(1) {
-        animation-delay: 0.45s;
+    #projects.in-view .proj-title {
+        animation: projUp 0.6s var(--proj-ease) 0.1s both;
     }
-    .proj-init .proj-card:nth-of-type(2) {
-        animation-delay: 0.57s;
+    #projects.in-view .proj-desc {
+        animation: projUp 0.6s var(--proj-ease) 0.16s both;
     }
-    .proj-init .proj-card:nth-of-type(3) {
-        animation-delay: 0.69s;
+    #projects.in-view .proj-filters {
+        animation: projUp 0.5s var(--proj-ease) 0.22s both;
     }
-    .proj-init .proj-card:nth-of-type(4) {
-        animation-delay: 0.81s;
+    #projects.in-view .proj-card {
+        animation: projCardIn 0.6s var(--proj-ease) both;
     }
-    .proj-init .proj-card:nth-of-type(n + 5) {
-        animation-delay: 0.93s;
-    }
+    #projects.in-view .proj-card:nth-of-type(1) { animation-delay: 0.28s; }
+    #projects.in-view .proj-card:nth-of-type(2) { animation-delay: 0.36s; }
+    #projects.in-view .proj-card:nth-of-type(3) { animation-delay: 0.44s; }
+    #projects.in-view .proj-card:nth-of-type(4) { animation-delay: 0.52s; }
+    #projects.in-view .proj-card:nth-of-type(n + 5) { animation-delay: 0.6s; }
 
     @keyframes projUp {
-        from {
-            opacity: 0;
-            transform: translateY(18px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        from { opacity: 0; transform: translateY(16px); }
+        to   { opacity: 1; transform: translateY(0); }
     }
     @keyframes projLabelIn {
-        from {
-            opacity: 0;
-            transform: translateY(-10px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        from { opacity: 0; transform: translateY(-8px); }
+        to   { opacity: 1; transform: translateY(0); }
     }
     @keyframes projCardIn {
-        from {
-            opacity: 0;
-            transform: translateY(22px) scale(0.98);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
+        from { opacity: 0; transform: translateY(18px); }
+        to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* Respect users who ask for less motion */
     @media (prefers-reduced-motion: reduce) {
-        .proj-init .proj-label,
-        .proj-init .proj-title,
-        .proj-init .proj-desc,
-        .proj-init .proj-filters,
-        .proj-init .proj-card {
-            animation: none;
-            opacity: 1;
-            transform: none;
-        }
+        #projects.proj-init .proj-label,
+        #projects.proj-init .proj-title,
+        #projects.proj-init .proj-desc,
+        #projects.proj-init .proj-filters,
+        #projects.proj-init .proj-card { opacity: 1; transform: none; }
+        #projects.in-view .proj-label,
+        #projects.in-view .proj-title,
+        #projects.in-view .proj-desc,
+        #projects.in-view .proj-filters,
+        #projects.in-view .proj-card { animation: none; }
     }
 </style>
 
 <script>
-    const projSection = document.querySelector("#projects");
-
-    if (projSection && "IntersectionObserver" in window) {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        projSection.classList.add("proj-init");
-                        observer.disconnect();
-                    }
-                });
-            },
-            { threshold: 0.1 },
-        );
-
-        observer.observe(projSection);
+    const projSection = document.getElementById("projects");
+    if (projSection) {
+        projSection.classList.add("proj-init");
+        if ("IntersectionObserver" in window) {
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            projSection.classList.add("in-view");
+                            observer.disconnect();
+                        }
+                    });
+                },
+                { threshold: 0.1 },
+            );
+            observer.observe(projSection);
+        } else {
+            projSection.classList.add("in-view");
+        }
     }
 </script>

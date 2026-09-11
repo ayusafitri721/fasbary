@@ -78,115 +78,78 @@ import aboutImage from "../assets/gueh_2.jpeg";
 </section>
 
 <style>
-    /* ===== About Me entrance animations ===== */
-    /* Initial hidden states: only when JS marked the section */
-    section.about-init .about-photo {
-        opacity: 0;
-    }
-    section.about-init .about-photo-img {
-        transform: scale(1.15);
-    }
+    /* ===== About Me — smooth reveal ===== */
+    :root { --about-ease: cubic-bezier(0.22, 1, 0.36, 1); }
+
+    section.about-init .about-photo { opacity: 0; }
+    section.about-init .about-photo-img { transform: scale(1.06); }
     section.about-init .about-label,
     section.about-init .about-p1,
     section.about-init .about-p2,
-    section.about-init .about-btn {
-        opacity: 0;
-    }
-    section.about-init .about-line {
-        transform: translateY(110%);
-    }
+    section.about-init .about-btn { opacity: 0; }
+    section.about-init .about-line { transform: translateY(105%); }
 
-    .about-mask {
-        display: block;
-        overflow: hidden;
-    }
+    .about-mask { display: block; overflow: hidden; }
+    .about-line { display: block; }
 
-    .about-line {
-        display: block;
-    }
-
-    /* Trigger all animations once the section scrolls into view */
     section.in-view .about-photo {
-        animation: aboutSlideInLeft 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+        animation: aboutFadeUp 0.7s var(--about-ease) 0.05s both;
     }
-
     section.in-view .about-photo-img {
-        animation: aboutZoomOut 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+        animation: aboutZoomOut 0.9s var(--about-ease) 0.05s both;
     }
-
     section.in-view .about-label {
-        animation: aboutFadeDown 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+        animation: aboutFadeDown 0.5s var(--about-ease) 0.12s both;
     }
-
     section.in-view .about-line-1 {
-        animation: aboutMaskReveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.45s both;
+        animation: aboutMaskReveal 0.6s var(--about-ease) 0.2s both;
     }
-
     section.in-view .about-line-2 {
-        animation: aboutMaskReveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.62s both;
+        animation: aboutMaskReveal 0.6s var(--about-ease) 0.28s both;
     }
-
     section.in-view .about-p1 {
-        animation: aboutFadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.95s both;
+        animation: aboutFadeUp 0.6s var(--about-ease) 0.4s both;
     }
-
     section.in-view .about-p2 {
-        animation: aboutFadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 1.15s both;
+        animation: aboutFadeUp 0.6s var(--about-ease) 0.48s both;
     }
-
     section.in-view .about-btn {
-        animation: aboutFadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 1.4s both;
-    }
-
-    @keyframes aboutSlideInLeft {
-        from {
-            opacity: 0;
-            transform: translateX(-48px);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
+        animation: aboutFadeUp 0.6s var(--about-ease) 0.56s both;
     }
 
     @keyframes aboutZoomOut {
-        from {
-            transform: scale(1.15);
-        }
-        to {
-            transform: scale(1);
-        }
+        from { transform: scale(1.06); }
+        to   { transform: scale(1); }
     }
-
     @keyframes aboutFadeDown {
-        from {
-            opacity: 0;
-            transform: translateY(-14px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        from { opacity: 0; transform: translateY(-10px); }
+        to   { opacity: 1; transform: translateY(0); }
     }
-
     @keyframes aboutMaskReveal {
-        from {
-            transform: translateY(110%);
-        }
-        to {
-            transform: translateY(0);
-        }
+        from { transform: translateY(105%); }
+        to   { transform: translateY(0); }
+    }
+    @keyframes aboutFadeUp {
+        from { opacity: 0; transform: translateY(16px); }
+        to   { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes aboutFadeUp {
-        from {
-            opacity: 0;
-            transform: translateY(24px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    @media (prefers-reduced-motion: reduce) {
+        section.about-init .about-photo,
+        section.about-init .about-photo-img,
+        section.about-init .about-label,
+        section.about-init .about-line,
+        section.about-init .about-p1,
+        section.about-init .about-p2,
+        section.about-init .about-btn { opacity: 1; transform: none; }
+        section.in-view .about-photo,
+        section.in-view .about-photo-img,
+        section.in-view .about-label,
+        section.in-view .about-line-1,
+        section.in-view .about-line-2,
+        section.in-view .about-p1,
+        section.in-view .about-p2,
+        section.in-view .about-btn { animation: none; }
     }
 </style>
 

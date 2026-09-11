@@ -5,7 +5,7 @@ import avatarImage from "../assets/gueh.jpg";
 ---
 
 <section id="contact" class="relative py-16 md:py-24 px-3 md:px-5 desktop:px-16 max-w-[1280px] mx-auto overflow-visible">
-  <div data-reveal class="relative min-h-[430px] overflow-visible rounded-[2rem] border border-sky-200/70 bg-[linear-gradient(rgba(94,165,217,0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(94,165,217,0.18)_1px,transparent_1px),linear-gradient(90deg,#cfeeff_0%,#eaf7ff_56%,#f8fcff_100%)] bg-[size:64px_64px,64px_64px,auto] shadow-xl shadow-primary/5">
+  <div data-reveal class="contact-card relative min-h-[430px] overflow-visible rounded-[2rem] border border-sky-200/70 bg-[linear-gradient(rgba(94,165,217,0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(94,165,217,0.18)_1px,transparent_1px),linear-gradient(90deg,#cfeeff_0%,#eaf7ff_56%,#f8fcff_100%)] bg-[size:64px_64px,64px_64px,auto] shadow-xl shadow-primary/5">
     <!-- Blueprint square accents -->
     <span class="pointer-events-none absolute left-[6%] top-10 h-16 w-16 bg-sky-400/15"></span>
     <span class="pointer-events-none absolute left-[34%] top-0 h-16 w-16 bg-white/35"></span>
@@ -40,6 +40,40 @@ import avatarImage from "../assets/gueh.jpg";
           loading="lazy"
         />
       </div>
-    </div>
-  </div>
-</section>
+     </div>
+   </div>
+ </section>
+
+<style>
+  /* Contact — smooth reveal, same ease as global */
+  :root { --contact-ease: cubic-bezier(0.22, 1, 0.36, 1); }
+  #contact .contact-card {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  #contact.in-view .contact-card {
+    animation: contactIn 0.7s var(--contact-ease) 0.08s both;
+  }
+  @keyframes contactIn {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #contact .contact-card { opacity: 1; transform: none; }
+    #contact.in-view .contact-card { animation: none; }
+  }
+</style>
+
+<script>
+  const contact = document.getElementById("contact");
+  if (contact && "IntersectionObserver" in window) {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { contact.classList.add("in-view"); obs.disconnect(); }
+      });
+    }, { threshold: 0.15 });
+    obs.observe(contact);
+  } else {
+    contact?.classList.add("in-view");
+  }
+</script>

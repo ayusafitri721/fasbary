@@ -2,10 +2,10 @@
 import { Icon } from "astro-icon/components";
 ---
 
-<footer class="bg-gradient-to-b from-[#002b9e] via-[#001f78] to-[#001047] text-white pt-16 pb-0 px-6 desktop:px-16 relative overflow-hidden">
+<footer id="site-footer" class="bg-gradient-to-b from-[#002b9e] via-[#001f78] to-[#001047] text-white pt-16 pb-0 px-6 desktop:px-16 relative overflow-hidden">
   <div class="absolute inset-0 opacity-15 pointer-events-none blueprint-grid"></div>
   <div class="max-w-[1280px] mx-auto relative z-10 flex flex-col justify-between min-h-[480px]">
-    <div data-reveal class="grid grid-cols-1 lg:grid-cols-12 gap-12 pt-4 pb-12 items-start">
+    <div data-reveal class="footer-reveal grid grid-cols-1 lg:grid-cols-12 gap-12 pt-4 pb-12 items-start">
       <div class="col-span-1 lg:col-span-6 flex flex-col gap-6">
         <div>
           <p class="text-2xl font-semibold text-white tracking-tight">Namry Ayu Safitri</p>
@@ -64,3 +64,26 @@ import { Icon } from "astro-icon/components";
     </div>
   </div>
 </footer>
+
+<style>
+  :root { --footer-ease: cubic-bezier(0.22, 1, 0.36, 1); }
+  #site-footer .footer-reveal { opacity: 0; transform: translateY(14px); }
+  #site-footer.in-view .footer-reveal { animation: footerIn 0.6s var(--footer-ease) 0.08s both; }
+  @keyframes footerIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  @media (prefers-reduced-motion: reduce) {
+    #site-footer .footer-reveal { opacity: 1; transform: none; }
+    #site-footer.in-view .footer-reveal { animation: none; }
+  }
+</style>
+
+<script>
+  const footer = document.getElementById("site-footer");
+  if (footer && "IntersectionObserver" in window) {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) { footer.classList.add("in-view"); obs.disconnect(); }});
+    }, { threshold: 0.15 });
+    obs.observe(footer);
+  } else {
+    footer?.classList.add("in-view");
+  }
+</script>
