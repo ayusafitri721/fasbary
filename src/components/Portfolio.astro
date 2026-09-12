@@ -732,12 +732,18 @@ const supportingProjects = [
     const projSection = document.getElementById("projects");
     if (projSection) {
         projSection.classList.add("proj-init");
+        let revealed = false;
+        const reveal = () => {
+            if (revealed) return;
+            revealed = true;
+            projSection.classList.add("in-view");
+        };
         if ("IntersectionObserver" in window) {
             const observer = new IntersectionObserver(
                 (entries) => {
                     entries.forEach((entry) => {
                         if (entry.isIntersecting) {
-                            projSection.classList.add("in-view");
+                            reveal();
                             observer.disconnect();
                         }
                     });
@@ -745,8 +751,17 @@ const supportingProjects = [
                 { threshold: 0.08, rootMargin: "0px 0px -8% 0px" },
             );
             observer.observe(projSection);
+            // Fallback: paksa tampil setelah 1s jika observer tidak fire di mobile (viewport quirks, address bar, dsb)
+            setTimeout(reveal, 1000);
+            // Jika sudah di viewport saat load (misal user reload di tengah halaman), reveal lebih cepat
+            requestAnimationFrame(() => {
+                const rect = projSection.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.92) {
+                    setTimeout(reveal, 100);
+                }
+            });
         } else {
-            projSection.classList.add("in-view");
+            reveal();
         }
     }
 </script>
