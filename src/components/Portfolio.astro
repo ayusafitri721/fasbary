@@ -11,6 +11,10 @@ import project7Image from "../assets/project_7.jpg";
 import storeImage from "../assets/store.jpg";
 import gameProjectImage from "../assets/game_project.jpg";
 import printifyImage from "../assets/printify.jpg";
+import padanAppImage from "../assets/padan_app.jpeg";
+import padanApp2Image from "../assets/padan_app_2.png";
+import padanWebImage from "../assets/padan_web.png";
+import padanWeb2Image from "../assets/padan_web_2.png";
 
 const featuredProjects = [
   {
@@ -24,7 +28,7 @@ const featuredProjects = [
     technologies: ["JavaScript", "Node.js", "Express.js"],
     icon: "mdi:airplane",
     image: project1Image,
-    filterCategories: ["full-stack", "web"],
+    filterCategories: ["full-stack"],
     githubUrl: "https://github.com",
     demoUrl: "https://sales.rahmahtravel.id/",
   },
@@ -39,7 +43,7 @@ const featuredProjects = [
     technologies: ["Next.js", "TypeScript", "Tailwind CSS"],
     icon: "mdi:map-marker-radius-outline",
     image: project2Image,
-    filterCategories: ["web", "full-stack"],
+    filterCategories: ["full-stack"],
     githubUrl: "https://github.com",
     demoUrl: "https://nusphere-kappa.vercel.app/",
   },
@@ -47,17 +51,71 @@ const featuredProjects = [
 
 const supportingProjects = [
   {
+    title: "PADAN",
+    category: "Mobile App Development",
+    platform: "Fullstack Platform",
+    year: "2026",
+    role: "UI/UX Designer & Fullstack Developer",
+    description:
+      "AI-driven demand forecasting and dynamic pricing mobile application tailored for culinary SMEs to prevent food waste through real-time inventory tracking and proactive daily production planning.",
+    focus: ["AI Forecasting", "Dynamic Pricing", "Food Waste Prevention"],
+    technologies: [
+      "Flutter",
+      "Mobile UI",
+      "Figma",
+      "Prototyping",
+      "Food Tech",
+      "Micro-interactions",
+      "Design Systems",
+      "Cross-Platform",
+    ],
+    icon: "mdi:cellphone",
+    image: null,
+    images: [padanAppImage, padanApp2Image],
+    filterCategories: ["full-stack", "mobile"],
+    githubUrl: "https://github.com/baradika/padan_app",
+    demoUrl:
+      "https://github.com/baradika/padan_app/releases/download/v1.0.0-demo/app-arm64-v8a-release.apk",
+  },
+  {
+    title: "PADAN",
+    category: "Web Dashboard Development",
+    platform: "Fullstack Platform",
+    year: "2026",
+    role: "UI/UX Designer & Fullstack Developer",
+    description:
+      "A comprehensive web-based management dashboard for culinary SMEs featuring in-depth waste analytics, dynamic pricing rule configurations, and multi-panel inventory controls.",
+    focus: ["Waste Analytics", "Pricing Rules", "Inventory Controls"],
+    technologies: [
+      "Web UI/UX",
+      "Dashboard Design",
+      "Figma",
+      "Data Visualization",
+      "FastAPI",
+      "Design Systems",
+      "Prototyping",
+      "SaaS UI",
+    ],
+    icon: "mdi:monitor-dashboard",
+    image: null,
+    images: [padanWebImage, padanWeb2Image],
+    filterCategories: ["full-stack", "web"],
+    githubUrl: "https://github.com/baradika/padan_app",
+    demoUrl:
+      "https://github.com/baradika/padan_app/releases/download/v1.0.0-demo/app-arm64-v8a-release.apk",
+  },
+  {
     title: "Store E-Commerce Platform",
     category: "Full-Stack Web App",
     year: "2025",
     role: "Full-Stack Developer",
     description:
-      "Full-stack store web app built with PHP Native, MySQL, and Tailwind CSS — fitur katalog produk, keranjang, checkout, auth, dan manajemen toko yang responsif.",
+      "Full-stack store web app built with PHP Native, MySQL, and Tailwind CSS, mencakup katalog produk, keranjang, checkout, auth, dan manajemen toko yang responsif.",
     focus: ["Product Catalog", "Cart & Checkout", "Store Management"],
     technologies: ["PHP Native", "MySQL", "Tailwind CSS"],
     icon: "mdi:store-outline",
     image: storeImage,
-    filterCategories: ["full-stack", "web"],
+    filterCategories: ["web"],
     githubUrl: "https://github.com",
   },
   {
@@ -66,7 +124,7 @@ const supportingProjects = [
     year: "2025",
     role: "Game Developer",
     description:
-      "Game edukasi desktop berbasis JavaFX — Web Dev Academy mengajarkan web development lewat gameplay interaktif: kumpulkan code packets, jawab quiz programming, debug enemy bugs, dan master 6 teknologi (HTML, CSS, JavaScript, API, SQL, Security).",
+      "Game edukasi desktop berbasis JavaFX. Web Dev Academy mengajarkan web development lewat gameplay interaktif: kumpulkan code packets, jawab quiz programming, debug enemy bugs, dan master 6 teknologi (HTML, CSS, JavaScript, API, SQL, Security).",
     focus: ["Quiz Programming", "Gamified Learning", "Level & Scoring System"],
     technologies: ["Java", "JavaFX"],
     icon: "mdi:gamepad-variant-outline",
@@ -80,12 +138,12 @@ const supportingProjects = [
     year: "2025",
     role: "Full-Stack Developer",
     description:
-      "Full-stack print-on-demand platform (Web + App) — aplikasi pembelian alat & layanan print ala abang fotocopy: katalog print, cart & checkout, pembayaran, tracking status antar, dan manajemen pesanan real-time.",
+      "Full-stack print-on-demand platform (Web + App). Aplikasi pembelian alat & layanan print ala abang fotocopy: katalog print, cart & checkout, pembayaran, tracking status antar, dan manajemen pesanan real-time.",
     focus: ["Print Catalog & Cart", "Delivery Tracking", "Cross-Platform Order"],
     technologies: ["React Native", "React.js"],
     icon: "mdi:printer-outline",
     image: printifyImage,
-    filterCategories: ["full-stack", "web", "mobile"],
+    filterCategories: ["full-stack"],
     githubUrl: "https://github.com",
   },
   {
@@ -98,7 +156,7 @@ const supportingProjects = [
     technologies: ["Flutter", "Mobile UI", "Habit Tracking"],
     icon: "mdi:calendar-check",
     image: project3Image,
-    filterCategories: ["full-stack", "web"],
+    filterCategories: ["mobile"],
     githubUrl: "https://github.com/ayusafitri721/prayer-streak",
   },
   {
@@ -111,7 +169,7 @@ const supportingProjects = [
     technologies: ["Kotlin", "Room", "ViewModel"],
     icon: "mdi:wallet-outline",
     image: project4Image,
-    filterCategories: ["full-stack", "mobile"],
+    filterCategories: ["mobile"],
     githubUrl: "https://github.com",
   },
   {
@@ -124,7 +182,7 @@ const supportingProjects = [
     technologies: ["PHP", "MySQL", "Bootstrap"],
     icon: "mdi:account-check-outline",
     image: project5Image,
-    filterCategories: ["full-stack", "web"],
+    filterCategories: ["full-stack"],
     githubUrl: "https://github.com",
   },
   {
@@ -137,7 +195,7 @@ const supportingProjects = [
     technologies: ["Node.js", "Express.js", "EJS"],
     icon: "mdi:heart-outline",
     image: project6Image,
-    filterCategories: ["web", "full-stack"],
+    filterCategories: ["web"],
     githubUrl: "https://github.com",
     demoUrl: "https://lovingly.mastahdigitalteknologi.co.id/",
   },
@@ -176,7 +234,7 @@ const supportingProjects = [
     year: "2025",
     role: "UI/UX Designer",
     description:
-      "Figma UI design concept for a cellular biology-themed learning app — combining clean visuals and intuitive navigation to present complex biological content.",
+      "Figma UI design concept for a cellular biology-themed learning app, combining clean visuals and straightforward navigation to present complex biological content.",
     focus: ["Educational UI", "Figma Prototyping", "Scientific Visualization"],
     technologies: ["Figma", "Wireframing", "User Flows"],
     icon: "simple-icons:figma",
@@ -191,7 +249,7 @@ const supportingProjects = [
     year: "2025",
     role: "UI/UX Designer",
     description:
-      "Figma design exploration for an experimentation-focused mobile app — emphasizing playful interactions, micro-animations, and bite-sized trial experiences.",
+      "Figma design exploration for an experimentation-focused mobile app, emphasizing playful interactions, micro-animations, and bite-sized trial experiences.",
     focus: ["Micro-interactions", "Figma Prototyping", "Mobile UI"],
     technologies: ["Figma", "Prototyping", "Design Systems"],
     icon: "simple-icons:figma",
@@ -200,7 +258,27 @@ const supportingProjects = [
     githubUrl: "https://github.com",
     demoUrl: "https://www.figma.com/design/LJ6A2rs5e7UezSJV8yeE9V/LetMeTry?node-id=0-1&p=f&t=MMh6iWJU8eYndY7D-0",
   },
+  ];
+
+const filterOptions = [
+  { key: "all", label: "All Projects", accent: "#0037b0", soft: "#e6eaff" },
+  { key: "full-stack", label: "Full-Stack", accent: "#7c3aed", soft: "#ede9fe" },
+  { key: "ui-ux", label: "UI/UX Design", accent: "#059669", soft: "#d1fae5" },
+  { key: "web", label: "Web App", accent: "#ea580c", soft: "#ffedd5" },
+  { key: "mobile", label: "Mobile App", accent: "#db2777", soft: "#fce7f3" },
+  { key: "game", label: "Game", accent: "#2563eb", soft: "#dbeafe" },
 ];
+
+const allProjects = [...featuredProjects, ...supportingProjects];
+
+const filterCounts = Object.fromEntries(
+  filterOptions.map((option) => [
+    option.key,
+    option.key === "all"
+      ? allProjects.length
+      : allProjects.filter((project) => project.filterCategories.includes(option.key)).length,
+  ]),
+);
 ---
 
 <section id="projects" class="py-20 md:py-32 px-5 desktop:px-16 max-w-[1440px] mx-auto overflow-hidden">
@@ -213,55 +291,24 @@ const supportingProjects = [
     </div>
     <div class="col-span-1 md:col-span-5 pb-1">
       <p class="proj-desc text-body-lg text-on-surface-variant leading-relaxed max-w-md md:ml-auto">
-        A curated selection of web, mobile, and full-stack projects focused on practical solutions, clean interfaces, and real-world problem solving.
+        A selection of web, mobile, and full-stack projects, built to solve practical problems with clean interfaces.
       </p>
     </div>
   </div>
 
-  <!-- Project Filter Buttons -->
+  <!-- Project Filter Chips -->
   <div class="proj-filters mt-8 flex flex-wrap gap-2.5 items-center justify-start md:justify-center">
-    <button
-      type="button"
-      class="project-filter-btn px-6 py-2.5 rounded-full text-xs md:text-sm font-bold border transition-all duration-300 border-primary bg-primary text-white shadow-lg shadow-primary/20 focus:outline-none"
-      data-filter="all"
-    >
-      All Projects
-    </button>
-    <button
-      type="button"
-      class="project-filter-btn px-6 py-2.5 rounded-full text-xs md:text-sm font-bold border border-outline-variant/40 bg-white text-on-surface-variant hover:border-primary/40 hover:text-primary transition-all duration-300 focus:outline-none"
-      data-filter="full-stack"
-    >
-      Full-Stack
-    </button>
-    <button
-      type="button"
-      class="project-filter-btn px-6 py-2.5 rounded-full text-xs md:text-sm font-bold border border-outline-variant/40 bg-white text-on-surface-variant hover:border-primary/40 hover:text-primary transition-all duration-300 focus:outline-none"
-      data-filter="web"
-    >
-      Web App
-    </button>
-    <button
-      type="button"
-      class="project-filter-btn px-6 py-2.5 rounded-full text-xs md:text-sm font-bold border border-outline-variant/40 bg-white text-on-surface-variant hover:border-primary/40 hover:text-primary transition-all duration-300 focus:outline-none"
-      data-filter="mobile"
-    >
-      Mobile App
-    </button>
-    <button
-      type="button"
-      class="project-filter-btn px-6 py-2.5 rounded-full text-xs md:text-sm font-bold border border-outline-variant/40 bg-white text-on-surface-variant hover:border-primary/40 hover:text-primary transition-all duration-300 focus:outline-none"
-      data-filter="game"
-    >
-      Game
-    </button>
-    <button
-      type="button"
-      class="project-filter-btn px-6 py-2.5 rounded-full text-xs md:text-sm font-bold border border-outline-variant/40 bg-white text-on-surface-variant hover:border-primary/40 hover:text-primary transition-all duration-300 focus:outline-none"
-      data-filter="ui-ux"
-    >
-      UI/UX Design
-    </button>
+    {filterOptions.map((option) => (
+      <button
+        type="button"
+        class:list={["project-filter-btn", { active: option.key === "all" }]}
+        data-filter={option.key}
+        style={`--chip-accent: ${option.accent}; --chip-soft: ${option.soft};`}
+      >
+        <span class="proj-chip-label">{option.label}</span>
+        <span class="proj-chip-count">{filterCounts[option.key]}</span>
+      </button>
+    ))}
   </div>
 
   <div id="featured-projects-grid" class="mt-14 md:mt-20 grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
@@ -309,8 +356,8 @@ const supportingProjects = [
             </div>
 
             <div 
-              class={`relative overflow-hidden rounded-3xl border border-outline-variant/30 bg-gradient-to-br from-secondary-container/70 to-white shadow-lg group/img w-full md:w-[220px] aspect-[4/3] md:aspect-[3/4] flex flex-col shrink-0 ${project.image ? "cursor-pointer project-card-preview" : ""}`}
-              data-img-src={project.image ? project.image.src : ""}
+              class={`relative overflow-hidden rounded-3xl border border-outline-variant/30 bg-gradient-to-br from-secondary-container/70 to-white shadow-lg group/img w-full md:w-[220px] aspect-[4/3] md:aspect-[3/4] flex flex-col shrink-0 ${project.images?.length ? "project-card-multi" : project.image ? "cursor-pointer project-card-preview" : ""}`}
+              data-img-src={project.image && !project.images?.length ? project.image.src : ""}
               data-project-title={project.title}
             >
               <!-- Mock Browser Header -->
@@ -325,7 +372,51 @@ const supportingProjects = [
               
               <!-- Image / Wireframe Area -->
               <div class="relative flex-1 overflow-hidden bg-secondary-container/10">
-                {project.image ? (
+                {project.images && project.images.length > 0 ? (
+                  <div class="grid h-full grid-cols-2 gap-1.5 p-1.5">
+                    {project.images.map((img, imgIndex) =>
+                      img ? (
+                        <button
+                          type="button"
+                          class={`preview-photo group/photo relative cursor-pointer overflow-hidden rounded-lg border border-outline-variant/20 bg-white focus:outline-none ${project.images.length === 1 ? "col-span-2" : ""}`}
+                          data-img-src={typeof img === "string" ? img : img.src}
+                          aria-label={`Preview ${project.title} photo ${imgIndex + 1}`}
+                        >
+                          {typeof img === "string" ? (
+                            <img
+                              src={img}
+                              alt={`${project.title} photo ${imgIndex + 1}`}
+                              class="h-full w-full object-cover object-top transition-transform duration-500 group-hover/photo:scale-105"
+                              loading="lazy"
+                            />
+                          ) : (
+                            <Image
+                              src={img}
+                              alt={`${project.title} photo ${imgIndex + 1}`}
+                              class="h-full w-full object-cover object-top transition-transform duration-500 group-hover/photo:scale-105"
+                              loading="lazy"
+                            />
+                          )}
+                          <span class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-300 group-hover/photo:opacity-100">
+                            <span class="rounded-full bg-white/95 p-2 text-primary shadow-lg">
+                              <Icon name="mdi:magnify" class="h-4 w-4" />
+                            </span>
+                          </span>
+                        </button>
+                      ) : (
+                        <div class="flex min-h-0 flex-col gap-1.5 rounded-lg border border-dashed border-outline-variant/40 bg-secondary-container/10 p-2">
+                          <div class="h-8 rounded-md bg-primary/10"></div>
+                          <div class="grid grid-cols-2 gap-1">
+                            <div class="h-6 rounded bg-white/70"></div>
+                            <div class="h-6 rounded bg-white/70"></div>
+                          </div>
+                          <div class="mt-auto h-2 w-3/4 rounded-full bg-outline-variant/20"></div>
+                          <span class="text-[9px] font-black uppercase tracking-wider text-on-surface-variant/50">Photo {imgIndex + 1}</span>
+                        </div>
+                      ),
+                    )}
+                  </div>
+                ) : project.image ? (
                   <div class="relative w-full h-full">
                     <Image 
                       src={project.image} 
@@ -382,7 +473,7 @@ const supportingProjects = [
           <div class="flex items-start justify-between gap-6">
             <div>
               <span class="inline-flex rounded-full bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-primary">
-                Supporting Project
+                {project.platform ?? "Supporting Project"}
               </span>
               <p class="mt-4 text-sm font-semibold uppercase tracking-[0.2em] text-on-surface-variant/70">
                 0{index + 3} / {project.category}
@@ -413,8 +504,8 @@ const supportingProjects = [
             </div>
 
             <div 
-              class={`relative overflow-hidden rounded-3xl border border-outline-variant/30 bg-gradient-to-br from-secondary-container/70 to-white shadow-lg group/img w-full md:w-[220px] aspect-[4/3] md:aspect-[3/4] flex flex-col shrink-0 ${project.image ? "cursor-pointer project-card-preview" : ""}`}
-              data-img-src={project.image ? project.image.src : ""}
+              class={`relative overflow-hidden rounded-3xl border border-outline-variant/30 bg-gradient-to-br from-secondary-container/70 to-white shadow-lg group/img w-full md:w-[220px] aspect-[4/3] md:aspect-[3/4] flex flex-col shrink-0 ${project.images?.length ? "project-card-multi" : project.image ? "cursor-pointer project-card-preview" : ""}`}
+              data-img-src={project.image && !project.images?.length ? project.image.src : ""}
               data-project-title={project.title}
             >
               <!-- Mock Browser Header -->
@@ -429,7 +520,51 @@ const supportingProjects = [
               
               <!-- Image / Wireframe Area -->
               <div class="relative flex-1 overflow-hidden bg-secondary-container/10">
-                {project.image ? (
+                {project.images && project.images.length > 0 ? (
+                  <div class="grid h-full grid-cols-2 gap-1.5 p-1.5">
+                    {project.images.map((img, imgIndex) =>
+                      img ? (
+                        <button
+                          type="button"
+                          class={`preview-photo group/photo relative cursor-pointer overflow-hidden rounded-lg border border-outline-variant/20 bg-white focus:outline-none ${project.images.length === 1 ? "col-span-2" : ""}`}
+                          data-img-src={typeof img === "string" ? img : img.src}
+                          aria-label={`Preview ${project.title} photo ${imgIndex + 1}`}
+                        >
+                          {typeof img === "string" ? (
+                            <img
+                              src={img}
+                              alt={`${project.title} photo ${imgIndex + 1}`}
+                              class="h-full w-full object-cover object-top transition-transform duration-500 group-hover/photo:scale-105"
+                              loading="lazy"
+                            />
+                          ) : (
+                            <Image
+                              src={img}
+                              alt={`${project.title} photo ${imgIndex + 1}`}
+                              class="h-full w-full object-cover object-top transition-transform duration-500 group-hover/photo:scale-105"
+                              loading="lazy"
+                            />
+                          )}
+                          <span class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-300 group-hover/photo:opacity-100">
+                            <span class="rounded-full bg-white/95 p-2 text-primary shadow-lg">
+                              <Icon name="mdi:magnify" class="h-4 w-4" />
+                            </span>
+                          </span>
+                        </button>
+                      ) : (
+                        <div class="flex min-h-0 flex-col gap-1.5 rounded-lg border border-dashed border-outline-variant/40 bg-secondary-container/10 p-2">
+                          <div class="h-8 rounded-md bg-primary/10"></div>
+                          <div class="grid grid-cols-2 gap-1">
+                            <div class="h-6 rounded bg-white/70"></div>
+                            <div class="h-6 rounded bg-white/70"></div>
+                          </div>
+                          <div class="mt-auto h-2 w-3/4 rounded-full bg-outline-variant/20"></div>
+                          <span class="text-[9px] font-black uppercase tracking-wider text-on-surface-variant/50">Photo {imgIndex + 1}</span>
+                        </div>
+                      ),
+                    )}
+                  </div>
+                ) : project.image ? (
                   <div class="relative w-full h-full">
                     <Image 
                       src={project.image} 
@@ -509,6 +644,10 @@ const supportingProjects = [
   </button>
 
   <figure class="flex max-h-full max-w-5xl flex-col items-center gap-4">
+    <div
+      id="project-lightbox-badge"
+      class="hidden items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-sm font-bold text-white"
+    ></div>
     <img
       id="project-lightbox-image"
       src=""
@@ -527,15 +666,16 @@ const supportingProjects = [
   const lb = document.getElementById("project-lightbox");
   const lbImg = document.getElementById("project-lightbox-image");
   const lbCaption = document.getElementById("project-lightbox-caption");
+  const lbBadge = document.getElementById("project-lightbox-badge");
   const closeBtn = document.getElementById("project-lightbox-close");
   const prevBtn = document.getElementById("project-lightbox-prev");
   const nextBtn = document.getElementById("project-lightbox-next");
 
   const triggers = Array.from(
-    document.querySelectorAll<HTMLElement>(".project-card-preview")
+    document.querySelectorAll<HTMLElement>("[data-img-src]")
   );
 
-  let activePreviews: { src: string; alt: string }[] = [];
+  let activePreviews: { src: string; alt: string; title: string }[] = [];
   let current = 0;
   let lastFocused: HTMLElement | null = null;
 
@@ -545,30 +685,35 @@ const supportingProjects = [
     if (!item) return;
     lbImg.setAttribute("src", item.src);
     lbImg.setAttribute("alt", item.alt);
-    lbCaption.textContent = item.alt;
+    lbCaption.textContent = `Photo ${current + 1} / ${activePreviews.length}`;
+    if (lbBadge) {
+      lbBadge.textContent = item.title;
+      lbBadge.classList.remove("hidden");
+      lbBadge.classList.add("inline-flex");
+    }
   };
 
   const openLightbox = (trigger: HTMLElement) => {
-    const img = trigger.querySelector("img");
-    if (!img) return;
+    const scopedSrc = trigger.getAttribute("data-img-src");
+    if (!scopedSrc) return;
 
-    // Filter project-card-previews whose grandparent/parent card is not hidden
-    const activeTriggers = triggers.filter((t) => {
-      const card = t.closest("[data-project-card]");
-      return card && !card.classList.contains("hidden");
-    });
-
-    activePreviews = activeTriggers
-      .map((trig) => {
-        const i = trig.querySelector("img");
-        const title = trig.getAttribute("data-project-title");
-        return i ? { src: i.src, alt: title || i.alt || "Project Preview" } : null;
+    // Navigasi lintas kartu: kumpulkan semua foto dari kartu yang terlihat,
+    // sehingga tombol prev/next (<> ) selalu berfungsi (juga saat satu kartu cuma 1 foto).
+    // Badge di lightbox menampilkan judul kartu asal setiap foto.
+    activePreviews = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-project-card]:not(.hidden) [data-img-src]"),
+    )
+      .map((t) => {
+        const src = t.getAttribute("data-img-src");
+        if (!src) return null;
+        const card = t.closest("[data-project-card]");
+        const cardTitle = card?.getAttribute("data-project-title") || "Project Preview";
+        return { src, title: cardTitle, alt: `${cardTitle} · Photo` };
       })
-      .filter((p): p is { src: string; alt: string } => p !== null);
+      .filter((p): p is { src: string; title: string; alt: string } => p !== null);
 
-    current = activePreviews.findIndex((p) => p.src === img.src);
-    if (current < 0) current = 0;
-
+    if (activePreviews.length === 0) return;
+    current = Math.max(0, activePreviews.findIndex((p) => p.src === scopedSrc));
     lastFocused = document.activeElement as HTMLElement;
     render();
     lb?.classList.remove("hidden");
@@ -621,48 +766,49 @@ const supportingProjects = [
   const projectCards = document.querySelectorAll("[data-project-card]");
   const featuredGrid = document.getElementById("featured-projects-grid");
   const supportingGrid = document.getElementById("supporting-projects-grid");
+  const grids = [featuredGrid, supportingGrid].filter(
+    (grid): grid is HTMLElement => grid !== null
+  );
+  const projSection = document.getElementById("projects");
+
+  let currentFilter = "all";
+  let filterTimer: number | undefined;
+
+  const applyFilter = (value: string) => {
+    if (currentFilter === value) return;
+    currentFilter = value;
+    projSection?.classList.add("proj-filtered");
+
+    grids.forEach((grid) => grid.classList.add("proj-filtering"));
+    window.clearTimeout(filterTimer);
+
+    filterTimer = window.setTimeout(() => {
+      projectCards.forEach((card) => {
+        const cat = card.getAttribute("data-project-category");
+        const show = value === "all" || cat?.split(/\s+/).includes(value);
+        card.classList.toggle("hidden", !show);
+      });
+
+      grids.forEach((grid) => {
+        const empty = grid.querySelectorAll("[data-project-card]:not(.hidden)").length === 0;
+        grid.classList.toggle("hidden", empty);
+        if (!empty) {
+          // Force reflow so the fade-out → fade-in transition restarts cleanly
+          void grid.offsetWidth;
+        }
+        grid.classList.remove("proj-filtering");
+      });
+    }, 220);
+  };
 
   if (filterBtns.length && projectCards.length) {
     filterBtns.forEach((btn) => {
       btn.addEventListener("click", () => {
-        // Toggle active button style
-        filterBtns.forEach((b) => {
-          b.classList.remove("border-primary", "bg-primary", "text-white", "shadow-lg", "shadow-primary/20");
-          b.classList.add("border-outline-variant/40", "bg-white", "text-on-surface-variant");
-        });
-        btn.classList.add("border-primary", "bg-primary", "text-white", "shadow-lg", "shadow-primary/20");
-        btn.classList.remove("border-outline-variant/40", "bg-white", "text-on-surface-variant");
-
-        const filterValue = btn.getAttribute("data-filter");
-
-        // Filter project cards visibility
-        projectCards.forEach((card) => {
-          const cat = card.getAttribute("data-project-category");
-          if (filterValue === "all" || cat.split(/\s+/).includes(filterValue)) {
-            card.classList.remove("hidden");
-          } else {
-            card.classList.add("hidden");
-          }
-        });
-
-        // Hide/Show empty grid sections to optimize spacing
-        if (featuredGrid) {
-          const visibleFeatured = featuredGrid.querySelectorAll("[data-project-card]:not(.hidden)");
-          if (visibleFeatured.length === 0) {
-            featuredGrid.classList.add("hidden");
-          } else {
-            featuredGrid.classList.remove("hidden");
-          }
-        }
-
-        if (supportingGrid) {
-          const visibleSupporting = supportingGrid.querySelectorAll("[data-project-card]:not(.hidden)");
-          if (visibleSupporting.length === 0) {
-            supportingGrid.classList.add("hidden");
-          } else {
-            supportingGrid.classList.remove("hidden");
-          }
-        }
+        // Reset active state di SEMUA chip dulu, baru terapkan ke chip yang diklik,
+        // sehingga hanya satu chip yang aktif dalam satu waktu (All Projects ikut balik ke default).
+        filterBtns.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        applyFilter(btn.getAttribute("data-filter") || "all");
       });
     });
   }
@@ -725,6 +871,89 @@ const supportingProjects = [
         #projects.in-view .proj-desc,
         #projects.in-view .proj-filters,
         #projects.in-view .proj-card { animation: none; }
+        #projects.proj-filtered .proj-card,
+        #featured-projects-grid,
+        #supporting-projects-grid { animation: none; transition: none; }
+    }
+
+    /* ===== Project filter chips (label + count) ===== */
+    .project-filter-btn {
+        --chip-accent: #0037b0;
+        --chip-soft: #e6eaff;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        border: 1px solid var(--color-outline-variant);
+        border-radius: 9999px;
+        background: var(--color-surface-container-lowest);
+        padding: 0.55rem 1rem 0.55rem 1.1rem;
+        color: var(--color-on-surface-variant);
+        font-size: 0.75rem;
+        font-weight: 700;
+        line-height: 1;
+        cursor: pointer;
+        transition:
+            background-color 0.25s ease,
+            color 0.25s ease,
+            border-color 0.25s ease,
+            box-shadow 0.25s ease;
+        -webkit-tap-highlight-color: transparent;
+    }
+    @media (min-width: 768px) {
+        .project-filter-btn { font-size: 0.875rem; }
+    }
+
+    .project-filter-btn .proj-chip-count {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 1.4rem;
+        padding: 0.25rem 0.5rem;
+        border-radius: 9999px;
+        background: var(--chip-soft);
+        color: var(--chip-accent);
+        font-size: 0.65rem;
+        font-weight: 800;
+        line-height: 1;
+        transition:
+            background-color 0.25s ease,
+            color 0.25s ease;
+    }
+    @media (min-width: 768px) {
+        .project-filter-btn .proj-chip-count { font-size: 0.7rem; }
+    }
+
+    .project-filter-btn:hover {
+        border-color: color-mix(in srgb, var(--chip-accent) 50%, transparent);
+        background: var(--chip-soft);
+        color: var(--chip-accent);
+        box-shadow: 0 6px 16px -6px color-mix(in srgb, var(--chip-accent) 45%, transparent);
+    }
+    .project-filter-btn.active,
+    .project-filter-btn.active:hover {
+        border-color: color-mix(in srgb, var(--chip-accent) 55%, transparent);
+        background: var(--chip-accent);
+        color: #fff;
+        box-shadow: 0 8px 20px -8px color-mix(in srgb, var(--chip-accent) 60%, transparent);
+    }
+    .project-filter-btn.active .proj-chip-count {
+        background: rgba(255, 255, 255, 0.22);
+        color: #fff;
+    }
+
+    /* ===== Project grid fade filter transition ===== */
+    #featured-projects-grid,
+    #supporting-projects-grid {
+        transition: opacity 0.22s ease;
+    }
+    #featured-projects-grid.proj-filtering,
+    #supporting-projects-grid.proj-filtering {
+        opacity: 0;
+    }
+    #projects.proj-filtered .proj-card {
+        animation: none;
+        opacity: 1;
+        transform: none;
     }
 </style>
 

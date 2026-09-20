@@ -61,4 +61,4 @@ Personal Portfolio Website
 TypeScript, Tailwind CSS, HTML
 2025
 
-Untuk game JavaFX-nya, aku butuh nama projectnya dan sedikit detail (game apa, fitur utamanya apa) biar formatnya konsisten kayak yang lain — boleh dikasih tahu?
+Untuk game JavaFX-nya, aku butuh nama projectnya dan sedikit detail (game apa, fitur utamanya apa) biar formatnya konsisten kayak yang lain. Boleh dikasih tahu?

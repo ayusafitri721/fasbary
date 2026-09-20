@@ -118,13 +118,13 @@ Achievements
 
 Milestones Along My Journey
 
-Gold Medal — Padjadjaran Smart Minds Competition 2025
+Gold Medal · Padjadjaran Smart Minds Competition 2025
 
-Finalist / Silver — ISQO Mathematics Competition 2025
+Finalist / Silver · ISQO Mathematics Competition 2025
 
-Favorite Winner — IITC Web Development Competition
+Favorite Winner · IITC Web Development Competition
 
-Top 10 Team — Demo Day Innovation Challenge 2023
+Top 10 Team · Demo Day Innovation Challenge 2023
 
 DEVELOPMENT PROCESS:
 Development Process

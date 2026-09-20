@@ -1,5 +1,5 @@
 // Fasbary PWA - Service Worker
-const CACHE_NAME = 'fasbary-v1';
+const CACHE_NAME = 'fasbary-v2';
 const URLS_TO_CACHE = [
   '/',
   '/manifest.webmanifest',
@@ -49,32 +49,27 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // For other requests -> Cache first, fallback to network, then cache put
+  // For other requests -> Network first, cache fallback (SWR-like: selalu ambil versi terbaru,
+  // cache di-refresh di background, fallback ke cache saat offline)
   event.respondWith(
-    caches.match(request).then((cachedResponse) => {
-      if (cachedResponse) return cachedResponse;
-      return fetch(request)
-        .then((response) => {
-          // Only cache successful, same-origin or fonts
-          if (!response || response.status !== 200) return response;
-          const shouldCache =
-            response.type === 'basic' ||
-            url.hostname === 'fonts.googleapis.com' ||
-            url.hostname === 'fonts.gstatic.com' ||
-            request.destination === 'image' ||
-            request.destination === 'style' ||
-            request.destination === 'script' ||
-            request.destination === 'font';
-          if (shouldCache) {
-            const responseClone = response.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(request, responseClone));
-          }
-          return response;
-        })
-        .catch(() => {
-          // Optional: return offline placeholder for images
-          return cachedResponse;
-        });
-    })
+    fetch(request)
+      .then((response) => {
+        // Only cache successful, same-origin or fonts
+        if (!response || response.status !== 200) return response;
+        const shouldCache =
+          response.type === 'basic' ||
+          url.hostname === 'fonts.googleapis.com' ||
+          url.hostname === 'fonts.gstatic.com' ||
+          request.destination === 'image' ||
+          request.destination === 'style' ||
+          request.destination === 'script' ||
+          request.destination === 'font';
+        if (shouldCache) {
+          const responseClone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(request, responseClone));
+        }
+        return response;
+      })
+      .catch(() => caches.match(request))
   );
 });

@@ -8,7 +8,7 @@ Selected awards, certificates, competitions, and learning milestones that reflec
 
 ### Gold Medal
 
-#### Gold Medal — Padjadjaran Smart Minds Competition
+#### Gold Medal · Padjadjaran Smart Minds Competition
 
 **History Competition**
 **2025 · Gold Medal**
@@ -22,7 +22,7 @@ Gold Medal
 
 ### Finalist / Silver
 
-#### Finalist / Silver — International Science Qualification Olympiad
+#### Finalist / Silver · International Science Qualification Olympiad
 
 **Mathematics Competition**
 **2025 · Finalist**
@@ -36,7 +36,7 @@ Finalist · Silver Award
 
 ### Favorite Winner
 
-#### Favorite Winner — IITC Web Development Competition
+#### Favorite Winner · IITC Web Development Competition
 
 **Web Development · National Level**
 **2025 · Favorite Winner**
@@ -50,7 +50,7 @@ Favorite Winner · Web Development
 
 ### Finalist
 
-#### Finalist — Olympiad National Event Mahasiswa (ONEXMA)
+#### Finalist · Olympiad National Event Mahasiswa (ONEXMA)
 
 **Informatics Competition**
 **2026 · Finalist**
@@ -78,7 +78,7 @@ Go · Flutter · Software Development
 
 ### Full Stack Web Development
 
-#### Basic Course Preliminary Round — Full Stack Web Development
+#### Basic Course Preliminary Round · Full Stack Web Development
 
 **Perempuan Inovasi 2025**
 **2025 · Certificate**
@@ -92,7 +92,7 @@ Full Stack Web Development
 
 ### Top 10 Team
 
-#### Top 10 Team — Demo Day Innovation Challenge
+#### Top 10 Team · Demo Day Innovation Challenge
 
 **Generasi Terampil 2023**
 **2024 · Top 10 Team**
