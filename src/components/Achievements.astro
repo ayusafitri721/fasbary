@@ -10,6 +10,7 @@ import fullstackCertificate from "../assets/SERTIF_FULLSTACK.jpg";
 import p4Certificate from "../assets/SERTIF_P4.jpeg";
 import markodingCertificate from "../assets/SERTIF_MARKODING.jpeg";
 import designCertificate from "../assets/SERTIF_DESIGN.jpeg";
+import datathonCertificate from "../assets/SERTIF_DATATHON.jpeg";
 
 const featuredAchievement = {
   number: "03",
@@ -145,6 +146,20 @@ const additionalCertificates = [
     image: designCertificate,
     imageAlt: "Certificate for Designing Using Adobe Illustrator for Beginner",
   },
+  {
+    number: "10",
+    title: "DATATHON 2026 · Final Day & Seminar Participant",
+    category: "RISTEK · Fakultas Ilmu Komputer UI",
+    year: "2026",
+    type: "Participant",
+    description:
+      "Participated in the DATATHON 2026 Final Day & Seminar, organized by RISTEK, Fakultas Ilmu Komputer Universitas Indonesia.",
+    label: "Participant",
+    result: "Credential R2026-4348-3691",
+    icon: "mdi:chart-line",
+    image: datathonCertificate,
+    imageAlt: "Certificate for DATATHON 2026 Final Day & Seminar Participant",
+  },
 ];
 
 const achievements = [featuredAchievement, ...highlightedAchievements, ...certificateHighlights, ...additionalCertificates];
@@ -168,11 +183,11 @@ const totalPages = Math.ceil(achievements.length / itemsPerPage);
   </div>
 
   <div class="space-y-6 md:space-y-8" data-achievements-section data-items-per-page={itemsPerPage} data-total-items={achievements.length}>
-    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
       {achievements.map((achievement, index) => (
         <article
           class:list={[
-            "ach-card group overflow-hidden rounded-3xl border border-outline-variant/30 bg-white p-6 shadow-lg shadow-on-surface/[0.02] transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5",
+            "ach-card group overflow-hidden rounded-3xl border border-outline-variant/30 bg-surface-container-lowest p-6 shadow-lg shadow-on-surface/[0.02] transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5",
             index >= itemsPerPage && "hidden",
           ]}
           data-achievement-card
@@ -183,7 +198,7 @@ const totalPages = Math.ceil(achievements.length / itemsPerPage);
         >
           <div class="flex h-full flex-col gap-5">
             <div
-              class="relative h-[190px] overflow-hidden rounded-3xl border border-outline-variant/30 bg-gradient-to-br from-secondary-container/70 to-white p-3 shadow-lg cursor-zoom-in group/img"
+              class="relative h-[190px] overflow-hidden rounded-3xl border border-outline-variant/30 bg-gradient-to-br from-secondary-container/70 to-surface-container-lowest p-3 shadow-lg cursor-zoom-in group/img"
               data-achievement-trigger
               data-index={index}
               role="button"
@@ -200,7 +215,7 @@ const totalPages = Math.ceil(achievements.length / itemsPerPage);
               ) : (
                 <div class="relative h-full p-4">
                   <div class="absolute inset-0 blueprint-grid opacity-20"></div>
-                  <div class="relative z-10 flex h-full flex-col justify-between rounded-xl bg-white/75 p-4 shadow-inner">
+                  <div class="relative z-10 flex h-full flex-col justify-between rounded-xl bg-surface-container-lowest/75 p-4 shadow-inner">
                     <Icon name={achievement.icon} class="h-7 w-7 text-primary" />
                     <div>
                       <p class="text-[10px] font-black uppercase tracking-widest text-on-surface-variant/55">
@@ -219,7 +234,7 @@ const totalPages = Math.ceil(achievements.length / itemsPerPage);
                 <span class="rounded-full bg-surface-container px-3 py-1 text-xs font-bold text-on-surface-variant">
                   {achievement.year} · {achievement.type}
                 </span>
-                <button type="button" class="ml-auto flex h-8 w-8 items-center justify-center rounded-xl border border-outline-variant/30 bg-white text-on-surface-variant transition-colors group-hover:border-primary/30 group-hover:text-primary" aria-label={`Save ${achievement.title}`}>
+                <button type="button" class="ml-auto flex h-8 w-8 items-center justify-center rounded-xl border border-outline-variant/30 bg-surface-container-lowest text-on-surface-variant transition-colors group-hover:border-primary/30 group-hover:text-primary" aria-label={`Save ${achievement.title}`}>
                   <Icon name="mdi:bookmark-outline" class="h-4 w-4" />
                 </button>
               </div>
@@ -255,7 +270,7 @@ const totalPages = Math.ceil(achievements.length / itemsPerPage);
       <div class="flex items-center justify-center gap-2 flex-wrap" aria-label="Achievement pagination">
         <button
           type="button"
-          class="achievement-nav-btn flex h-10 w-10 items-center justify-center rounded-full border border-outline-variant/40 bg-white text-on-surface-variant transition-colors hover:border-primary/40 hover:text-primary disabled:cursor-not-allowed disabled:opacity-40"
+          class="achievement-nav-btn flex h-10 w-10 items-center justify-center rounded-full border border-outline-variant/40 bg-surface-container-lowest text-on-surface-variant transition-colors hover:border-primary/40 hover:text-primary disabled:cursor-not-allowed disabled:opacity-40"
           data-achievement-prev
           disabled
           aria-label="Previous achievements page"
@@ -269,8 +284,8 @@ const totalPages = Math.ceil(achievements.length / itemsPerPage);
             class:list={[
               "achievement-page-btn h-10 min-w-10 rounded-full border px-4 text-sm font-bold transition-all duration-200",
               index === 0
-                ? "border-primary bg-primary text-white shadow-lg shadow-primary/20"
-                : "border-outline-variant/40 bg-white text-on-surface-variant hover:border-primary/40 hover:text-primary",
+                ? "border-primary bg-primary text-on-primary shadow-lg shadow-primary/20"
+                : "border-outline-variant/40 bg-surface-container-lowest text-on-surface-variant hover:border-primary/40 hover:text-primary",
             ]}
             data-achievement-page-button
             data-page={index + 1}
@@ -282,14 +297,14 @@ const totalPages = Math.ceil(achievements.length / itemsPerPage);
 
         <button
           type="button"
-          class="achievement-nav-btn flex h-10 w-10 items-center justify-center rounded-full border border-outline-variant/40 bg-white text-on-surface-variant transition-colors hover:border-primary/40 hover:text-primary disabled:cursor-not-allowed disabled:opacity-40"
+          class="achievement-nav-btn flex h-10 w-10 items-center justify-center rounded-full border border-outline-variant/40 bg-surface-container-lowest text-on-surface-variant transition-colors hover:border-primary/40 hover:text-primary disabled:cursor-not-allowed disabled:opacity-40"
           data-achievement-next
           aria-label="Next achievements page"
         >
           <Icon name="mdi:chevron-right" class="h-5 w-5" />
         </button>
 
-        <span class="hidden rounded-full border border-outline-variant/40 bg-white px-4 py-2 text-sm font-bold text-on-surface-variant sm:inline-flex">
+        <span class="hidden rounded-full border border-outline-variant/40 bg-surface-container-lowest px-4 py-2 text-sm font-bold text-on-surface-variant sm:inline-flex">
           {itemsPerPage} per page
         </span>
       </div>
@@ -471,11 +486,11 @@ const totalPages = Math.ceil(achievements.length / itemsPerPage);
         button.setAttribute("aria-pressed", String(isActive));
         button.classList.toggle("border-primary", isActive);
         button.classList.toggle("bg-primary", isActive);
-        button.classList.toggle("text-white", isActive);
+        button.classList.toggle("text-on-primary", isActive);
         button.classList.toggle("shadow-lg", isActive);
         button.classList.toggle("shadow-primary/20", isActive);
         button.classList.toggle("border-outline-variant/40", !isActive);
-        button.classList.toggle("bg-white", !isActive);
+        button.classList.toggle("bg-surface-container-lowest", !isActive);
         button.classList.toggle("text-on-surface-variant", !isActive);
       });
 

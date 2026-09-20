@@ -16,7 +16,7 @@ const { title } = Astro.props;
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="theme-color" content="#0037b0" />
+        <meta name="theme-color" content="#f8f9fa" id="theme-color-meta" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-title" content="Fasbary" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -35,6 +35,21 @@ const { title } = Astro.props;
         />
 
         <title>{title}</title>
+
+        <script is:inline>
+            (() => {
+                try {
+                    const stored = localStorage.getItem("fasbary-theme");
+                    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+                    const dark = stored ? stored === "dark" : prefersDark;
+                    document.documentElement.classList.toggle("dark", dark);
+                    const meta = document.getElementById("theme-color-meta");
+                    if (meta) meta.setAttribute("content", dark ? "#121318" : "#f8f9fa");
+                } catch (err) {
+                    /* noop — theme defaults to light */
+                }
+            })();
+        </script>
     </head>
     <body
         class="bg-background text-on-background relative overflow-x-hidden min-h-screen"

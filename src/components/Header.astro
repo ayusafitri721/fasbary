@@ -60,10 +60,21 @@ import { Icon } from "astro-icon/components";
         </nav>
 
         <!-- CTA Button -->
-        <div class="flex items-center gap-4">
+        <div class="flex items-center gap-2 sm:gap-4">
+            <!-- Theme Toggle -->
+            <button
+                id="theme-toggle"
+                class="p-2 rounded-full hover:bg-surface-container transition-colors text-on-background"
+                aria-label="Switch to dark mode"
+                title="Toggle dark / light mode"
+            >
+                <Icon name="mdi:weather-night" class="w-6 h-6" id="theme-icon-dark" />
+                <Icon name="mdi:weather-sunny" class="w-6 h-6 hidden" id="theme-icon-light" />
+            </button>
+
             <a
                 href="#contact"
-                class="hidden sm:inline-flex items-center justify-center bg-primary text-white text-sm font-medium px-6 py-2.5 rounded-full hover:bg-primary-container transition-all hover:scale-105 shadow-sm"
+                class="hidden sm:inline-flex items-center justify-center bg-primary text-on-primary text-sm font-medium px-6 py-2.5 rounded-full hover:bg-primary-container transition-all hover:scale-105 shadow-sm"
             >
                 Get in Touch
             </a>
@@ -128,7 +139,7 @@ import { Icon } from "astro-icon/components";
             >
             <a
                 href="#contact"
-                class="mobile-link inline-flex items-center justify-center bg-primary text-white text-base font-medium py-3 rounded-full hover:bg-primary-container transition-colors mt-2"
+                class="mobile-link inline-flex items-center justify-center bg-primary text-on-primary text-base font-medium py-3 rounded-full hover:bg-primary-container transition-colors mt-2"
             >
                 Get in Touch
             </a>
@@ -263,4 +274,35 @@ import { Icon } from "astro-icon/components";
     };
     window.addEventListener("scroll", onScrollSpyFallback, { passive: true });
     onScrollSpyFallback();
+
+    // Theme toggle (dark / light)
+    const themeToggle = document.getElementById("theme-toggle");
+    const themeIconDark = document.getElementById("theme-icon-dark");
+    const themeIconLight = document.getElementById("theme-icon-light");
+    const themeColorMeta = document.getElementById("theme-color-meta");
+
+    const syncThemeUI = () => {
+        const dark = document.documentElement.classList.contains("dark");
+        themeIconDark?.classList.toggle("hidden", dark);
+        themeIconLight?.classList.toggle("hidden", !dark);
+        themeToggle?.setAttribute(
+            "aria-label",
+            dark ? "Switch to light mode" : "Switch to dark mode"
+        );
+        if (themeColorMeta) {
+            themeColorMeta.setAttribute("content", dark ? "#121318" : "#f8f9fa");
+        }
+    };
+
+    themeToggle?.addEventListener("click", () => {
+        const dark = document.documentElement.classList.toggle("dark");
+        try {
+            localStorage.setItem("fasbary-theme", dark ? "dark" : "light");
+        } catch (err) {
+            /* storage unavailable — ignore */
+        }
+        syncThemeUI();
+    });
+
+    syncThemeUI();
 </script>
