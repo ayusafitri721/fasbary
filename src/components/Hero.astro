@@ -61,7 +61,7 @@ import avatarImage from "../assets/gueh.jpg";
                     href="https://wa.me/6281220178122?text=Hi%20Namry!%20Saya%20tertarik%20untuk%20mengajak%20kolaborasi%20dengan%20kamu.%20Boleh%20kita%20diskusi%20lebih%20lanjut%3F"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="hero-btn inline-flex items-center gap-2 bg-primary hover:bg-primary-container text-on-primary text-sm font-medium px-6 py-3 rounded-full transition-all duration-300 hover:-translate-y-0.5 hover:scale-[1.03] shadow-md shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 mt-2 group"
+                    class="hero-btn inline-flex items-center gap-2 bg-primary hover:bg-primary-container text-on-primary text-sm font-medium px-6 py-3 rounded-full transition-all duration-300 hover:-translate-y-0.5 shadow-md hover:shadow-lg mt-2 group"
                 >
                     Get in Touch
                     <Icon
@@ -76,9 +76,9 @@ import avatarImage from "../assets/gueh.jpg";
                 <p
                     class="hero-desc text-base lg:text-lg font-medium text-on-background leading-relaxed"
                 >
-                    Hello, I'm Namry Ayu Safitri, a Full-Stack Developer
-                    Enthusiast who enjoys building web apps, trying new tech, and
-                    turning rough ideas into working products.
+Hello, I'm Namry Ayu Safitri, a Full-Stack Developer
+Enthusiast. I build web apps and turn rough ideas into working
+products.
                 </p>
             </div>
         </div>
@@ -90,17 +90,11 @@ import avatarImage from "../assets/gueh.jpg";
             <div
                 class="relative w-full max-w-[340px] h-full flex items-end justify-center"
             >
-                <!-- Soft background glow behind avatar -->
-                <div
-                    class="absolute inset-0 bg-primary/10 rounded-full blur-3xl -z-10 transform scale-90"
-                >
-                </div>
-
                 <!-- Portrait Cropped Avatar Image -->
                 <Image
                     src={avatarImage}
                     alt="Namry Ayu Safitri Avatar"
-                    class="aspect-[3/4] w-full max-h-[520px] object-cover object-center rounded-3xl shadow-2xl border border-white/40 drop-shadow-xl hover:scale-[1.02] transition-transform duration-500"
+                    class="aspect-[3/4] w-full max-h-[520px] object-cover object-center rounded-3xl shadow-xl border border-white/40 hover:scale-[1.02] transition-transform duration-500"
                     loading="eager"
                 />
             </div>
@@ -159,7 +153,7 @@ import avatarImage from "../assets/gueh.jpg";
                 <p
                     class="hero-tagline text-sm text-on-surface-variant font-medium leading-tight mt-1"
                 >
-                    I BUILD DIGITAL EXPERIENCES
+                    I BUILD WEB & Mobile Apps
                 </p>
 
                 <div class="flex flex-wrap gap-2 mt-1 justify-center md:justify-end">
@@ -222,10 +216,6 @@ import avatarImage from "../assets/gueh.jpg";
         from { opacity: 0; transform: translateY(18px) scale(0.97); }
         to   { opacity: 1; transform: translateY(0) scale(1); }
     }
-    @keyframes avatarFloat {
-        0%,100% { transform: translateY(0); }
-        50%     { transform: translateY(-8px); }
-    }
 
     /* Watermark: subtle, short */
     section > div:nth-of-type(2) h1 {
@@ -280,9 +270,7 @@ import avatarImage from "../assets/gueh.jpg";
     .hero-line:nth-child(3) { animation-delay: 0.58s; }
 
     section img[alt*="Avatar"] {
-        animation:
-            heroAvatarIn 0.7s var(--hero-ease) 0.15s both,
-            avatarFloat 6s ease-in-out 1.1s infinite;
+        animation: heroAvatarIn 0.7s var(--hero-ease) 0.15s both;
     }
 
     .hero-desc {
