@@ -1,5 +1,5 @@
 // Fasbary PWA - Service Worker
-const CACHE_NAME = 'fasbary-v2';
+const CACHE_NAME = 'fasbary-v3';
 const URLS_TO_CACHE = [
   '/',
   '/manifest.webmanifest',

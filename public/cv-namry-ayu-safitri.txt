@@ -1,0 +1,100 @@
+Namry Ayu Safitri
+Full-Stack Developer Enthusiast
+
+Contact
+- WhatsApp: +62 812-2017-8122
+- GitHub: https://github.com/ayusafitri721
+- LinkedIn: https://www.linkedin.com/in/ayusafitri21/
+- Instagram: https://www.instagram.com/fasbary/
+
+Profile
+Full-Stack Developer Enthusiast who builds web and mobile apps from rough ideas into working products. Interested in clean interfaces, practical workflows, and software that solves real problems.
+
+Education
+UPN Veteran Jakarta
+Undergraduate Information Systems Student
+2026 - Present
+
+SMKN 24 Jakarta
+Software Engineering Student
+2023 - 2026
+
+Experience
+Rahmah Group International
+Full-Stack Web Developer Intern, 2026
+Built and maintained web apps across frontend and backend, worked with APIs and databases, and shipped features for a live product.
+
+Skills
+Frontend
+- React.js
+- Next.js
+- JavaScript
+- HTML
+- CSS
+- Bootstrap
+- Tailwind CSS
+- Astro
+
+Backend
+- Laravel
+- Node.js
+- PHP
+- Python
+- REST API
+- Express.js
+
+Database and Tools
+- MySQL
+- Postman
+- Git
+- GitHub
+- Laragon
+- XAMPP
+
+Mobile Development
+- Flutter
+- Dart
+- Kotlin
+- Java
+- React Native
+
+Programming Languages
+- C
+- C++
+
+Soft Skills
+- Teamwork
+- Communication
+- Time Management
+- Problem Solving
+- Continuous Learning
+
+Selected Projects
+Rahmah Travel, 2026
+Full-Stack Platform
+Travel management dashboard designed to organize operational workflows, manage data, and support a cleaner admin experience.
+Stack: JavaScript, Node.js, Express.js
+Demo: https://sales.rahmahtravel.id/
+
+Nusantara Explorer, 2025
+Full-Stack Development
+Cultural discovery platform focused on presenting Indonesian culture through a modern, responsive, and accessible interface.
+Stack: Next.js, TypeScript, Tailwind CSS
+Demo: https://nusphere-kappa.vercel.app/
+
+PADAN, 2026
+Mobile App Development
+AI-driven demand forecasting and dynamic pricing mobile application tailored for culinary SMEs to prevent food waste through inventory tracking and daily production planning.
+Stack: Flutter, Mobile UI, Figma, Prototyping
+GitHub: https://github.com/baradika/padan_app
+
+Store E-Commerce Platform, 2025
+Full-Stack Web App
+Full-stack store web app built with PHP Native, MySQL, and Tailwind CSS.
+Stack: PHP Native, MySQL, Tailwind CSS
+
+Prayer Streak, 2025
+Mobile App
+Habit tracking app for maintaining daily prayer consistency and visualizing streak progress.
+Stack: Flutter, Mobile UI, Habit Tracking
+GitHub: https://github.com/ayusafitri721/prayer-streak

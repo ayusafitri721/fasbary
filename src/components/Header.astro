@@ -73,10 +73,12 @@ import { Icon } from "astro-icon/components";
             </button>
 
             <a
-                href="#contact"
-                class="hidden sm:inline-flex items-center justify-center bg-primary text-on-primary text-sm font-medium px-6 py-2.5 rounded-full hover:bg-primary-container transition-all hover:scale-105 shadow-sm"
+                href="/cv-namry-ayu-safitri.pdf"
+                download
+                class="hidden sm:inline-flex items-center justify-center gap-2 bg-primary text-on-primary text-sm font-medium px-6 py-2.5 rounded-full hover:bg-primary-container transition-all hover:scale-105 shadow-sm"
             >
-                Get in Touch
+                Download CV
+                <Icon name="mdi:download" class="w-4 h-4" />
             </a>
 
             <!-- Mobile Menu Toggle -->
@@ -138,10 +140,12 @@ import { Icon } from "astro-icon/components";
                 >Contact</a
             >
             <a
-                href="#contact"
-                class="mobile-link inline-flex items-center justify-center bg-primary text-on-primary text-base font-medium py-3 rounded-full hover:bg-primary-container transition-colors mt-2"
+                href="/cv-namry-ayu-safitri.pdf"
+                download
+                class="mobile-link inline-flex items-center justify-center gap-2 bg-primary text-on-primary text-base font-medium py-3 rounded-full hover:bg-primary-container transition-colors mt-2"
             >
-                Get in Touch
+                Download CV
+                <Icon name="mdi:download" class="w-5 h-5" />
             </a>
         </nav>
     </div>
@@ -290,7 +294,7 @@ import { Icon } from "astro-icon/components";
             dark ? "Switch to light mode" : "Switch to dark mode"
         );
         if (themeColorMeta) {
-            themeColorMeta.setAttribute("content", dark ? "#121318" : "#f8f9fa");
+            themeColorMeta.setAttribute("content", dark ? "#08111f" : "#f8f9fa");
         }
     };
 
