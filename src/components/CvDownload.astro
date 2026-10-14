@@ -1,0 +1,272 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<!-- Download CV gate: human check issued and verified by the server.
+     The answer is checked on the backend, never by this script. -->
+<button
+    type="button"
+    class="cv-gate-trigger hero-cv-btn inline-flex items-center gap-2 border border-primary/30 bg-surface-container-lowest text-primary hover:bg-secondary-container text-sm font-medium px-6 py-3 rounded-full transition-all duration-300 hover:-translate-y-0.5 shadow-sm hover:shadow-md group focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+    aria-haspopup="dialog"
+>
+    Download CV
+    <Icon name="mdi:download" class="w-4 h-4" />
+</button>
+
+<div
+    class="cv-gate-modal fixed inset-0 z-[200] hidden items-center justify-center bg-black/70 p-4 md:p-10"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="cv-gate-title"
+>
+    <div
+        class="cv-gate-card w-full max-w-md rounded-[1.5rem] border border-outline-variant/40 bg-surface-container-lowest p-6 md:p-8 shadow-xl max-h-[90vh] overflow-y-auto"
+    >
+        <div class="flex items-start justify-between gap-4">
+            <h3 id="cv-gate-title" class="text-xl font-extrabold tracking-tight text-on-background">
+                Quick human check
+            </h3>
+            <button
+                type="button"
+                class="cv-gate-close flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-on-surface-variant transition-colors hover:bg-surface-container focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                aria-label="Close download dialog"
+            >
+                <Icon name="mdi:close" class="h-5 w-5" />
+            </button>
+        </div>
+
+        <p class="mt-3 text-sm leading-relaxed text-on-surface-variant">
+            To keep the bot traffic out of my inbox, solve this simple sum before the CV downloads.
+        </p>
+
+        <form class="cv-gate-form mt-8 flex flex-col gap-5" novalidate>
+            <div
+                class="rounded-xl border border-primary/20 bg-primary/5 px-4 py-3.5"
+            >
+                <p
+                    id="cv-gate-question"
+                    class="text-lg font-bold text-on-background"
+                >
+                    Preparing the check…
+                </p>
+            </div>
+            <div>
+                <label for="cv-gate-answer" class="block text-sm font-semibold text-on-background">
+                    Your answer
+                </label>
+                <input
+                    id="cv-gate-answer"
+                    name="answer"
+                    type="text"
+                    inputmode="numeric"
+                    autocomplete="off"
+                    required
+                    maxlength="4"
+                    class="mt-1.5 w-full rounded-xl border border-outline px-4 py-2.5 text-base text-on-background bg-surface-container-lowest focus:border-primary focus:ring-2 focus:ring-primary/40 focus:outline-none placeholder:text-on-surface-variant/70"
+                    placeholder="e.g. 36"
+                />
+            </div>
+
+            <p class="cv-gate-status min-h-[1.25rem] text-sm font-semibold" aria-live="polite">
+            </p>
+
+            <button
+                type="submit"
+                class="cv-gate-submit inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-on-primary transition-all duration-300 hover:bg-primary-container hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary disabled:cursor-not-allowed disabled:opacity-50 w-full sm:w-auto sm:min-w-[220px]"
+            >
+                Verify & download
+            </button>
+        </form>
+    </div>
+</div>
+
+<script>
+    const trigger = document.querySelector<HTMLButtonElement>(".cv-gate-trigger");
+    const modal = document.querySelector<HTMLDivElement>(".cv-gate-modal");
+    const closeBtn = document.querySelector<HTMLButtonElement>(".cv-gate-close");
+    const form = document.querySelector<HTMLFormElement>(".cv-gate-form");
+    const questionEl = document.querySelector<HTMLElement>("#cv-gate-question");
+    const answerInput = document.querySelector<HTMLInputElement>("#cv-gate-answer");
+    const statusEl = document.querySelector<HTMLElement>(".cv-gate-status");
+    const submitBtn = document.querySelector<HTMLButtonElement>(".cv-gate-submit");
+
+    let challenge: { a: number; b: number; op: "mul" | "div"; exp: number; sig: string } | null = null;
+    let lastFocus: HTMLElement | null = null;
+    let verifying = false;
+
+    // Portal: the modal must escape the Hero column's z-10 stacking context,
+    // otherwise the avatar column (also z-10, later in DOM) paints over it.
+    if (modal && modal.parentElement !== document.body) {
+        document.body.appendChild(modal);
+    }
+
+    const setStatus = (text: string, kind: "error" | "ok" | "") => {
+        if (!statusEl) return;
+        statusEl.textContent = text;
+        statusEl.classList.toggle("text-red-600", kind === "error");
+        statusEl.classList.toggle("dark:text-red-400", kind === "error");
+        statusEl.classList.toggle("text-primary", kind === "ok");
+        statusEl.classList.toggle("text-on-surface-variant", kind === "");
+    };
+
+    const generateChallenge = async () => {
+        questionEl!.textContent = "Preparing the check…";
+        try {
+            const res = await fetch("/api/cv-challenge", { cache: "no-store" });
+            if (!res.ok) throw new Error();
+            challenge = await res.json();
+            questionEl!.textContent =
+                challenge.op === "mul"
+                    ? `What is ${challenge.a} × ${challenge.b}?`
+                    : `What is ${challenge.a} ÷ ${challenge.b}?`;
+        } catch {
+            questionEl!.textContent = "Could not load the check. Please try again.";
+            setStatus("", "error");
+        }
+    };
+
+    const focusable = () =>
+        Array.from(
+            modal!.querySelectorAll<HTMLElement>(
+                'button, input, [tabindex]:not([tabindex="-1"])'
+            ),
+        ).filter((el) => !el.hasAttribute("disabled") && el.offsetParent !== null);
+
+    const openDialog = async () => {
+        if (!modal) return;
+        if (modal.parentElement !== document.body) document.body.appendChild(modal);
+        lastFocus = document.activeElement as HTMLElement;
+        modal.classList.remove("hidden");
+        modal.classList.add("flex");
+        answerInput!.value = "";
+        setStatus("", "");
+        submitBtn!.disabled = false;
+        await generateChallenge();
+        answerInput!.focus();
+        modal.setAttribute("aria-hidden", "false");
+    };
+
+    const closeDialog = () => {
+        if (!modal) return;
+        modal.classList.add("hidden");
+        modal.classList.remove("flex");
+        modal.setAttribute("aria-hidden", "true");
+        lastFocus?.focus();
+    };
+
+    const trapFocus = (event: KeyboardEvent) => {
+        const items = focusable();
+        if (items.length === 0) return;
+        const first = items[0]!;
+        const last = items[items.length - 1]!;
+        if (event.key === "Tab") {
+            if (event.shiftKey && document.activeElement === first) {
+                event.preventDefault();
+                last.focus();
+            } else if (!event.shiftKey && document.activeElement === last) {
+                event.preventDefault();
+                first.focus();
+            }
+        }
+    };
+
+    trigger?.addEventListener("click", openDialog);
+    closeBtn?.addEventListener("click", closeDialog);
+    modal?.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closeDialog();
+        trapFocus(event);
+    });
+    modal?.addEventListener("click", (event) => {
+        if (event.target === modal) closeDialog();
+    });
+
+    answerInput?.addEventListener("input", () => {
+        const cleaned = answerInput.value.replace(/[^0-9]/g, "");
+        if (answerInput.value !== cleaned) answerInput.value = cleaned;
+    });
+
+    form?.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        if (verifying || !challenge) return;
+        verifying = true;
+        submitBtn!.disabled = true;
+        setStatus("Verifying on the server…", "");
+
+        const answer = Number.parseInt(answerInput!.value.trim(), 10);
+        if (Number.isNaN(answer) || !challenge) {
+            setStatus("That is not a number. Try again.", "error");
+            verifying = false;
+            submitBtn!.disabled = false;
+            answerInput!.focus();
+            return;
+        }
+
+        try {
+            const res = await fetch("/api/cv", {
+                method: "POST",
+                headers: { "content-type": "application/json" },
+                body: JSON.stringify({
+                    a: challenge.a,
+                    b: challenge.b,
+                    exp: challenge.exp,
+                    sig: challenge.sig,
+                    answer,
+                }),
+            });
+
+            if (!res.ok) {
+                let data = {};
+                try {
+                    data = await res.json();
+                } catch {
+                    /* non-JSON error body */
+                }
+                if (data.error === "expired") setStatus("Check expired, please try again.", "error");
+                else setStatus("That answer is not right. Try again.", "error");
+                verifying = false;
+                submitBtn!.disabled = false;
+                await generateChallenge();
+                return;
+            }
+
+            const blob = await res.blob();
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = "cv-namry-ayu-safitri.pdf";
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            URL.revokeObjectURL(url);
+
+            setStatus("Check passed. Download started.", "ok");
+            setTimeout(closeDialog, 900);
+        } catch {
+            setStatus("Something went wrong on the network. Try again.", "error");
+            verifying = false;
+            submitBtn!.disabled = false;
+        }
+    });
+</script>
+
+<style>
+    /* Hero starts this button with the same fade-up as "Get in Touch".
+       The rule lives here instead of Hero.astro because Astro scopes each
+       component's styles, so Hero's .hero-btn rule never reaches this button. */
+    .cv-gate-trigger {
+        animation: cvGateFadeUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.32s both;
+    }
+
+    @keyframes cvGateFadeUp {
+        from { opacity: 0; transform: translateY(16px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .cv-gate-trigger {
+            animation: none !important;
+            opacity: 1;
+            transform: none;
+        }
+    }
+</style>

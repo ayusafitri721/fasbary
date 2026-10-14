@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import vercel from '@astrojs/vercel';
 
 import tailwindcss from '@tailwindcss/vite';
 import { VitePWA } from 'vite-plugin-pwa';
@@ -8,6 +9,10 @@ import icon from 'astro-icon';
 
 // https://astro.build/config
 export default defineConfig({
+  // Default static output renders pages, the CV-check API routes run on demand.
+  adapter: vercel({
+    includeFiles: ['private/cv-namry-ayu-safitri.pdf'],
+  }),
   vite: {
     plugins: [
       tailwindcss(),
